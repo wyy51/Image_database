@@ -8,8 +8,8 @@
     /* =============================
        AUTOBUNNY PARTS eBay Template
        Naming standard:
-       - Image IDs: autobunny-img-xx
-       - Link IDs:  autobunny-link-xx
+       - Image IDs: autobunny-img-[module]-[index]
+       - Link IDs:  autobunny-link-[module]-[index]
        ============================= */
     * { box-sizing: border-box; }
     :root {
@@ -123,6 +123,7 @@
       z-index: 1;
     }
     .ab-flag.hot { border-top-color: #ff3b30; }
+    .ab-flag.off { border-top-color: #ff8c1a; }
     .ab-flag span {
       position: absolute;
       /* Keep text inside the triangle near top-left corner with current flag size */
@@ -286,7 +287,7 @@
 
         <div class="ab-promo-card">
           <span class="ab-flag"><span>NEW</span></span>
-          <img id="autobunny-img-promo-new-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+NEW+PARTS" alt="AUTOBUNNY new product banner image">
+          <img id="autobunny-img-promo-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+NEW+PARTS" alt="AUTOBUNNY new product banner image">
           <div class="ab-shop-now-wrap">
             <a id="autobunny-link-shopnow-01" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
           </div>
@@ -294,15 +295,15 @@
 
         <div class="ab-promo-card">
           <span class="ab-flag hot"><span>HOT</span></span>
-          <img id="autobunny-img-promo-hot-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+HOT+SALE" alt="AUTOBUNNY hot sale product image">
+          <img id="autobunny-img-promo-02" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+HOT+SALE" alt="AUTOBUNNY hot sale product image">
           <div class="ab-shop-now-wrap">
             <a id="autobunny-link-shopnow-02" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
           </div>
         </div>
 
         <div class="ab-promo-card">
-          <span class="ab-flag"><span>OFF</span></span>
-          <img id="autobunny-img-promo-off-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+LIMITED+OFF" alt="AUTOBUNNY discount product image">
+          <span class="ab-flag off"><span>OFF</span></span>
+          <img id="autobunny-img-promo-03" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+LIMITED+OFF" alt="AUTOBUNNY discount product image">
           <div class="ab-shop-now-wrap">
             <a id="autobunny-link-shopnow-03" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
           </div>
