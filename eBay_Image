@@ -1,1 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front Left Driver Window Regulator &amp; Motor Ford Ranger MK2 Pickup 2006-2012 | AUTOBUNNY PARTS</title>
+  <style>
+    body {
+      font-family: 'League Spartan', 'Arial Black', Arial, Helvetica, sans-serif;
+      background: #f5f5f7;
+      color: #222;
+      margin: 0;
+    }
+    .main-container {
+      max-width: 900px;
+      margin: 32px auto;
+      background: #fff;
+      box-shadow: 0 0 14px 1px #ddd4;
+      border-radius: 16px;
+      overflow: hidden;
+      min-width: 290px;
+    }
+    .brand-head {
+      background: #000;
+      padding: 26px 0 18px;
+      text-align: center;
+    }
+    .brand-head .brand-name {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .brand-head .brand-tips {
+      color: #f2f2f2;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .banner-img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+    .flex {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .sidebar {
+      background: #000;
+      min-width: 200px;
+      max-width: 200px;
+      border-right: 1px solid #e8e0dd;
+    }
+    /* 12.0: add border-bottom to title */
+    .sidebar .sidecat-title {
+      background: #000;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 13px 0;
+      margin: 0;
+      line-height: 1.2;
+      border-bottom: 1px solid #fff;
+    }
+    .sidebar .sidecat-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    /* 12.0: side category links use specified style */
+    .sidebar .sidecat-list a {
+      display: block;
+      color: #222;
+      background: #eee;
+      border-bottom: 1px solid #fff;
+      padding: 10px 18px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      transition: background .2s;
+    }
+    .sidebar .sidecat-list a:hover {
+      background: #ddd;
+      color: #000;
+    }
+    .side-banner-block {
+      padding: 19px 14px 0;
+    }
+    .side-banner-item {
+      position: relative;
+      display: block;
+      margin-bottom: 26px;
+    }
+    .side-banner-link {
+      display: block;
+      text-decoration: none;
+    }
+    .side-banner-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      background: #fafbfc;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 10px #ddd5;
+    }
+    .side-banner-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .triangle-badge {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 60px solid #ff751f;
+      border-right: 60px solid transparent;
+      z-index: 3;
+    }
+    .side-banner-item.hot .triangle-badge {
+      border-top-color: #c81414;
+    }
+    .side-banner-item.off .triangle-badge {
+      border-top-color: #ff751f;
+    }
+    /* 12.0: keep only left:-1px and top:9px changes for this selector */
+    .triangle-badge-text {
+      position: absolute;
+      left: -1px;
+      top: 9px;
+      color: #fff;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      font-family: 'League Spartan', 'Arial Black', Arial, Helvetica, sans-serif;
+      transform: rotate(-35deg);
+      z-index: 5;
+      user-select: none;
+      pointer-events: none;
+      text-shadow: 1px 1px 6px #dec28d41;
+      width: 48px;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    /* 12.0: set margin-top and margin-bottom only */
+    .shop-btn, .shop-btn:link, .shop-btn:visited, .shop-btn:active, .shop-btn:hover {
+      margin-top: -15px;
+      margin-bottom: 32px;
+      display: block;
+      background: #ff751f;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 22px;
+      padding: 10px 0;
+      transition: background .18s, box-shadow .18s;
+      box-shadow: 0 1px 7px #fdb66651;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .9px;
+      outline: none;
+    }
+    .side-banner-item.hot .shop-btn {
+      background: #c81414;
+    }
+    .side-banner-item.off .shop-btn {
+      background: #ff751f;
+    }
+    .shop-btn:hover,
+    .side-banner-item.off .shop-btn:focus {
+      background: #fff;
+      color: #ff751f;
+      border: 2px solid #ff751f;
+      text-decoration: none;
+    }
+    .side-banner-item.hot .shop-btn:hover {
+      background: #fff;
+      color: #c81414;
+      border: 2px solid #c81414;
+      text-decoration: none;
+    }
+    .content {
+      flex: 1;
+      background: #fff;
+    }
+    .nav-bar {
+      background: #ff751f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 4px solid #000;
+    }
+    .nav-bar-link {
+      display: inline-block;
+      padding: 14px 18px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      transition: background .2s;
+      border-right: 1px solid #faa432;
+    }
+    .nav-bar-link:last-child {
+      border-right: none;
+    }
+    .nav-bar-link:hover,
+    .nav-bar-link.active {
+      background: #000;
+      color: #ff751f;
+    }
+    .desc-section {
+      padding: 21px 26px;
+    }
+    .desc-block {
+      background: #fff;
+      max-width: 640px;
+      margin: 0 auto 13px;
+      padding-bottom: 4px;
+    }
+    .desc-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #ff751f;
+      margin-top: 18px;
+      margin-bottom: 5px;
+      line-height: 1.33;
+    }
+    .desc-content {
+      font-size: 14px;
+      line-height: 1.63;
+      color: #28303b;
+      margin: 0;
+    }
+    .desc-content ul {
+      margin: 0 0 5px 18px;
+      padding-left: 9px;
+    }
+    .desc-slider-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      justify-content: center;
+      max-width: 460px;
+      margin: 0 auto 20px;
+    }
+    .img-slider-main {
+      max-width: 330px;
+      width: 330px;
+      height: 330px;
+      min-width: 140px;
+      min-height: 140px;
+      background: #fafafa;
+      border-radius: 13px;
+      border: 1.5px solid #e3e3e3;
+      box-shadow: 0 4px 14px #1112;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .slider-img {
+      width: 330px;
+      height: 330px;
+      max-width: 94vw;
+      max-height: 94vw;
+      object-fit: cover;
+      border-radius: 13px;
+      background: #fafbfc;
+      display: block;
+      margin: 0 auto;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      width: 38px;
+      height: 38px;
+      line-height: 38px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.82);
+      color: #ff751f;
+      font-size: 22px;
+      font-weight: 900;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 12px #3337;
+      cursor: pointer;
+      user-select: none;
+      transition: background .13s, color .13s;
+    }
+    .slider-arrow.left {
+      left: -13px;
+    }
+    .slider-arrow.right {
+      right: -13px;
+    }
+    .slider-arrow:hover {
+      background: #ff751f;
+      color: #fff;
+    }
+    .slider-thumbs-vert {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      justify-content: flex-start;
+      align-items: center;
+      max-width: 70px;
+    }
+    .slider-thumb {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      background: #fff;
+      border: 2px solid #e9e9e9;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border .17s;
+      opacity: .76;
+    }
+    .slider-thumb.active {
+      border: 2.5px solid #ff751f;
+      opacity: 1;
+    }
+    .logi-banner-section {
+      max-width: 840px;
+      margin: 24px auto 36px;
+      text-align: center;
+      line-height: 1.63;
+    }
+    .logi-banner-section img {
+      width: 100%;
+      min-height: 40px;
+      max-height: 132px;
+      object-fit: cover;
+      border-radius: 7px;
+      box-shadow: 0 2px 9px #ccc6;
+      display: block;
+    }
+    .footer-banner-section {
+      width: 100%;
+      background: #fff;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .footer-banner-section img {
+      width: 100%;
+      min-height: 36px;
+      max-height: 128px;
+      object-fit: cover;
+      border-radius: 7px;
+      display: block;
+    }
+    .footer-area {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 26px 7px 18px;
+      border-top: 6px solid #ff751f;
+      border-radius: 0 0 12px 12px;
+      max-width: 900px;
+      min-width: 290px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .footer-brand {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .footer-tip {
+      font-size: 15px;
+      color: #ebebeb;
+      line-height: 1.7;
+      margin-top: 6px;
+    }
+    @media (max-width: 950px) {
+      .main-container {
+        max-width: 98vw;
+      }
+      .sidebar {
+        min-width: 110px;
+        max-width: 110px;
+      }
+      .desc-section {
+        padding: 10px 4vw;
+      }
+      .desc-block {
+        max-width: 90vw;
+      }
+      .banner-img,
+      .footer-banner-section img {
+        border-radius: 0;
+      }
+      .logi-banner-section,
+      .desc-slider-wrap {
+        max-width: 98vw;
+      }
+      .img-slider-main {
+        max-width: 53vw;
+        width: 53vw;
+        height: 53vw;
+      }
+      .slider-img {
+        width: 53vw;
+        height: 53vw;
+      }
+      .slider-thumbs-vert {
+        max-width: 15vw;
+      }
+    }
+    @media (max-width: 650px) {
+      .main-container {
+        border-radius: 0;
+      }
+      .sidebar {
+        display: none;
+      }
+      .desc-block {
+        margin: 0 auto 9px;
+      }
+      .footer-banner-section img {
+        max-height: 72px;
+      }
+      .brand-head .brand-name {
+        font-size: 19px;
+      }
+      .desc-title {
+        font-size: 13px;
+        padding-top: 2px;
+      }
+      .desc-slider-wrap {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .slider-thumbs-vert {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        max-width: 97vw;
+      }
+      .img-slider-main {
+        width: 94vw;
+        height: 94vw;
+        max-width: 94vw;
+      }
+      .slider-img {
+        width: 94vw;
+        height: 94vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Brand header -->
+    <div class="brand-head">
+      <div class="brand-name">AUTOBUNNY PARTS</div>
+      <div class="brand-tips">Quality Automotive Parts | Fast Dispatch | Trusted Service</div>
+    </div>
 
+    <!-- Top visual banner -->
+    <img class="banner-img" src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="AUTOBUNNY Main Banner">
+
+    <div class="flex">
+      <!-- Left sidebar -->
+      <aside class="sidebar">
+        <h2 class="sidecat-title">SHOP CATEGORIES</h2>
+        <ul class="sidecat-list">
+          <li><a href="https://www.ebay.com/">Window Regulators</a></li>
+          <li><a href="https://www.ebay.com/">Door Handles</a></li>
+          <li><a href="https://www.ebay.com/">Wing Mirrors</a></li>
+          <li><a href="https://www.ebay.com/">Tail Lights</a></li>
+          <li><a href="https://www.ebay.com/">Fog Lamps</a></li>
+          <li><a href="https://www.ebay.com/">Radiator Fans</a></li>
+        </ul>
+
+        <!-- Promo cards -->
+        <div class="side-banner-block">
+          <div class="side-banner-item new">
+            <a class="side-banner-link" href="https://www.ebay.com/" target="_blank" rel="noopener noreferrer">
+              <div class="side-banner-img-wrap">
+                <div class="triangle-badge"></div>
+                <span class="triangle-badge-text">NEW</span>
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="New arrivals">
+              </div>
+            </a>
+            <a href="https://www.ebay.com/" class="shop-btn" target="_blank" rel="noopener noreferrer">SHOP NOW</a>
+          </div>
+
+          <div class="side-banner-item hot">
+            <a class="side-banner-link" href="https://www.ebay.com/" target="_blank" rel="noopener noreferrer">
+              <div class="side-banner-img-wrap">
+                <div class="triangle-badge"></div>
+                <span class="triangle-badge-text">HOT</span>
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Hot deals">
+              </div>
+            </a>
+            <a href="https://www.ebay.com/" class="shop-btn" target="_blank" rel="noopener noreferrer">SHOP NOW</a>
+          </div>
+
+          <div class="side-banner-item off">
+            <a class="side-banner-link" href="https://www.ebay.com/" target="_blank" rel="noopener noreferrer">
+              <div class="side-banner-img-wrap">
+                <div class="triangle-badge"></div>
+                <!-- 12.0: removed inline style -->
+                <span class="triangle-badge-text">OFF</span>
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Discount products">
+              </div>
+            </a>
+            <a href="https://www.ebay.com/" class="shop-btn" target="_blank" rel="noopener noreferrer">SHOP NOW</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main class="content">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+          <a class="nav-bar-link active" href="#description">Description</a>
+          <a class="nav-bar-link" href="#fitment">Fitment</a>
+          <a class="nav-bar-link" href="#shipping">Shipping</a>
+          <a class="nav-bar-link" href="#returns">Returns</a>
+          <a class="nav-bar-link" href="#contact">Contact</a>
+        </nav>
+
+        <section id="description" class="desc-section">
+          <!-- desc-block: product title and quick summary -->
+          <div class="desc-block">
+            <h3 class="desc-title">Front Left Driver Window Regulator &amp; Motor (Complete Unit)</h3>
+            <div class="desc-content">
+              <p>Brand-new high-quality replacement for Ford Ranger MK2 pickup models. Built for smooth operation, direct installation, and stable long-term performance.</p>
+            </div>
+          </div>
+
+          <!-- desc-block: key features -->
+          <div class="desc-block">
+            <h3 class="desc-title">Key Features</h3>
+            <div class="desc-content">
+              <ul>
+                <li>Direct-fit design matching original mounting points</li>
+                <li>Pre-assembled regulator and motor for easier installation</li>
+                <li>Durable cable and pulley system with anti-wear guide rails</li>
+                <li>Reliable motor output with low-noise operation</li>
+                <li>Strict quality inspection before shipment</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- desc-block: package includes -->
+          <div class="desc-block">
+            <h3 class="desc-title">Package Includes</h3>
+            <div class="desc-content">
+              <ul>
+                <li>1 x Front Left (Driver Side) Window Regulator with Motor</li>
+                <li>1 x Protective Packaging Box</li>
+              </ul>
+              <p>Please compare your original part shape and connector before purchase.</p>
+            </div>
+          </div>
+
+          <!-- desc-block: product image slider -->
+          <div class="desc-block">
+            <h3 class="desc-title">Product Gallery</h3>
+            <div class="desc-slider-wrap">
+              <div class="img-slider-main">
+                <span class="slider-arrow left" id="slider-prev">&#8249;</span>
+                <img id="main-slider-image" class="slider-img" src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Product image 1">
+                <span class="slider-arrow right" id="slider-next">&#8250;</span>
+              </div>
+              <div class="slider-thumbs-vert" id="thumb-container">
+                <img class="slider-thumb active" src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Thumbnail 1" data-index="0">
+                <img class="slider-thumb" src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Thumbnail 2" data-index="1">
+                <img class="slider-thumb" src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Thumbnail 3" data-index="2">
+                <img class="slider-thumb" src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Thumbnail 4" data-index="3">
+              </div>
+            </div>
+          </div>
+
+          <!-- desc-block: fitment -->
+          <div id="fitment" class="desc-block">
+            <h3 class="desc-title">Vehicle Fitment</h3>
+            <div class="desc-content">
+              <ul>
+                <li>Ford Ranger MK2 Pickup</li>
+                <li>Model Years: 2006-2012</li>
+                <li>Position: Front Left (Driver Side, Near Side)</li>
+              </ul>
+              <p>If your vehicle has different door wiring, please contact us with VIN details before placing order.</p>
+            </div>
+          </div>
+
+          <!-- desc-block: shipping -->
+          <div id="shipping" class="desc-block">
+            <h3 class="desc-title">Shipping &amp; Dispatch</h3>
+            <div class="desc-content">
+              <ul>
+                <li>Orders are normally dispatched within 1 business day</li>
+                <li>Tracking number is uploaded after shipment</li>
+                <li>Delivery times vary by destination and courier service</li>
+              </ul>
+              <p>Remote areas may require additional transit time.</p>
+            </div>
+          </div>
+
+          <!-- desc-block: returns -->
+          <div id="returns" class="desc-block">
+            <h3 class="desc-title">Returns &amp; Warranty</h3>
+            <div class="desc-content">
+              <ul>
+                <li>30-day return window for unused items in original condition</li>
+                <li>Please contact us before opening a return request</li>
+                <li>Replacement or refund support is available for verified quality issues</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- desc-block: contact -->
+          <div id="contact" class="desc-block">
+            <h3 class="desc-title">Customer Support</h3>
+            <div class="desc-content">
+              <p>Questions about fitment, installation, or shipping are welcome. Please message us through eBay and we will reply as quickly as possible.</p>
+              <p>Thank you for choosing AUTOBUNNY PARTS.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Logistics banner -->
+    <section class="logi-banner-section">
+      <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Shipping and service banner">
+    </section>
+  </div>
+
+  <!-- Bottom banner and thanks -->
+  <section class="footer-banner-section">
+    <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="AUTOBUNNY thank you banner">
+  </section>
+  <footer class="footer-area">
+    <div class="footer-brand">AUTOBUNNY PARTS</div>
+    <div class="footer-tip">Thanks for your trust and support. We are always here to help.</div>
+  </footer>
+
+  <!-- Maintenance note:
+       1) Keep responsive breakpoints unchanged unless a dedicated version request is raised.
+       2) For optimization 12.0, only requested selectors and inline-style cleanup are adjusted.
+       3) Avoid adding inline styles in future updates to keep template clean and maintainable.
+  -->
+
+  <!-- Image slider JS -->
+  <script>
+    (function () {
+      var images = [
+        'https://raw.githubusercontent.com/wyy51/Image_database/main/002.png',
+        'https://raw.githubusercontent.com/wyy51/Image_database/main/003.png',
+        'https://raw.githubusercontent.com/wyy51/Image_database/main/004.png',
+        'https://raw.githubusercontent.com/wyy51/Image_database/main/005.png'
+      ];
+      var current = 0;
+      var mainImg = document.getElementById('main-slider-image');
+      var prevBtn = document.getElementById('slider-prev');
+      var nextBtn = document.getElementById('slider-next');
+      var thumbs = document.querySelectorAll('.slider-thumb');
+
+      function render(index) {
+        current = (index + images.length) % images.length;
+        mainImg.src = images[current];
+        thumbs.forEach(function (thumb, i) {
+          if (i === current) {
+            thumb.classList.add('active');
+          } else {
+            thumb.classList.remove('active');
+          }
+        });
+      }
+
+      prevBtn.addEventListener('click', function () {
+        render(current - 1);
+      });
+
+      nextBtn.addEventListener('click', function () {
+        render(current + 1);
+      });
+
+      thumbs.forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+          render(parseInt(thumb.getAttribute('data-index'), 10));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
