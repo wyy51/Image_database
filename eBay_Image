@@ -21,7 +21,6 @@
       --ab-shop-now-gap: 6px;
       --ab-shop-now-wrap-offset: 8px;
       --ab-thumb-width-desktop: 96px;
-      --ab-thumb-width-mobile: 78px;
     }
     body {
       margin: 0;
@@ -189,7 +188,6 @@
       border: 1px solid #e6e6e6;
       background: #fff;
       text-align: center;
-      min-height: 320px;
     }
     .ab-gallery-main img {
       max-width: 100%;
@@ -267,8 +265,8 @@
         flex-direction: row;
         align-items: center;
       }
-      /* Smaller width on narrow screens keeps 4 thumbs visible without wrapping */
-      .ab-gallery-thumbs a { flex: 0 0 var(--ab-thumb-width-mobile); }
+      /* Use 4-up flexible sizing on narrow screens */
+      .ab-gallery-thumbs a { flex: 0 0 calc(25% - 8px); }
     }
   </style>
 </head>
