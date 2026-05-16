@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front Left Driver Window Regulator & Motor Ford Ranger MK2 Pickup 2006-2012 | AUTOBUNNY PARTS</title>
+  <style>
+    body{margin:0;background:#f4f4f4;color:#222;font-family:Arial,Helvetica,sans-serif;}
+    .wrap{max-width:1030px;margin:0 auto;background:#fff;}
+    .brand-head{background:#000;text-align:center;padding:24px 12px;}
+    .brand-name{color:#fff;font-size:34px;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+    .brand-sub{color:#f0f0f0;font-size:13px;margin-top:6px;}
+    .nav-bar{display:flex;flex-wrap:wrap;justify-content:center;background:#ff751f;border-bottom:4px solid #000;}
+    .nav-bar a{color:#fff;text-decoration:none;font-size:14px;font-weight:700;padding:14px 18px;border-right:1px solid #ffa866;text-transform:uppercase;}
+    .nav-bar a:last-child{border-right:none;}
+    .nav-bar a:hover{background:#000;color:#ff751f;}
+    .hero img{display:block;width:100%;height:auto;}
 
+    .layout{display:flex;align-items:flex-start;}
+    .sidebar{width:235px;background:#000;}
+    .side-title{padding:18px 18px 14px;color:#fff;font-size:20px;font-weight:800;letter-spacing:1px;}
+    .side-list a{display:block;background:#fff;color:#1f1f1f;text-decoration:none;font-size:13px;font-weight:700;padding:11px 16px;border-bottom:1px solid #ececec;}
+    .side-list a:hover{color:#ff751f;background:#fafafa;}
+
+    .promo-wrap{padding:16px;}
+    .promo-card{display:block;margin:0 0 14px;text-decoration:none;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 7px rgba(0,0,0,.14);}
+    .promo-image-box{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;}
+    .promo-image-box img{width:100%;height:100%;object-fit:cover;display:block;}
+    .promo-flag{position:absolute;top:0;left:0;width:0;height:0;border-top:58px solid #ff3f3f;border-right:58px solid transparent;}
+    .promo-flag b{position:absolute;top:-50px;left:7px;color:#fff;font-size:11px;letter-spacing:.4px;transform:rotate(-45deg);}
+    .promo-card.hot .promo-flag{border-top-color:#ff751f;}
+    .promo-card.discount .promo-flag{border-top-color:#7a1cff;}
+    .shop-now{display:block;text-align:center;background:#111;color:#fff;padding:10px 8px;font-size:12px;font-weight:800;letter-spacing:1px;transition:background .2s,color .2s;}
+    .promo-card:hover .shop-now{background:#ff751f;color:#fff;}
+
+    .content{flex:1;padding:24px;}
+    .section{margin:0 0 14px;border:1px solid #ebebeb;background:#fff;}
+    .section h2{margin:0;padding:10px 14px;background:#ff751f;color:#fff;font-size:16px;text-transform:uppercase;letter-spacing:.4px;}
+    .section .inner{padding:12px 14px;font-size:14px;line-height:1.5;}
+    .section .inner ul{margin:0 0 0 18px;padding:0;}
+    .section .inner li{margin:0 0 4px;}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+    .gallery img{width:100%;height:auto;border:1px solid #e3e3e3;border-radius:6px;display:block;}
+
+    .shipping-banner{margin:0 0 14px;border:1px solid #ebebeb;background:#fff;}
+    .shipping-banner h2{margin:0;padding:10px 14px;background:#ff751f;color:#fff;font-size:16px;text-transform:uppercase;}
+    .shipping-banner .inner{padding:12px 14px;line-height:1.5;font-size:14px;}
+    .shipping-banner img{display:block;width:100%;height:auto;border-radius:6px;margin-bottom:8px;}
+
+    .rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+    .rec-item{display:block;border:1px solid #e6e6e6;border-radius:6px;padding:8px;text-decoration:none;color:#222;background:#fff;}
+    .rec-item img{width:100%;height:auto;display:block;border-radius:4px;}
+    .rec-item span{display:block;font-size:13px;font-weight:700;line-height:1.4;margin-top:6px;}
+    .rec-item:hover{border-color:#ff751f;}
+
+    .footer{background:#000;color:#fff;text-align:center;padding:28px 10px;margin-top:10px;border-top:5px solid #ff751f;}
+
+    @media (max-width:900px){
+      .layout{display:block;}
+      .sidebar{display:none;}
+      .content{padding:16px;}
+      .gallery{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
+    @media (max-width:560px){
+      .brand-name{font-size:24px;}
+      .nav-bar a{font-size:12px;padding:11px 10px;}
+      .content{padding:10px;}
+      .gallery,.rec-grid{grid-template-columns:1fr;}
+      .section h2,.shipping-banner h2{font-size:14px;}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand-head">
+    <div class="brand-name">AUTOBUNNY PARTS</div>
+    <div class="brand-sub">Premium Auto Parts Store | Professional Service | Fast Shipping</div>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="#description">Description</a>
+    <a href="#shipping">Shipping</a>
+    <a href="#payment">Payment</a>
+    <a href="#terms">Terms of Sale</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#similar-items">Recommended</a>
+  </nav>
+
+  <div class="hero">
+    <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="AUTOBUNNY PARTS Banner">
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-title">Shop Categories</div>
+      <div class="side-list">
+        <a href="#">Air Conditioning & Heating</a>
+        <a href="#">Brakes & Brake Parts</a>
+        <a href="#">Engine Cooling Components</a>
+        <a href="#">Exterior Parts & Accessories</a>
+        <a href="#">Steering & Suspension</a>
+        <a href="#">Transmission & Drivetrain</a>
+      </div>
+
+      <div class="promo-wrap">
+        <!-- 中文维护注释：左侧新品营销图。可替换href跳转链接和img图片链接；左上角三角标自动显示NEW，图片保持正方形裁切。 -->
+        <a class="promo-card new" href="https://example.com/new" target="_blank">
+          <div class="promo-image-box">
+            <i class="promo-flag"><b>NEW</b></i>
+            <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="New Arrival">
+          </div>
+          <span class="shop-now">SHOP NOW</span>
+        </a>
+
+        <!-- 中文维护注释：左侧热卖营销图。可替换href跳转链接和img图片链接；左上角三角标自动显示HOT，图片保持正方形裁切。 -->
+        <a class="promo-card hot" href="https://example.com/hot" target="_blank">
+          <div class="promo-image-box">
+            <i class="promo-flag"><b>HOT</b></i>
+            <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Hot Sale">
+          </div>
+          <span class="shop-now">SHOP NOW</span>
+        </a>
+
+        <!-- 中文维护注释：左侧折扣营销图。可替换href跳转链接和img图片链接；左上角三角标自动显示DISCOUNT，图片保持正方形裁切。 -->
+        <a class="promo-card discount" href="https://example.com/discount" target="_blank">
+          <div class="promo-image-box">
+            <i class="promo-flag"><b>DISCOUNT</b></i>
+            <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Discount Offer">
+          </div>
+          <span class="shop-now">SHOP NOW</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div id="description" class="section">
+        <h2>Description</h2>
+        <div class="inner">
+          <div class="gallery">
+            <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Product Image 1">
+            <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Product Image 2">
+            <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Product Image 3">
+          </div>
+          Brand New OE Quality Replacement Part.<br>
+          Front Left Driver Side Electric Window Regulator With Motor.<br>
+          Built to OEM specification for accurate fit and alignment.<br>
+          OEM Number: 1452782 / UR57-59-590A / UR5759590A.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Compatibility</h2>
+        <div class="inner">
+          Fit For Ford Ranger MK2 Pickup 2006-2012 (Front Left Driver Side).<br>
+          Suitable for Right Hand Drive vehicles.
+        </div>
+      </div>
+
+      <!-- 中文维护注释：物流图片banner模块。需要更换时替换下方图片src与说明文字；该区域行距与Shipping/Payment保持一致紧凑。 -->
+      <div class="shipping-banner">
+        <h2>Logistics Banner</h2>
+        <div class="inner">
+          <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Shipping Service Banner">
+          Fast dispatch, tracked delivery, and safe packaging for every order.
+        </div>
+      </div>
+
+      <div id="shipping" class="section">
+        <h2>Shipping</h2>
+        <div class="inner">
+          <ul>
+            <li>Orders are dispatched quickly after payment confirmation.</li>
+            <li>Please verify your shipping address before checkout.</li>
+            <li>Delivery time can vary by destination and carrier schedule.</li>
+            <li>Remote areas may require additional transit time.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="payment" class="section">
+        <h2>Payment</h2>
+        <div class="inner">We accept payment through eBay's secure checkout system.</div>
+      </div>
+
+      <div id="terms" class="section">
+        <h2>Terms of Sale</h2>
+        <div class="inner">
+          <ul>
+            <li>Please confirm fitment and part number before purchase.</li>
+            <li>Contact us first for any issue before opening a return request.</li>
+            <li>We provide customer-friendly after-sales support.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="about" class="section">
+        <h2>About Us</h2>
+        <div class="inner"><strong>AUTOBUNNY PARTS</strong> provides reliable auto parts, careful packaging, and fast service.</div>
+      </div>
+
+      <div id="contact" class="section">
+        <h2>Contact Us</h2>
+        <div class="inner">Please contact us via eBay message for product, shipping, or order support.</div>
+      </div>
+
+      <!-- 中文维护注释：Contact Us下方“为你推荐相似的商品”引流区。可修改锚点ID、图片与链接，买家端仅显示英文文案。 -->
+      <div id="similar-items" class="section">
+        <h2>Recommended Similar Items</h2>
+        <div class="inner">
+          <div class="rec-grid">
+            <a class="rec-item" href="https://example.com/similar-item-1" target="_blank">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Similar Item 1">
+              <span>Front Right Window Regulator With Motor</span>
+            </a>
+            <a class="rec-item" href="https://example.com/similar-item-2" target="_blank">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Similar Item 2">
+              <span>Rear Left Window Regulator Replacement Kit</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="footer">AUTOBUNNY PARTS | Thank you for your purchase and trust.</div>
+</div>
+</body>
+</html>
