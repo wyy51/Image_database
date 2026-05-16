@@ -312,7 +312,7 @@
 
     <!-- 中文维护注释：主视觉 Banner 图片（使用仓库图片 001） -->
     <div class="ab-main-banner">
-      <img src="001.png" alt="AUTOBUNNY PARTS main banner">
+      <img src="001.png" alt="AUTOBUNNY PARTS promotional banner for quality auto parts and buyer confidence">
     </div>
 
     <table class="ab-layout" cellpadding="0" cellspacing="0" border="0">
@@ -357,20 +357,14 @@
               <div class="ab-arrow ab-arrow-right" id="ab-next" aria-label="Next image">&#8250;</div>
 
               <div class="ab-slider-track" id="ab-track">
-                <div class="ab-slide"><img src="002.png" alt="Product image 1"></div>
-                <div class="ab-slide"><img src="003.png" alt="Product image 2"></div>
-                <div class="ab-slide"><img src="004.png" alt="Product image 3"></div>
-                <div class="ab-slide"><img src="005.png" alt="Product image 4"></div>
-                <div class="ab-slide"><img src="006.png" alt="Product image 5"></div>
+                <div class="ab-slide"><img src="002.png" alt="AUTOBUNNY PARTS product close-up view with key component details"></div>
+                <div class="ab-slide"><img src="003.png" alt="AUTOBUNNY PARTS product front angle image for fitment reference"></div>
+                <div class="ab-slide"><img src="004.png" alt="AUTOBUNNY PARTS product side angle image highlighting build quality"></div>
+                <div class="ab-slide"><img src="005.png" alt="AUTOBUNNY PARTS product comparison-style image showing mounting points"></div>
+                <div class="ab-slide"><img src="006.png" alt="AUTOBUNNY PARTS product packaging and final display image"></div>
               </div>
 
-              <div class="ab-dots" id="ab-dots">
-                <span class="ab-dot active" data-index="0"></span>
-                <span class="ab-dot" data-index="1"></span>
-                <span class="ab-dot" data-index="2"></span>
-                <span class="ab-dot" data-index="3"></span>
-                <span class="ab-dot" data-index="4"></span>
-              </div>
+              <div class="ab-dots" id="ab-dots"></div>
             </div>
 
             <!-- 中文维护注释：信息模块 1/6 - Product Details，可按实际 SKU 参数替换 -->
@@ -467,13 +461,16 @@
       var prev = document.getElementById('ab-prev');
       var next = document.getElementById('ab-next');
       var dotsWrap = document.getElementById('ab-dots');
-      var dots = dotsWrap ? dotsWrap.getElementsByClassName('ab-dot') : [];
-      var total = 5;
+      var dots = [];
+      var slides = track ? track.getElementsByClassName('ab-slide') : [];
+      var total = slides.length || 0;
       var index = 0;
       var startX = 0;
       var moveX = 0;
+      var SWIPE_THRESHOLD = 40;
 
       function render() {
+        if (!track) { return; }
         track.style.transform = 'translateX(' + (-index * 100) + '%)';
         for (var i = 0; i < dots.length; i++) {
           dots[i].className = 'ab-dot' + (i === index ? ' active' : '');
@@ -481,14 +478,28 @@
       }
 
       function go(step) {
+        if (!total) { return; }
         index += step;
         if (index < 0) { index = total - 1; }
         if (index >= total) { index = 0; }
         render();
       }
 
-      prev.onclick = function () { go(-1); };
-      next.onclick = function () { go(1); };
+      if (dotsWrap && total) {
+        var dotsHtml = '';
+        for (var dotIndex = 0; dotIndex < total; dotIndex++) {
+          dotsHtml += '<span class="ab-dot' + (dotIndex === 0 ? ' active' : '') + '" data-index="' + dotIndex + '"></span>';
+        }
+        dotsWrap.innerHTML = dotsHtml;
+        dots = dotsWrap.getElementsByClassName('ab-dot');
+      }
+
+      if (prev) {
+        prev.onclick = function () { go(-1); };
+      }
+      if (next) {
+        next.onclick = function () { go(1); };
+      }
 
       for (var d = 0; d < dots.length; d++) {
         dots[d].onclick = function () {
@@ -497,23 +508,25 @@
         };
       }
 
-      track.addEventListener('touchstart', function (e) {
-        startX = e.touches[0].clientX;
-        moveX = startX;
-      }, false);
+      if (track) {
+        track.addEventListener('touchstart', function (e) {
+          startX = e.touches[0].clientX;
+          moveX = startX;
+        }, false);
 
-      track.addEventListener('touchmove', function (e) {
-        moveX = e.touches[0].clientX;
-      }, false);
+        track.addEventListener('touchmove', function (e) {
+          moveX = e.touches[0].clientX;
+        }, false);
 
-      track.addEventListener('touchend', function () {
-        var distance = moveX - startX;
-        if (distance > 40) {
-          go(-1);
-        } else if (distance < -40) {
-          go(1);
-        }
-      }, false);
+        track.addEventListener('touchend', function () {
+          var distance = moveX - startX;
+          if (distance > SWIPE_THRESHOLD) {
+            go(-1);
+          } else if (distance < -SWIPE_THRESHOLD) {
+            go(1);
+          }
+        }, false);
+      }
 
       render();
     })();
