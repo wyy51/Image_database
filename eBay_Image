@@ -12,6 +12,10 @@
        - Link IDs:  autobunny-link-xx
        ============================= */
     * { box-sizing: border-box; }
+    :root {
+      --ab-flag-size: 68px;
+      --ab-flag-text-top: -58px;
+    }
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -74,8 +78,7 @@
        Shop Categories title text centered and visually moved upward */
     .ab-categories .ab-box-title {
       text-align: center;
-      margin-top: -1px;
-      padding: 7px 12px 9px;
+      padding: 6px 12px 10px;
       line-height: 1.1;
     }
     .ab-categories ul {
@@ -114,15 +117,16 @@
       left: 0;
       width: 0;
       height: 0;
-      border-top: 68px solid #ff7a00;
-      border-right: 68px solid transparent;
+      border-top: var(--ab-flag-size) solid #ff7a00;
+      border-right: var(--ab-flag-size) solid transparent;
       z-index: 1;
     }
     .ab-flag.hot { border-top-color: #ff3b30; }
     .ab-flag.off { border-top-color: #ff7a00; }
     .ab-flag span {
       position: absolute;
-      top: -58px;
+      /* Keep text inside the triangle near top-left corner with current flag size */
+      top: var(--ab-flag-text-top);
       left: 8px;
       color: #fff;
       font-size: 15px;
