@@ -1,1 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOBUNNY PARTS eBay Template</title>
+  <style>
+    /* =============================
+       AUTOBUNNY PARTS eBay Template
+       Naming standard:
+       - Image IDs: autobunny-img-xx
+       - Link IDs:  autobunny-link-xx
+       ============================= */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #1f1f1f;
+      line-height: 1.45;
+    }
+    .ab-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+    }
+    .ab-topbar,
+    .ab-footer-note {
+      text-align: center;
+      background: #202020;
+      color: #ffffff;
+      padding: 14px 16px;
+    }
+    .ab-topbar h1,
+    .ab-footer-note h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.2px;
+    }
+    .ab-topbar p,
+    .ab-footer-note p {
+      margin: 5px 0 0;
+      font-size: 13px;
+      color: #e6e6e6;
+    }
+    .ab-layout {
+      display: flex;
+      gap: 18px;
+      padding: 18px;
+    }
+    .ab-sidebar {
+      width: 285px;
+      flex: 0 0 285px;
+    }
+    .ab-main {
+      flex: 1;
+      min-width: 0;
+    }
+    .ab-box {
+      border: 1px solid #dcdcdc;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+    .ab-box-title {
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+    /* Requirement 11.0-1:
+       Shop Categories title text centered and visually moved upward */
+    .ab-categories .ab-box-title {
+      text-align: center;
+      margin-top: -1px;
+      padding: 7px 12px 9px;
+      line-height: 1.1;
+    }
+    .ab-categories ul {
+      margin: 0;
+      padding: 10px 14px;
+      list-style: none;
+    }
+    .ab-categories li {
+      border-bottom: 1px solid #efefef;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+    .ab-categories li:last-child { border-bottom: none; }
+    .ab-categories a {
+      color: #222;
+      text-decoration: none;
+    }
+    .ab-categories a:hover { color: #ff7a00; }
+    .ab-promo-card {
+      position: relative;
+      border: 1px solid #e4e4e4;
+      margin-bottom: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .ab-promo-card img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+    /* Requirement 11.0-3:
+       Larger corner badge text positioned top-left and more eye-catching */
+    .ab-flag {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 68px solid #ff7a00;
+      border-right: 68px solid transparent;
+      z-index: 1;
+    }
+    .ab-flag.hot { border-top-color: #ff3b30; }
+    .ab-flag.off { border-top-color: #ff7a00; }
+    .ab-flag span {
+      position: absolute;
+      top: -58px;
+      left: 8px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      transform: rotate(-45deg);
+      transform-origin: left top;
+      white-space: nowrap;
+    }
+    /* Requirement 11.0-3:
+       Extra vertical spacing between product image and SHOP NOW button */
+    .ab-shop-now-wrap {
+      text-align: center;
+      padding: 13px 12px 14px;
+      margin-top: 8px;
+    }
+    .ab-shop-now {
+      display: inline-block;
+      background: #ff7a00;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 9px 18px;
+      border-radius: 2px;
+      letter-spacing: 0.2px;
+      margin-top: 6px;
+    }
+    .ab-shop-now:hover { background: #ea6d00; }
+    .ab-description-title,
+    .ab-shipping-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      padding: 12px 14px;
+      background: #111;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .ab-description-body {
+      padding: 16px;
+    }
+    /* Requirement 11.0-2:
+       Main image left + vertical thumbnails on right */
+    .ab-gallery {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .ab-gallery-main {
+      flex: 1;
+      border: 1px solid #e6e6e6;
+      background: #fff;
+      text-align: center;
+      min-height: 320px;
+    }
+    .ab-gallery-main img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+    .ab-gallery-thumbs {
+      width: 96px;
+      flex: 0 0 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ab-gallery-thumbs a {
+      display: block;
+      border: 1px solid #d6d6d6;
+      padding: 2px;
+      background: #fff;
+    }
+    .ab-gallery-thumbs img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .ab-gallery-slide { display: none; }
+    .ab-gallery-slide:first-child,
+    .ab-gallery-slide:target { display: block; }
+    .ab-copy {
+      border-top: 1px solid #efefef;
+      padding-top: 14px;
+      color: #333;
+      font-size: 14px;
+    }
+    .ab-logistics-banner {
+      margin-top: 16px;
+      border: 1px solid #e2e2e2;
+    }
+    .ab-logistics-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* Requirement 11.0-4:
+       Add larger spacing between logistics banner and shipping module */
+    .ab-shipping-box {
+      border: 1px solid #dcdcdc;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+    .ab-shipping-content {
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #333;
+    }
+    .ab-shipping-content ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+    .ab-shipping-content li { margin: 6px 0; }
+    @media (max-width: 920px) {
+      .ab-layout { flex-direction: column; }
+      .ab-sidebar {
+        width: 100%;
+        flex: 1;
+      }
+      /* Requirement 11.0-2 responsive:
+         move thumbnails below main image on narrow screens */
+      .ab-gallery {
+        flex-direction: column;
+      }
+      .ab-gallery-thumbs {
+        width: 100%;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+      }
+      .ab-gallery-thumbs a { width: 78px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ab-wrapper">
+    <div class="ab-topbar">
+      <h1>AUTOBUNNY PARTS</h1>
+      <p>Premium Auto Parts Store | Professional Service | Fast Shipping</p>
+    </div>
 
+    <div class="ab-layout">
+      <aside class="ab-sidebar">
+        <div class="ab-box ab-categories">
+          <div class="ab-box-title">Shop Categories</div>
+          <ul>
+            <li><a id="autobunny-link-cat-01" href="https://www.ebay.com/">Air Intake System</a></li>
+            <li><a id="autobunny-link-cat-02" href="https://www.ebay.com/">Cooling Parts</a></li>
+            <li><a id="autobunny-link-cat-03" href="https://www.ebay.com/">Engine Components</a></li>
+            <li><a id="autobunny-link-cat-04" href="https://www.ebay.com/">Suspension &amp; Steering</a></li>
+            <li><a id="autobunny-link-cat-05" href="https://www.ebay.com/">Exhaust &amp; Emission</a></li>
+          </ul>
+        </div>
+
+        <div class="ab-promo-card">
+          <span class="ab-flag"><span>NEW</span></span>
+          <img id="autobunny-img-sidebar-new-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+NEW+PARTS" alt="AUTOBUNNY new product banner image">
+          <div class="ab-shop-now-wrap">
+            <a id="autobunny-link-shopnow-01" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
+          </div>
+        </div>
+
+        <div class="ab-promo-card">
+          <span class="ab-flag hot"><span>HOT</span></span>
+          <img id="autobunny-img-sidebar-hot-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+HOT+SALE" alt="AUTOBUNNY hot sale product image">
+          <div class="ab-shop-now-wrap">
+            <a id="autobunny-link-shopnow-02" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
+          </div>
+        </div>
+
+        <div class="ab-promo-card">
+          <span class="ab-flag off"><span>OFF</span></span>
+          <img id="autobunny-img-sidebar-off-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+LIMITED+OFF" alt="AUTOBUNNY discount product image">
+          <div class="ab-shop-now-wrap">
+            <a id="autobunny-link-shopnow-03" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="ab-main">
+        <section class="ab-box">
+          <h2 class="ab-description-title">DESCRIPTION</h2>
+          <div class="ab-description-body">
+            <div class="ab-gallery">
+              <div class="ab-gallery-main">
+                <div class="ab-gallery-slide" id="autobunny-img-01">
+                  <img src="https://via.placeholder.com/920x620?text=AUTOBUNNY+MAIN+IMAGE+01" alt="AUTOBUNNY product main image 01">
+                </div>
+                <div class="ab-gallery-slide" id="autobunny-img-02">
+                  <img src="https://via.placeholder.com/920x620?text=AUTOBUNNY+MAIN+IMAGE+02" alt="AUTOBUNNY product main image 02">
+                </div>
+                <div class="ab-gallery-slide" id="autobunny-img-03">
+                  <img src="https://via.placeholder.com/920x620?text=AUTOBUNNY+MAIN+IMAGE+03" alt="AUTOBUNNY product main image 03">
+                </div>
+                <div class="ab-gallery-slide" id="autobunny-img-04">
+                  <img src="https://via.placeholder.com/920x620?text=AUTOBUNNY+MAIN+IMAGE+04" alt="AUTOBUNNY product main image 04">
+                </div>
+              </div>
+
+              <div class="ab-gallery-thumbs">
+                <a id="autobunny-link-thumb-01" href="#autobunny-img-01"><img src="https://via.placeholder.com/180x120?text=THUMB+01" alt="AUTOBUNNY thumbnail 01"></a>
+                <a id="autobunny-link-thumb-02" href="#autobunny-img-02"><img src="https://via.placeholder.com/180x120?text=THUMB+02" alt="AUTOBUNNY thumbnail 02"></a>
+                <a id="autobunny-link-thumb-03" href="#autobunny-img-03"><img src="https://via.placeholder.com/180x120?text=THUMB+03" alt="AUTOBUNNY thumbnail 03"></a>
+                <a id="autobunny-link-thumb-04" href="#autobunny-img-04"><img src="https://via.placeholder.com/180x120?text=THUMB+04" alt="AUTOBUNNY thumbnail 04"></a>
+              </div>
+            </div>
+
+            <div class="ab-copy">
+              <p><strong>Product Highlights</strong></p>
+              <p>Engineered for stable fitment and long service life. Please verify your vehicle model and OE number before purchase.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="ab-logistics-banner">
+          <a id="autobunny-link-logistics-01" href="https://www.ebay.com/">
+            <img id="autobunny-img-logistics-01" src="https://via.placeholder.com/1200x260?text=AUTOBUNNY+LOGISTICS+BANNER" alt="AUTOBUNNY logistics and delivery information banner">
+          </a>
+        </section>
+
+        <section class="ab-shipping-box">
+          <h2 class="ab-shipping-title">Shipping</h2>
+          <div class="ab-shipping-content">
+            <p>Orders are processed within 1 business day and shipped with a tracked service.</p>
+            <ul>
+              <li>Fast dispatch from our partnered warehouse network.</li>
+              <li>Estimated delivery time shown at checkout.</li>
+              <li>Please confirm your shipping address before payment.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="ab-footer-note">
+      <h2>AUTOBUNNY PARTS</h2>
+      <p>Thank you for visiting AUTOBUNNY PARTS and shopping with confidence!</p>
+    </div>
+  </div>
+</body>
+</html>
