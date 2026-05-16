@@ -14,8 +14,11 @@
     * { box-sizing: border-box; }
     :root {
       --ab-flag-size: 68px;
-      /* 10px keeps rotated text visually inside the triangle near the top-left corner */
+      /* Text top offset = -(flag size - inner visual inset). Current inset is 10px. */
       --ab-flag-text-top: calc(-1 * (var(--ab-flag-size) - 10px));
+      --ab-shop-now-gap: 6px;
+      --ab-thumb-width-desktop: 96px;
+      --ab-thumb-width-mobile: 78px;
     }
     body {
       margin: 0;
@@ -154,7 +157,7 @@
       padding: 9px 18px;
       border-radius: 2px;
       letter-spacing: 0.2px;
-      margin-top: 6px;
+      margin-top: var(--ab-shop-now-gap);
     }
     .ab-shop-now:hover { background: #ea6d00; }
     .ab-description-title,
@@ -191,8 +194,8 @@
       display: inline-block;
     }
     .ab-gallery-thumbs {
-      width: 96px;
-      flex: 0 0 96px;
+      width: var(--ab-thumb-width-desktop);
+      flex: 0 0 var(--ab-thumb-width-desktop);
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -261,7 +264,8 @@
         flex-direction: row;
         align-items: center;
       }
-      .ab-gallery-thumbs a { width: 78px; }
+      /* Smaller width on narrow screens keeps 4 thumbs visible without wrapping */
+      .ab-gallery-thumbs a { width: var(--ab-thumb-width-mobile); }
     }
   </style>
 </head>
