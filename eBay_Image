@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {font-family:'League Spartan','Arial Black',Arial,Helvetica,sans-serif;background:#f5f5f7;color:#222;margin:0;}
-    .main-container {max-width:1030px;margin:0 auto;background:#fff;box-shadow:0 0 14px 2px #ddd3;}
+    .main-container {max-width:1030px;margin:0 auto;background:#fff;box-shadow:0 0 14px 2px rgba(221,221,221,0.2);}
     .brand-head{background:#000;padding:28px 0;text-align:center;}
     .brand-head .brand-name{font-size:36px;font-weight:700;letter-spacing:2px;color:#fff;text-transform:uppercase;}
     .brand-head .brand-tips{color:#f2f2f2;font-size:13px;margin-top:6px;}
@@ -22,7 +22,7 @@
     .side-banner-block {padding:25px 20px 8px 20px;}
     .side-banner-item {margin-bottom:20px;}
     .side-banner-link {position:relative;display:block;}
-    .side-banner-link img {width:100%;aspect-ratio:1 / 1;object-fit:cover;border-radius:7px;box-shadow:0 1px 12px #ccc4;display:block;}
+    .side-banner-link img {width:100%;aspect-ratio:1 / 1;object-fit:cover;border-radius:7px;box-shadow:0 1px 12px rgba(204,204,204,0.27);display:block;}
     .banner-corner {
       position:absolute;left:0;top:0;width:0;height:0;z-index:2;
       border-top:78px solid #0c0c0c;
@@ -56,14 +56,14 @@
     .img-slider-wrap{background:#FAFAFA;padding:26px 0 10px 0;margin:0 auto 16px auto;max-width:520px;}
     .img-slider-main{position:relative;max-width:420px;margin:0 auto;}
     .slider-img{
-      width:420px;height:262px;max-width:99vw;object-fit:contain;box-shadow:0 4px 32px #1111;border-radius:13px;background:#fff;border:1.5px solid #e3e3e3;
+      width:420px;height:262px;max-width:99vw;object-fit:contain;box-shadow:0 4px 32px rgba(17,17,17,0.07);border-radius:13px;background:#fff;border:1.5px solid #e3e3e3;
       display:block;margin:0 auto;transition:box-shadow .23s;
     }
     .slider-arrow {
       position:absolute;top:50%;transform:translateY(-50%);z-index:1;
       width:clamp(32px,6vw,48px);height:clamp(32px,6vw,48px);line-height:clamp(32px,6vw,48px);text-align:center;
       background:rgba(0,0,0,0.85);color:#FF751F;font-size:clamp(19px,3.2vw,28px);font-weight:900;border-radius:50%;
-      border:clamp(2px,0.45vw,4px) solid #fff;box-shadow:0 2px 12px #333a;cursor:pointer;user-select:none;transition:background .14s,color .12s;
+      border:clamp(2px,0.45vw,4px) solid #fff;box-shadow:0 2px 12px rgba(51,51,51,0.67);cursor:pointer;user-select:none;transition:background .14s,color .12s;
     }
     .slider-arrow.left{left:clamp(-12px,-2vw,-22px);}
     .slider-arrow.right{right:clamp(-12px,-2vw,-22px);}
@@ -79,7 +79,7 @@
     .desc-content{font-size:15px;line-height:1.7;color:#28303b;}
     .desc-content ul{margin:0 0 4px 22px;}
     .logi-banner-section{max-width:760px;margin:20px auto 10px auto;text-align:center;}
-    .logi-banner-section img{width:100%;max-width:760px;border-radius:10px;box-shadow:0 2px 14px #ccc6;display:block;}
+    .logi-banner-section img{width:100%;max-width:760px;border-radius:10px;box-shadow:0 2px 14px rgba(204,204,204,0.4);display:block;}
 
     /* ======= 中文维护：底部店铺banner，横跨左侧菜单与主内容区域 ======= */
     .shop-banner-full{width:100%;margin-top:14px;}
