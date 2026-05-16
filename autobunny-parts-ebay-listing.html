@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AUTOBUNNY PARTS | Ford Ranger Window Regulator Listing</title>
   <style>
-    * { box-sizing: border-box; }
+    html { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
     html, body { margin: 0; padding: 0; }
     body {
       background: #f1f1f1;
@@ -320,6 +321,7 @@
 </head>
 <body>
   <div class="autobunny-wrap">
+    <!-- 中文维护：当前示例统一使用仓库中的 001.png-006.png 横幅素材，实际刊登时可保持相对路径结构或替换为新的店铺图片地址。 -->
     <div class="store-header">
       <h1>AUTOBUNNY PARTS</h1>
       <p>Professional Auto Parts Solutions for Everyday Reliability</p>
@@ -564,6 +566,8 @@
       var currentIndex = 0;
       var heroImage = document.getElementById('autobunny-hero-image');
       var thumbs = document.querySelectorAll('.slider-thumb');
+      var detailTabs = document.querySelectorAll('.detail-tab');
+      var detailButtons = document.querySelectorAll('.detail-tab-button');
 
       function showSlide(index) {
         currentIndex = (index + slides.length) % slides.length;
@@ -591,13 +595,11 @@
       };
 
       window.autobunnyOpenTab = function (tabId, button) {
-        var tabs = document.querySelectorAll('.detail-tab');
-        var buttons = document.querySelectorAll('.detail-tab-button');
-        for (var tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
-          tabs[tabIndex].classList.remove('is-active');
+        for (var tabIndex = 0; tabIndex < detailTabs.length; tabIndex++) {
+          detailTabs[tabIndex].classList.remove('is-active');
         }
-        for (var buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
-          buttons[buttonIndex].classList.remove('is-active');
+        for (var buttonIndex = 0; buttonIndex < detailButtons.length; buttonIndex++) {
+          detailButtons[buttonIndex].classList.remove('is-active');
         }
         document.getElementById(tabId).classList.add('is-active');
         button.classList.add('is-active');
