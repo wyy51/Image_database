@@ -235,6 +235,8 @@
     }
     .logistics-title {
       margin: 0 0 10px;
+      color: #ff751f;
+      font-size: 18px;
     }
     .footer-area {
       background: #111;
@@ -387,7 +389,7 @@
 
         <!-- 中文维护：物流图片banner模块（新增，放在Shipping上方；可替换下方图片链接） -->
         <section class="logistics-banner">
-          <h3 class="module-title logistics-title">Logistics Banner Image</h3>
+          <h3 class="logistics-title">Logistics Banner Image</h3>
           <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Logistics Banner">
         </section>
 
@@ -439,18 +441,13 @@
   </div>
 
   <script type="text/javascript">
-    var galleryImages = [
-      "https://raw.githubusercontent.com/wyy51/Image_database/main/005.png",
-      "https://raw.githubusercontent.com/wyy51/Image_database/main/006.png",
-      "https://raw.githubusercontent.com/wyy51/Image_database/main/002.png",
-      "https://raw.githubusercontent.com/wyy51/Image_database/main/003.png",
-      "https://raw.githubusercontent.com/wyy51/Image_database/main/004.png"
-    ];
+    var galleryImages = [];
     var galleryIndex = 0;
     var galleryMain = null;
     var galleryThumbs = null;
 
     function galleryRender(index) {
+      if (!galleryImages.length) { return; }
       galleryIndex = (index + galleryImages.length) % galleryImages.length;
       if (galleryMain) {
         galleryMain.src = galleryImages[galleryIndex];
@@ -468,6 +465,11 @@
     window.addEventListener("DOMContentLoaded", function () {
       galleryMain = document.getElementById("gallery-main-img");
       galleryThumbs = document.getElementById("gallery-thumbs");
+      if (galleryThumbs) {
+        for (var i = 0; i < galleryThumbs.children.length; i++) {
+          galleryImages.push(galleryThumbs.children[i].src);
+        }
+      }
       galleryRender(0);
     });
   </script>
