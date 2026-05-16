@@ -294,6 +294,7 @@
     }
     .gallery-thumb {
       display: inline-block;
+      position: relative;
       width: 18%;
       max-width: 130px;
       margin: 0 1%;
@@ -304,9 +305,17 @@
       background: #ffffff;
       box-sizing: border-box;
     }
+    .gallery-thumb:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
     .gallery-thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 100px;
+      height: 100%;
       object-fit: cover;
     }
     #gallery-radio-1:checked ~ .gallery-thumbs .gallery-thumb-1,
@@ -422,7 +431,7 @@
       <a href="#contact-section">Contact Us</a>
     </div>
 
-    <!-- 中文：顶部店铺Banner，当前 src 已使用可直接发布到 eBay 的绝对图片地址；如需替换，请改成完整英文命名外链，例如 https://your-cdn-domain/store-hero-banner-001.png 。 -->
+    <!-- 中文：顶部店铺Banner，当前 src 使用绝对图片地址便于结构演示；正式发布到 eBay 时，建议改成 eBay 图片服务或自有 CDN 的完整英文命名外链，例如 https://your-cdn-domain/store-hero-banner-001.png 。 -->
     <div class="full-banner">
       <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Store hero banner">
     </div>
@@ -497,7 +506,7 @@
       <main class="content-area">
         <div class="content-inner">
           <div class="product-gallery">
-            <!-- 中文：以下 5 张图为产品轮播图维护区，当前 src 已使用绝对图片地址；如需替换，请继续使用 800x800 正方形英文命名外链，例如 https://your-cdn-domain/product-gallery-image-01.png 。 -->
+            <!-- 中文：以下 5 张图为产品轮播图维护区，当前 src 使用绝对图片地址便于直接套用；正式发布到 eBay 时，建议继续替换为 eBay 图片服务或自有 CDN 的 800x800 正方形英文命名外链，例如 https://your-cdn-domain/product-gallery-image-01.png 。 -->
             <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-1" aria-label="Select gallery image 1" checked>
             <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-2" aria-label="Select gallery image 2">
             <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-3" aria-label="Select gallery image 3">
@@ -572,7 +581,7 @@
             </div>
           </div>
 
-          <!-- 中文：中部Banner当前 src 已使用可直接发布到 eBay 的绝对图片地址；如需替换，请改成英文命名外链，例如 https://your-cdn-domain/shipping-support-banner-001.png 。 -->
+          <!-- 中文：中部Banner当前 src 使用绝对图片地址便于演示；正式发布到 eBay 时，建议改成 eBay 图片服务或自有 CDN 的英文命名外链，例如 https://your-cdn-domain/shipping-support-banner-001.png 。 -->
           <div class="content-banner">
             <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Shipping support banner">
           </div>
@@ -626,7 +635,7 @@
       </main>
     </div>
 
-    <!-- 中文：底部店铺Banner要求铺满整页宽度（含左侧区域）；当前 src 已使用绝对图片地址，发布到 eBay 时可直接使用，也可替换为新的完整英文命名外链。 -->
+    <!-- 中文：底部店铺Banner要求铺满整页宽度（含左侧区域）；当前 src 使用绝对图片地址便于演示，正式发布到 eBay 时建议替换为 eBay 图片服务或自有 CDN 的完整英文命名外链。 -->
     <div class="footer-banner">
       <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Store footer banner">
     </div>
