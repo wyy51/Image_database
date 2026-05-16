@@ -14,7 +14,8 @@
     * { box-sizing: border-box; }
     :root {
       --ab-flag-size: 68px;
-      --ab-flag-text-top: -58px;
+      /* Keep badge text inside triangle; adjust offset together with size if needed */
+      --ab-flag-text-top: calc(-1 * (var(--ab-flag-size) - 10px));
     }
     body {
       margin: 0;
