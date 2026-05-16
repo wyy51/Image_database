@@ -14,9 +14,12 @@
     * { box-sizing: border-box; }
     :root {
       --ab-flag-size: 68px;
-      /* Text top offset = -(flag size - inner visual inset). Current inset is 10px. */
-      --ab-flag-text-top: calc(-1 * (var(--ab-flag-size) - 10px));
+      /* Inset controls how far badge text sits from the triangle edge after rotation */
+      --ab-flag-inset: 10px;
+      /* Text top offset = -(flag size - inset) */
+      --ab-flag-text-top: calc(-1 * (var(--ab-flag-size) - var(--ab-flag-inset)));
       --ab-shop-now-gap: 6px;
+      --ab-shop-now-wrap-offset: 8px;
       --ab-thumb-width-desktop: 96px;
       --ab-thumb-width-mobile: 78px;
     }
@@ -145,7 +148,7 @@
     .ab-shop-now-wrap {
       text-align: center;
       padding: 13px 12px 14px;
-      margin-top: 8px;
+      margin-top: var(--ab-shop-now-wrap-offset);
     }
     .ab-shop-now {
       display: inline-block;
@@ -265,7 +268,7 @@
         align-items: center;
       }
       /* Smaller width on narrow screens keeps 4 thumbs visible without wrapping */
-      .ab-gallery-thumbs a { width: var(--ab-thumb-width-mobile); }
+      .ab-gallery-thumbs a { flex: 0 0 var(--ab-thumb-width-mobile); }
     }
   </style>
 </head>
