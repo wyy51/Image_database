@@ -403,7 +403,7 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-    /* 每个推荐商品卡片 */
+    /* 每个推荐商品卡片：每行4列，gap为12px，每个卡片扣除3/4的gap（12px*3/4=9px） */
     .related-item {
       width: calc(25% - 9px);
       min-width: 100px;
@@ -492,19 +492,17 @@
     }
 
     /* ===== 响应式适配 ===== */
+    /* 小屏（≤920px）：侧栏改为全宽；推荐商品改为2列（50%宽，扣除gap的一半=6px） */
     @media (max-width: 920px) {
       .main-content { flex-direction: column; }
       .sidebar { width: 100%; }
       .gallery-arrow.prev { left: 6px; }
       .gallery-arrow.next { right: 6px; }
-      /* 推荐商品在小屏改为2列 */
       .related-item { width: calc(50% - 6px); }
     }
     @media (max-width: 480px) {
       .top-menu a { padding: 10px 10px; font-size: 12px; }
       .brand-head h1 { font-size: 24px; }
-      /* 推荐商品在极小屏保持2列 */
-      .related-item { width: calc(50% - 6px); }
     }
   </style>
 </head>
@@ -731,6 +729,7 @@
              6. "View Item" 按钮样式在CSS .related-item-btn 和 .related-item-btn:hover 中修改。
         -->
         <section id="related-products" class="related-products-section">
+          <!-- 中文维护：推荐模块标题文字（英文"You May Also Like"对应中文"为你推荐相似的商品"） -->
           <h3>You May Also Like</h3>
           <p class="related-subtitle">Browse more products from our store</p>
           <div class="related-grid">
