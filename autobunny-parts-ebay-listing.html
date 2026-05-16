@@ -571,9 +571,9 @@
         heroImage.alt = slides[currentIndex].alt;
         for (var i = 0; i < thumbs.length; i++) {
           if (i === currentIndex) {
-            thumbs[i].className = 'slider-thumb is-active';
+            thumbs[i].classList.add('is-active');
           } else {
-            thumbs[i].className = 'slider-thumb';
+            thumbs[i].classList.remove('is-active');
           }
         }
       }
@@ -594,13 +594,13 @@
         var tabs = document.querySelectorAll('.detail-tab');
         var buttons = document.querySelectorAll('.detail-tab-button');
         for (var tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
-          tabs[tabIndex].className = 'detail-tab';
+          tabs[tabIndex].classList.remove('is-active');
         }
         for (var buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
-          buttons[buttonIndex].className = 'detail-tab-button';
+          buttons[buttonIndex].classList.remove('is-active');
         }
-        document.getElementById(tabId).className = 'detail-tab is-active';
-        button.className = 'detail-tab-button is-active';
+        document.getElementById(tabId).classList.add('is-active');
+        button.classList.add('is-active');
       };
 
       showSlide(0);
