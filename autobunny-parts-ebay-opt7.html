@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOBUNNY PARTS | eBay Listing Template</title>
+  <style>
+    /* 基础重置 */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f5f7;
+      color: #222;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* 页面整体容器 */
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ===== 顶部导航菜单 =====
+       中文维护：可修改下方a标签文字或锚点href，例如 href="#description"。
+       导航条背景色 background 为橙色 #ff751f，悬停变黑色 #111。 */
+    .top-menu {
+      background: #ff751f;
+      border-bottom: 4px solid #111;
+      text-align: center;
+      font-size: 0;
+    }
+    .top-menu a {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      border-right: 1px solid #ff9f63;
+    }
+    .top-menu a:last-child { border-right: none; }
+    .top-menu a:hover { background: #111; color: #ff751f; }
+
+    /* ===== 品牌标题区 =====
+       中文维护：品牌名称和副标题文字在 brand-head h1 和 brand-head p 中修改。 */
+    .brand-head {
+      background: #111;
+      text-align: center;
+      color: #fff;
+      padding: 24px 10px;
+    }
+    .brand-head h1 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: 2px;
+    }
+    .brand-head p {
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: #ececec;
+    }
+
+    /* 顶部主Banner图片 */
+    .hero-banner {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* ===== 主内容区（左侧栏 + 右侧主区横向排布） ===== */
+    .main-content {
+      display: flex;
+      gap: 18px;
+      padding: 20px 16px;
+    }
+
+    /* ===== 左侧边栏 ===== */
+    .sidebar {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    /* 通用模块容器 */
+    .module {
+      border: 1px solid #ececec;
+      margin-bottom: 14px;
+      background: #fff;
+    }
+    .module-title {
+      margin: 0;
+      padding: 10px 12px;
+      font-size: 15px;
+      background: #111;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* ===== 左侧分类列表 =====
+       中文维护：修改 category-list 内的 <a> 标签文字和 href 跳转链接。 */
+    .category-list {
+      list-style: none;
+      margin: 0;
+      padding: 8px 12px 12px;
+    }
+    .category-list li {
+      border-bottom: 1px dashed #ddd;
+    }
+    .category-list li:last-child { border-bottom: none; }
+    .category-list a {
+      display: block;
+      color: #222;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 9px 0;
+    }
+    .category-list a:hover { color: #ff751f; }
+
+    /* ===== 左侧推广图模块（Featured 三个产品图）=====
+       中文维护说明：
+       1. 修改每个 .promo-item 内 <a href="..."> 的链接跳转到对应eBay商品页。
+       2. 修改每个 <img src="..."> 替换为对应产品图片URL。
+       3. 三角角标颜色：NEW=绿色(#2e7d32)、HOT=红色(#d32f2f)、DISCOUNT=橙色(#f57c00)；
+          如需改文字或颜色，修改 .badge-tri-new/.badge-tri-hot/.badge-tri-discount 的
+          border-color，以及对应 .badge-tri-label 的文字内容。
+       4. "SHOP NOW" 按钮样式在 .promo-shop-btn 中修改；悬停颜色在 .promo-shop-btn:hover 中修改。
+    */
+    .sidebar-promo {
+      padding: 10px;
+    }
+
+    /* 单个推广图卡片 */
+    .promo-item {
+      position: relative;
+      margin-bottom: 14px;
+      border: 1px solid #ddd;
+      overflow: hidden;
+      /* 中文维护：保持图片为正方形显示 */
+    }
+    .promo-item:last-child { margin-bottom: 0; }
+
+    /* 图片链接包装，使图片始终呈正方形 */
+    .promo-img-wrap {
+      position: relative;
+      display: block;
+      width: 100%;
+      /* padding-top:100% 技巧实现正方形容器，图片覆盖整个正方形区域 */
+      padding-top: 100%;
+      overflow: hidden;
+      text-decoration: none;
+      line-height: 0;
+    }
+    .promo-img-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ===== 三角形角标（左上角）=====
+       中文维护：三角角标固定在图片左上角，不遮挡主图内容。
+       通过CSS border技巧生成三角形，边长约70px（可调整border-width修改大小）。
+       三角形内的文字通过 .badge-tri-label 定位，已根据三角形角度旋转-45deg对齐。 */
+    .badge-tri {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      /* border-width: 上 右 下 左 — 上左两边组成左上角三角形 */
+      border-width: 70px 70px 0 0;
+      /* 中文维护：修改第一个颜色值（上边）改变三角颜色；后三个保持transparent */
+      pointer-events: none;
+    }
+    /* NEW 三角 - 绿色 */
+    .badge-tri-new  { border-color: #2e7d32 transparent transparent transparent; }
+    /* HOT 三角 - 红色 */
+    .badge-tri-hot  { border-color: #d32f2f transparent transparent transparent; }
+    /* DISCOUNT 三角 - 橙色 */
+    .badge-tri-discount { border-color: #f57c00 transparent transparent transparent; }
+
+    /* 三角形内的文字标签（旋转对齐三角斜边）*/
+    .badge-tri-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 4;
+      /* 旋转-45度，使文字沿三角形斜边排列 */
+      transform: rotate(-45deg);
+      transform-origin: top left;
+      /* 微调位置使文字居中显示在三角内 */
+      margin-top: 14px;
+      margin-left: 4px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    /* ===== SHOP NOW 按钮/栏 =====
+       中文维护：按钮背景色在 .promo-shop-btn 的 background 修改（默认黑色）；
+       悬停效果颜色在 .promo-shop-btn:hover 的 background 修改（默认橙色 #ff751f）；
+       按钮文字（"SHOP NOW"）在各promo-item内的<a class="promo-shop-btn">中修改。 */
+    .promo-shop-btn {
+      display: block;
+      text-align: center;
+      padding: 9px 0;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      /* 悬停过渡动画 */
+      transition: background 0.2s, color 0.2s;
+    }
+    /* 中文维护：悬停变色效果（橙色），可修改为其他颜色 */
+    .promo-shop-btn:hover {
+      background: #ff751f;
+      color: #fff;
+    }
+
+    /* ===== 右侧主内容区 ===== */
+    .main-panel {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ===== 通用内容卡片（Shipping/Payment等模块）=====
+       优化7.0：行间距统一设为 line-height: 1.6（紧凑可读），
+       DESCRIPTION 区块和物流Banner区块也保持与此一致。 */
+    .section-card {
+      border: 1px solid #ececec;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .section-card h3 {
+      margin: 0 0 8px;
+      color: #ff751f;
+      font-size: 18px;
+    }
+    /* 优化7.0：统一紧凑行间距 line-height:1.6，与Shipping/Payment保持一致 */
+    .section-card p,
+    .section-card li {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .section-card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    /* ===== DESCRIPTION 描述区域 =====
+       优化7.0：行间距统一改为 line-height:1.6，与Shipping/Payment模块保持一致（紧凑可读） */
+    .description-area {
+      padding: 12px;
+      border: 1px solid #ececec;
+      margin-bottom: 14px;
+      /* 中文维护：描述区背景颜色，默认白色 */
+    }
+    /* DESCRIPTION区域内文字行间距与Shipping/Payment保持一致 */
+    .description-area p,
+    .description-area li {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .description-area ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    /* 产品图片轮播区域 */
+    .product-gallery {
+      background: #fafafa;
+      border: 1px solid #ececec;
+      padding: 16px 12px 12px;
+      margin-bottom: 14px;
+    }
+    .gallery-main {
+      position: relative;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .gallery-main img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: contain;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      display: block;
+    }
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: rgba(17, 17, 17, 0.86);
+      color: #fff;
+      font-size: 22px;
+      line-height: 40px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+    .gallery-arrow:hover { background: #ff751f; }
+    .gallery-arrow.prev { left: -14px; }
+    .gallery-arrow.next { right: -14px; }
+    .gallery-thumbs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .gallery-thumbs img {
+      width: 72px;
+      height: 58px;
+      object-fit: cover;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .gallery-thumbs img.active {
+      border-color: #ff751f;
+      opacity: 1;
+    }
+
+    /* ===== 物流Banner区域 =====
+       优化7.0：行间距统一改为 line-height:1.6，与Shipping/Payment保持一致（紧凑可读）。
+       中文维护：替换 .logistics-banner 内 <img src="..."> 为实际物流/店铺Banner图片URL。 */
+    .logistics-banner {
+      border: 1px solid #ececec;
+      margin-bottom: 12px;
+      padding: 10px;
+      background: #fff;
+    }
+    .logistics-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #ddd;
+    }
+    .logistics-title {
+      margin: 0 0 8px;
+      color: #ff751f;
+      font-size: 18px;
+    }
+    /* 物流Banner区域行间距与Shipping/Payment一致 */
+    .logistics-banner p,
+    .logistics-banner li {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ===== 为你推荐相似商品模块 =====
+       中文维护说明：
+       1. 修改 .related-item 内 <a href="..."> 的链接跳转至对应eBay商品页面。
+       2. 修改 <img src="..."> 的src替换为对应商品图片URL。
+       3. 修改 .related-item-title 内文字为商品名称。
+       4. 修改 .related-item-price 内文字为商品价格（如 "USD 29.99"）。
+       5. 可增减 .related-item 数量，建议保持4个以保证排版美观。
+       6. 该模块id为 "related-products"，可通过锚点 #related-products 直接跳转。 */
+    .related-products-section {
+      border: 1px solid #ececec;
+      padding: 14px 12px;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+    .related-products-section h3 {
+      margin: 0 0 12px;
+      color: #ff751f;
+      font-size: 18px;
+    }
+    .related-products-section .related-subtitle {
+      font-size: 13px;
+      color: #888;
+      margin: -8px 0 12px;
+    }
+    /* 推荐商品网格：横向排列，自动换行 */
+    .related-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    /* 每个推荐商品卡片 */
+    .related-item {
+      width: calc(25% - 9px);
+      min-width: 100px;
+      border: 1px solid #ececec;
+      background: #fafafa;
+      text-align: center;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .related-item:hover {
+      box-shadow: 0 2px 10px rgba(255, 117, 31, 0.18);
+    }
+    /* 推荐商品图片区，正方形显示 */
+    .related-item-img-wrap {
+      display: block;
+      width: 100%;
+      padding-top: 100%;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .related-item-img-wrap img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* 推荐商品信息区 */
+    .related-item-info {
+      padding: 7px 6px;
+    }
+    .related-item-title {
+      font-size: 12px;
+      color: #333;
+      line-height: 1.4;
+      margin: 0 0 4px;
+      /* 最多显示2行，超出省略 */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .related-item-price {
+      font-size: 13px;
+      color: #d32f2f;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+    /* 推荐商品"查看详情"按钮 */
+    .related-item-btn {
+      display: block;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 6px 0;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .related-item-btn:hover {
+      background: #ff751f;
+    }
+
+    /* ===== 底部品牌区 ===== */
+    .footer-area {
+      background: #111;
+      border-top: 5px solid #ff751f;
+      color: #fff;
+      text-align: center;
+      padding: 30px 10px 24px;
+    }
+    .footer-area h2 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .footer-area p {
+      margin: 10px 0 0;
+      font-size: 15px;
+      color: #ececec;
+    }
+
+    /* ===== 响应式适配 ===== */
+    @media (max-width: 920px) {
+      .main-content { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .gallery-arrow.prev { left: 6px; }
+      .gallery-arrow.next { right: 6px; }
+      /* 推荐商品在小屏改为2列 */
+      .related-item { width: calc(50% - 6px); }
+    }
+    @media (max-width: 480px) {
+      .top-menu a { padding: 10px 10px; font-size: 12px; }
+      .brand-head h1 { font-size: 24px; }
+      /* 推荐商品在极小屏保持2列 */
+      .related-item { width: calc(50% - 6px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- 中文维护：顶部导航菜单（可修改a标签文字和href锚点跳转位置） -->
+    <div class="top-menu">
+      <a href="#description">Description</a>
+      <a href="#shipping">Shipping</a>
+      <a href="#payment">Payment</a>
+      <a href="#terms">Terms of Sale</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+
+    <!-- 中文维护：品牌标题区（修改h1为店铺名称，p为副标题） -->
+    <div class="brand-head">
+      <h1>AUTOBUNNY PARTS</h1>
+      <p>Premium Auto Parts Store | Professional Service | Fast Shipping</p>
+    </div>
+
+    <!-- 中文维护：顶部主Banner图片（替换src为实际Banner图片URL） -->
+    <img class="hero-banner" src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="AUTOBUNNY PARTS Banner">
+
+    <div class="main-content">
+
+      <!-- ===== 左侧边栏 ===== -->
+      <aside class="sidebar">
+
+        <!-- 中文维护：左侧分类模块（按需修改分类名称与链接href） -->
+        <div class="module">
+          <h2 class="module-title">Categories</h2>
+          <ul class="category-list">
+            <li><a href="#">Window Regulator</a></li>
+            <li><a href="#">Door Lock Actuator</a></li>
+            <li><a href="#">Exterior Door Handle</a></li>
+            <li><a href="#">Mirror Switch</a></li>
+            <li><a href="#">Tailgate Handle</a></li>
+            <li><a href="#">Power Master Switch</a></li>
+          </ul>
+        </div>
+
+        <!-- ===== 左侧推广产品图模块（NEW / HOT / DISCOUNT）=====
+             中文维护：
+             - 修改每个 .promo-item 内 <a href="..."> 跳转到对应eBay商品页面链接
+             - 修改 <img src="..."> 替换为对应产品正方形图片URL（建议使用正方形图避免拉伸）
+             - 三角角标已固定在左上角，不遮挡主图，无需手动调整位置
+             - "SHOP NOW" 按钮悬停变橙色，可在CSS .promo-shop-btn:hover 修改颜色
+        -->
+        <div class="module">
+          <h2 class="module-title">Featured</h2>
+          <div class="sidebar-promo">
+
+            <!-- 中文维护：NEW商品 - 修改href链接和img的src图片URL -->
+            <div class="promo-item">
+              <!-- 图片区（正方形容器，三角角标在左上角） -->
+              <a class="promo-img-wrap" href="#" target="_blank">
+                <!-- 三角形角标：绿色，文字 NEW -->
+                <span class="badge-tri badge-tri-new"></span>
+                <span class="badge-tri-label">NEW</span>
+                <!-- 中文维护：替换src为NEW商品图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="New Product">
+              </a>
+              <!-- SHOP NOW按钮：悬停变橙色，修改href为对应商品链接 -->
+              <a class="promo-shop-btn" href="#" target="_blank">SHOP NOW</a>
+            </div>
+
+            <!-- 中文维护：HOT商品 - 修改href链接和img的src图片URL -->
+            <div class="promo-item">
+              <a class="promo-img-wrap" href="#" target="_blank">
+                <!-- 三角形角标：红色，文字 HOT -->
+                <span class="badge-tri badge-tri-hot"></span>
+                <span class="badge-tri-label">HOT</span>
+                <!-- 中文维护：替换src为HOT商品图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Hot Product">
+              </a>
+              <!-- SHOP NOW按钮 -->
+              <a class="promo-shop-btn" href="#" target="_blank">SHOP NOW</a>
+            </div>
+
+            <!-- 中文维护：DISCOUNT商品 - 修改href链接和img的src图片URL -->
+            <div class="promo-item">
+              <a class="promo-img-wrap" href="#" target="_blank">
+                <!-- 三角形角标：橙色，文字 DISCOUNT -->
+                <span class="badge-tri badge-tri-discount"></span>
+                <span class="badge-tri-label">DISCOUNT</span>
+                <!-- 中文维护：替换src为DISCOUNT商品图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Discount Product">
+              </a>
+              <!-- SHOP NOW按钮 -->
+              <a class="promo-shop-btn" href="#" target="_blank">SHOP NOW</a>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+
+      <!-- ===== 右侧主内容区 ===== -->
+      <main class="main-panel">
+
+        <!-- ===== DESCRIPTION 主体模块 =====
+             优化7.0：行间距已统一设为 line-height:1.6，与Shipping/Payment保持一致 -->
+        <section id="description" class="description-area">
+
+          <!-- 中文维护：产品图片轮播区（支持左右切换和缩略图点击，可替换下方src图片URL） -->
+          <div class="product-gallery">
+            <div class="gallery-main">
+              <button class="gallery-arrow prev" type="button" onclick="galleryPrev()">&#10094;</button>
+              <img id="gallery-main-img" src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Product Image">
+              <button class="gallery-arrow next" type="button" onclick="galleryNext()">&#10095;</button>
+            </div>
+            <div class="gallery-thumbs" id="gallery-thumbs">
+              <!-- 中文维护：修改下方5张缩略图src为实际产品图片URL -->
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Thumbnail 1" onclick="galleryGo(0)">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Thumbnail 2" onclick="galleryGo(1)">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Thumbnail 3" onclick="galleryGo(2)">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Thumbnail 4" onclick="galleryGo(3)">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Thumbnail 5" onclick="galleryGo(4)">
+            </div>
+          </div>
+
+          <!-- 中文维护：产品详情模块（修改p标签内文字为实际产品信息） -->
+          <div class="section-card">
+            <h3>Product Details</h3>
+            <p>Brand New OE-Quality Replacement Front Left (Driver Side) Electric Window Regulator with Motor. Built to OEM specification for precise fitment and stable performance.</p>
+          </div>
+
+          <!-- 中文维护：适配车型模块（修改适配车型信息） -->
+          <div class="section-card">
+            <h3>Compatibility</h3>
+            <p>Fits Ford Ranger MK2 Pickup (2006-2012), Front Left Driver Side. Please compare your original part and OEM number before ordering.</p>
+          </div>
+
+          <!-- 中文维护：产品说明模块（修改li列表为产品功能亮点） -->
+          <div class="section-card">
+            <h3>Product Description</h3>
+            <ul>
+              <li>Scissor-type mechanism supports smooth and stable window movement.</li>
+              <li>Pre-installed motor for direct replacement and convenient installation.</li>
+              <li>Durable construction and tested performance for long service life.</li>
+            </ul>
+          </div>
+
+          <!-- 中文维护：安装说明模块 -->
+          <div class="section-card">
+            <h3>Installation Instructions</h3>
+            <ul>
+              <li>Professional installation is recommended for best results.</li>
+              <li>Check connector type and mounting positions before installation.</li>
+            </ul>
+          </div>
+
+          <!-- 中文维护：核心政策模块 -->
+          <div class="section-card">
+            <h3>Core Policies</h3>
+            <p>Package includes 1x Front Left Window Regulator with Motor. Please contact us first for any issue before opening a return case. We are committed to helpful after-sales support.</p>
+          </div>
+
+          <!-- 中文维护：质保与售后支持模块 -->
+          <div class="section-card">
+            <h3>Warranty &amp; After-Sales Support</h3>
+            <p>1-Year warranty for non-human quality issues. Fast dispatch, secure packaging, and responsive customer service through eBay messages.</p>
+          </div>
+        </section>
+
+        <!-- ===== 物流Banner图片模块 =====
+             优化7.0：行间距已统一设为 line-height:1.6，与Shipping/Payment保持一致。
+             中文维护：替换下方 <img src="..."> 为实际物流或店铺宣传Banner图片URL。 -->
+        <section class="logistics-banner">
+          <h3 class="logistics-title">Logistics Banner Image</h3>
+          <!-- 中文维护：将src替换为物流图或店铺宣传图片URL -->
+          <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Logistics Banner">
+        </section>
+
+        <!-- 中文维护：Shipping模块（修改li内文字为实际运输政策） -->
+        <section id="shipping" class="section-card">
+          <h3>Shipping</h3>
+          <ul>
+            <li>Orders are dispatched quickly after payment confirmation.</li>
+            <li>Delivery times vary by destination and carrier conditions.</li>
+            <li>Please confirm your shipping address before payment.</li>
+          </ul>
+        </section>
+
+        <!-- 中文维护：Payment模块 -->
+        <section id="payment" class="section-card">
+          <h3>Payment</h3>
+          <p>We accept secure payment methods supported by eBay checkout. Please complete payment promptly to avoid shipment delay.</p>
+        </section>
+
+        <!-- 中文维护：Terms of Sale模块 -->
+        <section id="terms" class="section-card">
+          <h3>Terms of Sale</h3>
+          <ul>
+            <li>Please verify compatibility before placing an order.</li>
+            <li>Contact us first if you have any issue with your purchase.</li>
+            <li>We value customer satisfaction and fair after-sales service.</li>
+          </ul>
+        </section>
+
+        <!-- 中文维护：About Us模块 -->
+        <section id="about" class="section-card">
+          <h3>About Us</h3>
+          <p>AUTOBUNNY PARTS focuses on quality auto parts, careful packaging, and reliable customer support for eBay buyers worldwide.</p>
+        </section>
+
+        <!-- 中文维护：Contact Us模块 -->
+        <section id="contact" class="section-card">
+          <h3>Contact Us</h3>
+          <p>If you have any question about fitment, shipping, or your order, please contact us via eBay message. We will respond as soon as possible.</p>
+        </section>
+
+        <!-- ===== 为你推荐相似商品模块（You May Also Like）=====
+             优化7.0新增模块，用于跨品导流与店铺关联商品推荐。
+             锚点：id="related-products"，可通过 #related-products 直接跳转。
+
+             中文维护说明：
+             1. 修改每个 .related-item 内 <a href="..."> 的链接为对应eBay商品详情页URL。
+             2. 修改 <img src="..."> 替换为对应推荐商品图片URL（建议使用正方形图）。
+             3. 修改 .related-item-title 内文字为推荐商品名称。
+             4. 修改 .related-item-price 内文字为推荐商品价格，如 "USD 25.99"。
+             5. 可增加或删除 .related-item 卡片，建议保持4个以上以保证整行排版。
+             6. "View Item" 按钮样式在CSS .related-item-btn 和 .related-item-btn:hover 中修改。
+        -->
+        <section id="related-products" class="related-products-section">
+          <h3>You May Also Like</h3>
+          <p class="related-subtitle">Browse more products from our store</p>
+          <div class="related-grid">
+
+            <!-- 中文维护：推荐商品1 - 修改href链接、img src图片、商品名称和价格 -->
+            <div class="related-item">
+              <a class="related-item-img-wrap" href="#" target="_blank">
+                <!-- 中文维护：替换src为推荐商品1图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Related Product 1">
+              </a>
+              <div class="related-item-info">
+                <!-- 中文维护：修改商品名称 -->
+                <p class="related-item-title">Window Regulator Front Left</p>
+                <!-- 中文维护：修改商品价格 -->
+                <p class="related-item-price">USD 29.99</p>
+                <!-- 中文维护：修改href为对应eBay商品链接 -->
+                <a class="related-item-btn" href="#" target="_blank">View Item</a>
+              </div>
+            </div>
+
+            <!-- 中文维护：推荐商品2 - 修改href链接、img src图片、商品名称和价格 -->
+            <div class="related-item">
+              <a class="related-item-img-wrap" href="#" target="_blank">
+                <!-- 中文维护：替换src为推荐商品2图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Related Product 2">
+              </a>
+              <div class="related-item-info">
+                <p class="related-item-title">Door Lock Actuator Rear Right</p>
+                <p class="related-item-price">USD 19.99</p>
+                <a class="related-item-btn" href="#" target="_blank">View Item</a>
+              </div>
+            </div>
+
+            <!-- 中文维护：推荐商品3 - 修改href链接、img src图片、商品名称和价格 -->
+            <div class="related-item">
+              <a class="related-item-img-wrap" href="#" target="_blank">
+                <!-- 中文维护：替换src为推荐商品3图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Related Product 3">
+              </a>
+              <div class="related-item-info">
+                <p class="related-item-title">Exterior Door Handle Front Left</p>
+                <p class="related-item-price">USD 15.99</p>
+                <a class="related-item-btn" href="#" target="_blank">View Item</a>
+              </div>
+            </div>
+
+            <!-- 中文维护：推荐商品4 - 修改href链接、img src图片、商品名称和价格 -->
+            <div class="related-item">
+              <a class="related-item-img-wrap" href="#" target="_blank">
+                <!-- 中文维护：替换src为推荐商品4图片URL -->
+                <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Related Product 4">
+              </a>
+              <div class="related-item-info">
+                <p class="related-item-title">Power Window Master Switch</p>
+                <p class="related-item-price">USD 22.99</p>
+                <a class="related-item-btn" href="#" target="_blank">View Item</a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- 中文维护：底部品牌感谢区（保留2.0风格，黑底橙色边框） -->
+    <div class="footer-area">
+      <h2>AUTOBUNNY PARTS</h2>
+      <p>Thank you for visiting AUTOBUNNY PARTS and shopping with confidence!</p>
+    </div>
+  </div>
+
+  <!-- 产品图片轮播脚本（纯原生JS，兼容eBay模板环境） -->
+  <script type="text/javascript">
+    var galleryImages = [];
+    var galleryIndex = 0;
+    var galleryMain = null;
+    var galleryThumbs = null;
+
+    function galleryRender(index) {
+      if (!galleryImages.length) { return; }
+      galleryIndex = (index + galleryImages.length) % galleryImages.length;
+      if (galleryMain) {
+        galleryMain.src = galleryImages[galleryIndex];
+      }
+      if (galleryThumbs) {
+        for (var i = 0; i < galleryThumbs.children.length; i++) {
+          galleryThumbs.children[i].className = i === galleryIndex ? "active" : "";
+        }
+      }
+    }
+    function galleryPrev() { galleryRender(galleryIndex - 1); }
+    function galleryNext() { galleryRender(galleryIndex + 1); }
+    function galleryGo(i) { galleryRender(i); }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      galleryMain = document.getElementById("gallery-main-img");
+      galleryThumbs = document.getElementById("gallery-thumbs");
+      if (galleryThumbs) {
+        for (var i = 0; i < galleryThumbs.children.length; i++) {
+          galleryImages.push(galleryThumbs.children[i].src);
+        }
+      }
+      galleryRender(0);
+    });
+  </script>
+</body>
+</html>
