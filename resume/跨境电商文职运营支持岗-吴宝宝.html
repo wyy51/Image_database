@@ -24,7 +24,28 @@
     .slider input { display: none; }
     .slides { white-space: nowrap; font-size: 0; transition: transform 0.35s ease; }
     .slides img { width: 100%; max-width: 100%; display: inline-block; vertical-align: top; }
-    .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 8%; min-width: 30px; max-width: 58px; height: 10%; min-height: 34px; max-height: 64px; border: 1px solid #d0d0d0; background: rgba(0, 0, 0, 0.7); color: #ffffff; text-align: center; line-height: 1.1; font-weight: 700; font-size: clamp(18px, 2.7vw, 34px); cursor: pointer; display: none; align-items: center; justify-content: center; }
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8%;
+      min-width: 30px;
+      max-width: 58px;
+      height: 10%;
+      min-height: 34px;
+      max-height: 64px;
+      border: 1px solid #d0d0d0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.1;
+      font-weight: 700;
+      font-size: clamp(18px, 2.7vw, 34px);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
     .prev { left: 2%; }
     .next { right: 2%; }
     #s1:checked ~ .slides { transform: translateX(0%); }
@@ -111,12 +132,18 @@
               <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Product Image 6" style="width:100%;max-width:100%;display:inline-block;">
             </div>
 
-            <label for="s6" class="nav prev p1" style="left:2%;">&#10094;</label><label for="s2" class="nav next n1" style="right:2%;">&#10095;</label>
-            <label for="s1" class="nav prev p2" style="left:2%;">&#10094;</label><label for="s3" class="nav next n2" style="right:2%;">&#10095;</label>
-            <label for="s2" class="nav prev p3" style="left:2%;">&#10094;</label><label for="s4" class="nav next n3" style="right:2%;">&#10095;</label>
-            <label for="s3" class="nav prev p4" style="left:2%;">&#10094;</label><label for="s5" class="nav next n4" style="right:2%;">&#10095;</label>
-            <label for="s4" class="nav prev p5" style="left:2%;">&#10094;</label><label for="s6" class="nav next n5" style="right:2%;">&#10095;</label>
-            <label for="s5" class="nav prev p6" style="left:2%;">&#10094;</label><label for="s1" class="nav next n6" style="right:2%;">&#10095;</label>
+            <label for="s6" class="nav prev p1" style="left:2%;">&#10094;</label>
+            <label for="s2" class="nav next n1" style="right:2%;">&#10095;</label>
+            <label for="s1" class="nav prev p2" style="left:2%;">&#10094;</label>
+            <label for="s3" class="nav next n2" style="right:2%;">&#10095;</label>
+            <label for="s2" class="nav prev p3" style="left:2%;">&#10094;</label>
+            <label for="s4" class="nav next n3" style="right:2%;">&#10095;</label>
+            <label for="s3" class="nav prev p4" style="left:2%;">&#10094;</label>
+            <label for="s5" class="nav next n4" style="right:2%;">&#10095;</label>
+            <label for="s4" class="nav prev p5" style="left:2%;">&#10094;</label>
+            <label for="s6" class="nav next n5" style="right:2%;">&#10095;</label>
+            <label for="s5" class="nav prev p6" style="left:2%;">&#10094;</label>
+            <label for="s1" class="nav next n6" style="right:2%;">&#10095;</label>
           </div>
         </div>
 
