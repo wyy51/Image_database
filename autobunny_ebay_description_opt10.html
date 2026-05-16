@@ -246,7 +246,13 @@
     }
     .gallery-control {
       position: absolute;
-      left: -9999px;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
     .gallery-stage {
       position: relative;
@@ -321,7 +327,8 @@
       height: auto;
     }
     .contact-link {
-      display: inline-block;
+      display: block;
+      width: 210px;
       margin-top: 10px;
       padding: 10px 18px;
       border-radius: 22px;
@@ -491,11 +498,11 @@
         <div class="content-inner">
           <div class="product-gallery">
             <!-- 中文：以下 5 张图为产品轮播图维护区，当前 src 已使用绝对图片地址；如需替换，请继续使用 800x800 正方形英文命名外链，例如 https://your-cdn-domain/product-gallery-image-01.png 。 -->
-            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-1" checked>
-            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-2">
-            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-3">
-            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-4">
-            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-5">
+            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-1" aria-label="Select gallery image 1" checked>
+            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-2" aria-label="Select gallery image 2">
+            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-3" aria-label="Select gallery image 3">
+            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-4" aria-label="Select gallery image 4">
+            <input class="gallery-control" type="radio" name="product-gallery" id="gallery-radio-5" aria-label="Select gallery image 5">
 
             <div class="gallery-stage">
               <div class="gallery-slide gallery-slide-1">
@@ -516,19 +523,19 @@
             </div>
 
             <div class="gallery-thumbs">
-              <label class="gallery-thumb gallery-thumb-1" for="gallery-radio-1">
+              <label class="gallery-thumb gallery-thumb-1" for="gallery-radio-1" aria-label="View image 1">
                 <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Thumbnail image 1">
               </label>
-              <label class="gallery-thumb gallery-thumb-2" for="gallery-radio-2">
+              <label class="gallery-thumb gallery-thumb-2" for="gallery-radio-2" aria-label="View image 2">
                 <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Thumbnail image 2">
               </label>
-              <label class="gallery-thumb gallery-thumb-3" for="gallery-radio-3">
+              <label class="gallery-thumb gallery-thumb-3" for="gallery-radio-3" aria-label="View image 3">
                 <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Thumbnail image 3">
               </label>
-              <label class="gallery-thumb gallery-thumb-4" for="gallery-radio-4">
+              <label class="gallery-thumb gallery-thumb-4" for="gallery-radio-4" aria-label="View image 4">
                 <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Thumbnail image 4">
               </label>
-              <label class="gallery-thumb gallery-thumb-5" for="gallery-radio-5">
+              <label class="gallery-thumb gallery-thumb-5" for="gallery-radio-5" aria-label="View image 5">
                 <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Thumbnail image 5">
               </label>
             </div>
