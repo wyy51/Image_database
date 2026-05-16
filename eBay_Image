@@ -230,6 +230,7 @@
     }
     .shipping-banner-wrapper {
       padding: 14px 14px 0;
+      /* Required visible gap between shipping banner and shipping text block */
       margin-bottom: 34px;
     }
     .shipping-banner-image {
