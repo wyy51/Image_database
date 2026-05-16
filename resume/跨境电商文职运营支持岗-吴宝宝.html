@@ -1,215 +1,215 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>吴宝宝 - 跨境电商文职/运营支持岗简历</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOBUNNY PARTS - eBay Listing Template</title>
   <style>
-    :root {
-      --text: #222;
-      --muted: #666;
-      --line: #e6e6e6;
-      --accent: #1f4e79;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #f5f7fa;
-      color: var(--text);
-      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
-      line-height: 1.55;
-    }
-    .page {
-      width: 210mm;
-      min-height: 297mm;
-      margin: 16px auto;
-      background: #fff;
-      padding: 14mm 16mm;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-    .header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .header-main {
-      flex: 1;
-    }
-    .photo-box {
-      width: 92px;
-      height: 124px;
-      border: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #fafafa;
-      flex-shrink: 0;
-    }
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .photo-placeholder {
-      color: #999;
-      font-size: 12px;
-      text-align: center;
-      padding: 8px;
-    }
-    h1 {
-      margin: 0;
-      font-size: 26px;
-      color: #111;
-    }
-    .meta {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .section {
-      margin-top: 14px;
-    }
-    .section-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--accent);
-      padding-bottom: 4px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 8px;
-    }
-    .job {
-      margin-bottom: 10px;
-    }
-    .job-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .job-time {
-      white-space: nowrap;
-      color: var(--muted);
-      font-weight: 600;
-    }
-    ul {
-      margin: 6px 0 0 18px;
-      padding: 0;
-    }
-    li { margin: 2px 0; }
-    .skills p, .summary {
-      margin: 0;
-      font-size: 14px;
-    }
-    .edu-item {
-      margin: 4px 0;
-      font-size: 14px;
-    }
-    @media print {
-      body { background: #fff; }
-      .page {
-        margin: 0;
-        width: auto;
-        min-height: auto;
-        box-shadow: none;
-        padding: 12mm 14mm;
-      }
+    body { margin: 0; padding: 0; background: #f5f5f5; font-family: Arial, Helvetica, "Microsoft YaHei", sans-serif; color: #222222; }
+    .wrap { width: 100%; max-width: 1000px; margin: 0 auto; background: #ffffff; }
+    .brand { background: #111111; color: #ffffff; text-align: center; padding: 22px 16px 20px 16px; }
+    .brand h1 { margin: 0; font-size: 34px; letter-spacing: 1px; }
+    .brand p { margin: 8px 0 0 0; font-size: 14px; color: #f0f0f0; }
+    .menu { background: #ffffff; border-top: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9; text-align: center; font-size: 0; }
+    .menu a { display: inline-block; padding: 14px 18px; font-size: 14px; color: #111111; text-decoration: none; font-weight: 700; }
+    .menu a:hover { background: #111111; color: #ffffff; }
+    .banner img { display: block; width: 100%; height: auto; }
+    .section { padding: 24px 20px; border-bottom: 1px solid #ebebeb; }
+    .section h2 { margin: 0 0 16px 0; font-size: 24px; color: #111111; }
+    .desc-grid { display: table; width: 100%; table-layout: fixed; }
+    .desc-left, .desc-right { display: table-cell; vertical-align: top; }
+    .desc-left { width: 52%; padding-right: 14px; }
+    .desc-right { width: 48%; padding-left: 14px; }
+    .slider { position: relative; border: 1px solid #dadada; background: #ffffff; overflow: hidden; }
+    .slider input { display: none; }
+    .slides { white-space: nowrap; font-size: 0; transition: transform 0.35s ease; }
+    .slides img { width: 100%; max-width: 100%; display: inline-block; vertical-align: top; }
+    .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 8%; min-width: 30px; max-width: 58px; height: 10%; min-height: 34px; max-height: 64px; border: 1px solid #d0d0d0; background: rgba(0, 0, 0, 0.7); color: #ffffff; text-align: center; line-height: 1.1; font-weight: 700; font-size: clamp(18px, 2.7vw, 34px); cursor: pointer; display: none; align-items: center; justify-content: center; }
+    .prev { left: 2%; }
+    .next { right: 2%; }
+    #s1:checked ~ .slides { transform: translateX(0%); }
+    #s2:checked ~ .slides { transform: translateX(-100%); }
+    #s3:checked ~ .slides { transform: translateX(-200%); }
+    #s4:checked ~ .slides { transform: translateX(-300%); }
+    #s5:checked ~ .slides { transform: translateX(-400%); }
+    #s6:checked ~ .slides { transform: translateX(-500%); }
+    #s1:checked ~ .p1, #s1:checked ~ .n1,
+    #s2:checked ~ .p2, #s2:checked ~ .n2,
+    #s3:checked ~ .p3, #s3:checked ~ .n3,
+    #s4:checked ~ .p4, #s4:checked ~ .n4,
+    #s5:checked ~ .p5, #s5:checked ~ .n5,
+    #s6:checked ~ .p6, #s6:checked ~ .n6 { display: flex; }
+    .block { margin-bottom: 14px; padding: 14px; background: #fafafa; border: 1px solid #e5e5e5; }
+    .block h3 { margin: 0 0 8px 0; font-size: 16px; color: #111111; }
+    .block p { margin: 0; font-size: 14px; line-height: 1.65; color: #222222; }
+    .policy-cols { display: table; width: 100%; table-layout: fixed; margin-top: 10px; }
+    .policy-col { display: table-cell; width: 50%; padding-right: 8px; vertical-align: top; }
+    .policy-col:last-child { padding-right: 0; padding-left: 8px; }
+    .policy-card { background: #ffffff; border: 1px solid #e4e4e4; padding: 12px; min-height: 110px; }
+    .policy-card h4 { margin: 0 0 6px 0; font-size: 15px; }
+    .policy-card p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .simple p { margin: 0 0 10px 0; font-size: 14px; line-height: 1.7; }
+    .contact-box { border: 1px solid #d7d7d7; padding: 14px; background: #fbfbfb; }
+    .footer { padding: 16px; background: #111111; color: #ffffff; text-align: center; font-size: 12px; }
+    @media only screen and (max-width: 860px) {
+      .brand h1 { font-size: 28px; }
+      .menu a { padding: 12px 10px; font-size: 13px; }
+      .section { padding: 20px 14px; }
+      .desc-grid, .policy-cols { display: block; }
+      .desc-left, .desc-right, .policy-col { display: block; width: 100%; padding: 0; }
+      .desc-left { margin-bottom: 14px; }
+      .policy-col:last-child { padding-left: 0; margin-top: 10px; }
+      .nav { width: 10%; min-width: 26px; max-width: 44px; min-height: 30px; max-height: 48px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="header">
-      <div class="header-main">
-        <h1>吴宝宝</h1>
-        <div class="meta">26岁｜本科｜现居深圳龙岗｜18888888888｜520bb@163.com</div>
-      </div>
-      <div class="photo-box">
-        <!-- 将 src 替换为你的证件照路径，例如：./photo.jpg -->
-        <!-- <img src="./photo.jpg" alt="证件照" /> -->
-        <div class="photo-placeholder">照片位置<br />替换为证件照</div>
-      </div>
+  <div class="wrap" style="width:100%;max-width:1000px;margin:0 auto;background:#ffffff;">
+    <!-- 维护说明（头部品牌模块）：店铺品牌名与副标题 -->
+    <div class="brand" style="background:#111111;color:#ffffff;text-align:center;padding:22px 16px 20px 16px;">
+      <h1 style="margin:0;font-size:34px;letter-spacing:1px;">AUTOBUNNY PARTS</h1>
+      <p style="margin:8px 0 0 0;font-size:14px;color:#f0f0f0;">Premium Auto Parts Store | Professional Service | Fast Shipping</p>
     </div>
 
-    <div class="section">
-      <div class="section-title">求职意向</div>
-      <div class="summary">跨境电商运营助理</div>
+    <!-- 维护说明（导航菜单模块）：菜单需紧跟品牌头部，下方才是Banner -->
+    <div class="menu" style="background:#ffffff;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;text-align:center;">
+      <a href="#description" style="display:inline-block;padding:14px 18px;font-size:14px;color:#111111;text-decoration:none;font-weight:700;">DESCRIPTION</a>
+      <a href="#shipping" style="display:inline-block;padding:14px 18px;font-size:14px;color:#111111;text-decoration:none;font-weight:700;">SHIPPING</a>
+      <a href="#payment" style="display:inline-block;padding:14px 18px;font-size:14px;color:#111111;text-decoration:none;font-weight:700;">PAYMENT</a>
+      <a href="#returns" style="display:inline-block;padding:14px 18px;font-size:14px;color:#111111;text-decoration:none;font-weight:700;">RETURNS</a>
+      <a href="#feedback" style="display:inline-block;padding:14px 18px;font-size:14px;color:#111111;text-decoration:none;font-weight:700;">FEEDBACK</a>
+      <a href="#contactus" style="display:inline-block;padding:14px 18px;font-size:14px;color:#111111;text-decoration:none;font-weight:700;">CONTACT US</a>
     </div>
 
-    <div class="section">
-      <div class="section-title">个人优势</div>
-      <div class="summary">具备文档处理、数据整理、流程跟进与跨部门协同经验，熟练使用 Word、Excel、PPT、飞书。接触过跨境电商相关项目及 eBay 平台实践，了解商品资料整理、标题卖点优化、关键词归类和店铺基础维护。熟悉 AI 工具辅助办公，工作细致，执行力强。</div>
+    <!-- 维护说明（顶部Banner模块）：主视觉横幅图 -->
+    <div class="banner" style="width:100%;">
+      <a id="topbanner" href="#description" style="display:block;">
+        <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="AUTOBUNNY PARTS Store Banner" style="display:block;width:100%;height:auto;border:0;">
+      </a>
     </div>
 
-    <div class="section">
-      <div class="section-title">工作经历</div>
+    <!-- 维护说明（DESCRIPTION主模块）：左图右文结构 -->
+    <div id="description" class="section" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">DESCRIPTION</h2>
+      <div class="desc-grid" style="display:table;width:100%;table-layout:fixed;">
+        <div class="desc-left" style="display:table-cell;width:52%;vertical-align:top;padding-right:14px;">
+          <!-- 维护说明（产品图片轮播模块）：如需替换图片，仅替换src路径并保持radio数量一致 -->
+          <div class="slider" style="position:relative;border:1px solid #dadada;background:#ffffff;overflow:hidden;">
+            <input type="radio" name="slider" id="s1" checked>
+            <input type="radio" name="slider" id="s2">
+            <input type="radio" name="slider" id="s3">
+            <input type="radio" name="slider" id="s4">
+            <input type="radio" name="slider" id="s5">
+            <input type="radio" name="slider" id="s6">
 
-      <div class="job">
-        <div class="job-head">
-          <div>跨境电商 AI 应用项目｜内容与运营支持（兼职）</div>
-          <div class="job-time">2025.05 - 至今</div>
+            <div class="slides" style="white-space:nowrap;font-size:0;">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Product Image 1" style="width:100%;max-width:100%;display:inline-block;">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Product Image 2" style="width:100%;max-width:100%;display:inline-block;">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Product Image 3" style="width:100%;max-width:100%;display:inline-block;">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Product Image 4" style="width:100%;max-width:100%;display:inline-block;">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Product Image 5" style="width:100%;max-width:100%;display:inline-block;">
+              <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Product Image 6" style="width:100%;max-width:100%;display:inline-block;">
+            </div>
+
+            <label for="s6" class="nav prev p1" style="left:2%;">&#10094;</label><label for="s2" class="nav next n1" style="right:2%;">&#10095;</label>
+            <label for="s1" class="nav prev p2" style="left:2%;">&#10094;</label><label for="s3" class="nav next n2" style="right:2%;">&#10095;</label>
+            <label for="s2" class="nav prev p3" style="left:2%;">&#10094;</label><label for="s4" class="nav next n3" style="right:2%;">&#10095;</label>
+            <label for="s3" class="nav prev p4" style="left:2%;">&#10094;</label><label for="s5" class="nav next n4" style="right:2%;">&#10095;</label>
+            <label for="s4" class="nav prev p5" style="left:2%;">&#10094;</label><label for="s6" class="nav next n5" style="right:2%;">&#10095;</label>
+            <label for="s5" class="nav prev p6" style="left:2%;">&#10094;</label><label for="s1" class="nav next n6" style="right:2%;">&#10095;</label>
+          </div>
         </div>
-        <ul>
-          <li>参与跨境电商相关 AI 应用内容整理与项目支持，输出商品标题、卖点文案等标准化资料。</li>
-          <li>整理商品信息结构与文案模板，提升内容处理效率与复用效率。</li>
-          <li>协助完成关键词归类、卖点拆解和资料迭代，积累跨境商品内容处理经验。</li>
-        </ul>
-      </div>
 
-      <div class="job">
-        <div class="job-head">
-          <div>平台运营实践｜eBay 店铺运营支持（个人项目）</div>
-          <div class="job-time">2025.05 - 至今</div>
-        </div>
-        <ul>
-          <li>完成 eBay 店铺基础搭建、商品资料整理、标题卖点撰写及基础信息维护。</li>
-          <li>学习并实践商品上架流程，包括类目理解、关键词整理、产品信息校对及页面基础优化。</li>
-          <li>借助 AI 工具辅助处理商品资料、文案优化与信息归纳。</li>
-        </ul>
-      </div>
+        <div class="desc-right" style="display:table-cell;width:48%;vertical-align:top;padding-left:14px;">
+          <!-- 维护说明（右侧详情模块）：五个核心内容块 -->
+          <div class="block" style="margin-bottom:14px;padding:14px;background:#fafafa;border:1px solid #e5e5e5;">
+            <h3 style="margin:0 0 8px 0;font-size:16px;color:#111111;">1. Product Details</h3>
+            <p style="margin:0;font-size:14px;line-height:1.65;">Front Left Driver Window Regulator &amp; Motor for Ford Ranger MK2 Pickup 2006-2012. Brand new OE-quality replacement part, built to OEM specification for accurate fitment and alignment. Position: Front Left (Driver Door), suitable for Right-Hand-Drive vehicles. OEM Part Numbers: 1452782, UR57-59-590A, UR5759590A.</p>
+          </div>
 
-      <div class="job">
-        <div class="job-head">
-          <div>明喆集团｜事务助理</div>
-          <div class="job-time">2024.04 - 2025.04</div>
-        </div>
-        <ul>
-          <li>负责会议安排、资料准备、纪要整理及事项跟进，保障部门日常事务高效推进。</li>
-          <li>负责文档、表格、台账及档案资料整理维护，提升信息归档和调用效率。</li>
-          <li>对接采购、资产、后勤及接待等事务流程，协助跨部门沟通与执行落地。</li>
-        </ul>
-      </div>
+          <div class="block" style="margin-bottom:14px;padding:14px;background:#fafafa;border:1px solid #e5e5e5;">
+            <h3 style="margin:0 0 8px 0;font-size:16px;color:#111111;">2. Compatibility</h3>
+            <p style="margin:0;font-size:14px;line-height:1.65;">Fits Ford Ranger MK2 Pickup (2006-2012), Front Left Driver Side only. Compatible with all trims, body styles, and common engine options including 2.5 TDCi and 3.0 TDCi.</p>
+          </div>
 
-      <div class="job">
-        <div class="job-head">
-          <div>深圳市统计局｜项目数据助理</div>
-          <div class="job-time">2023.07 - 2024.03</div>
+          <div class="block" style="margin-bottom:14px;padding:14px;background:#fafafa;border:1px solid #e5e5e5;">
+            <h3 style="margin:0 0 8px 0;font-size:16px;color:#111111;">3. Product Description</h3>
+            <p style="margin:0;font-size:14px;line-height:1.65;">Scissor-type cross-arm design delivers stable lifting and strong load support, reducing jamming or glass deviation. Supplied with pre-installed electric motor for direct installation. Quiet and powerful operation, fully tested for smooth movement, durability, and motor performance. Direct-fit replacement with no drilling or cutting required.</p>
+          </div>
+
+          <div class="block" style="margin-bottom:14px;padding:14px;background:#fafafa;border:1px solid #e5e5e5;">
+            <h3 style="margin:0 0 8px 0;font-size:16px;color:#111111;">4. Installation Instructions</h3>
+            <p style="margin:0;font-size:14px;line-height:1.65;">Please compare your original part shape, mounting points, and motor connector before installation. If you are unsure, send your vehicle registration details and our team will verify compatibility before dispatch.</p>
+          </div>
+
+          <div class="block" style="margin-bottom:0;padding:14px;background:#fafafa;border:1px solid #e5e5e5;">
+            <h3 style="margin:0 0 8px 0;font-size:16px;color:#111111;">5. Core Policies</h3>
+            <div class="policy-cols" style="display:table;width:100%;table-layout:fixed;margin-top:10px;">
+              <div class="policy-col" style="display:table-cell;width:50%;padding-right:8px;vertical-align:top;">
+                <div class="policy-card" style="background:#ffffff;border:1px solid #e4e4e4;padding:12px;min-height:110px;">
+                  <h4 style="margin:0 0 6px 0;font-size:15px;">What You Get</h4>
+                  <p style="margin:0;font-size:13px;line-height:1.6;">1x Front Left Driver Side Window Regulator with Motor. Brand New and individually boxed.</p>
+                </div>
+              </div>
+              <div class="policy-col" style="display:table-cell;width:50%;padding-left:8px;vertical-align:top;">
+                <div class="policy-card" style="background:#ffffff;border:1px solid #e4e4e4;padding:12px;min-height:110px;">
+                  <h4 style="margin:0 0 6px 0;font-size:15px;">Warranty &amp; Support</h4>
+                  <p style="margin:0;font-size:13px;line-height:1.6;">1-Year warranty for non-human damage quality issues. Fast dispatch from stock and professional customer support for fitment and installation guidance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <ul>
-          <li>负责 8000+ 企业数据清洗、整理、校对及汇总，提升数据准确率与资料一致性。</li>
-          <li>整理标准化表格及流程说明，提升团队执行统一性。</li>
-          <li>协助完成数据台账维护、文档归档、进度跟进及信息传递。</li>
-        </ul>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">教育背景</div>
-      <div class="edu-item">广州华商学院｜计算机科学与技术（全日制本科）｜2021.09 - 2023.06</div>
-      <div class="edu-item">深圳信息职业技术学院｜嵌入式技术与应用｜2018.09 - 2021.06</div>
+    <!-- 维护说明（物流模块）：Shipping -->
+    <div id="shipping" class="section simple" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">SHIPPING</h2>
+      <p style="margin:0 0 10px 0;font-size:14px;line-height:1.7;">Orders are processed quickly and dispatched from available stock. Delivery time varies by destination and carrier schedule.</p>
+      <p style="margin:0;font-size:14px;line-height:1.7;">Please ensure your shipping address is complete and correct before checkout.</p>
     </div>
 
-    <div class="section skills">
-      <div class="section-title">专业技能</div>
-      <p><strong>办公与协同：</strong>Word、Excel、PPT、飞书</p>
-      <p><strong>AI与自动化：</strong>AI 大模型、提示词工程、Python、RPA</p>
-      <p><strong>跨境相关：</strong>商品资料整理、标题卖点撰写、关键词归类、店铺基础维护</p>
-      <p><strong>语言能力：</strong>具备基础英文读写能力，可借助工具处理商品资料及平台信息</p>
-      <p><strong>证书：</strong>阿里云人工智能训练师（高级）、影刀 RPA 高级认证、Web 前端开发中级</p>
+    <!-- 维护说明（付款模块）：Payment -->
+    <div id="payment" class="section simple" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">PAYMENT</h2>
+      <p style="margin:0 0 10px 0;font-size:14px;line-height:1.7;">We accept secure payment methods supported by eBay checkout.</p>
+      <p style="margin:0;font-size:14px;line-height:1.7;">Please complete payment promptly to avoid shipment delays.</p>
     </div>
+
+    <!-- 维护说明（退换模块）：Returns -->
+    <div id="returns" class="section simple" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">RETURNS</h2>
+      <p style="margin:0 0 10px 0;font-size:14px;line-height:1.7;">If there is any issue with your item, please contact us first and we will provide a solution quickly.</p>
+      <p style="margin:0;font-size:14px;line-height:1.7;">Returns must be requested according to eBay policy and item condition requirements.</p>
+    </div>
+
+    <!-- 维护说明（反馈模块）：Feedback -->
+    <div id="feedback" class="section simple" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">FEEDBACK</h2>
+      <p style="margin:0 0 10px 0;font-size:14px;line-height:1.7;">Your positive feedback is very important to us.</p>
+      <p style="margin:0;font-size:14px;line-height:1.7;">If you have any concern, please message us before leaving feedback so we can help.</p>
+    </div>
+
+    <!-- 维护说明（联系模块）：Contact Us -->
+    <div id="contactus" class="section" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">CONTACT US</h2>
+      <div class="contact-box" style="border:1px solid #d7d7d7;padding:14px;background:#fbfbfb;">
+        <p style="margin:0;font-size:14px;line-height:1.7;">Please contact us via eBay Messages for fitment confirmation, order support, and after-sales service. Our team will reply as quickly as possible.</p>
+      </div>
+    </div>
+
+    <!-- 维护说明（新增底部Banner模块）：联系模块后新增店铺横幅图，保持锚点与图片仓库路径 -->
+    <div id="storebanner" class="section" style="padding:24px 20px;border-bottom:1px solid #ebebeb;">
+      <h2 style="margin:0 0 16px 0;font-size:24px;color:#111111;">STORE BANNER</h2>
+      <!-- Store Banner Image Anchor (Trusted Image Repo: 001.png) -->
+      <a id="store-banner-image" href="#topbanner" style="display:block;">
+        <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="AUTOBUNNY PARTS Store Banner Image" style="display:block;width:100%;height:auto;border:0;">
+      </a>
+    </div>
+
+    <!-- 维护说明（页脚模块）：版权信息 -->
+    <div class="footer" style="padding:16px;background:#111111;color:#ffffff;text-align:center;font-size:12px;">&copy; AUTOBUNNY PARTS. All Rights Reserved.</div>
   </div>
 </body>
 </html>
