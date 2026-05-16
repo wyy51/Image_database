@@ -593,12 +593,11 @@
       window.autobunnyOpenTab = function (tabId, button) {
         var tabs = document.querySelectorAll('.detail-tab');
         var buttons = document.querySelectorAll('.detail-tab-button');
-        var i;
-        for (i = 0; i < tabs.length; i++) {
-          tabs[i].className = 'detail-tab';
+        for (var tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
+          tabs[tabIndex].className = 'detail-tab';
         }
-        for (i = 0; i < buttons.length; i++) {
-          buttons[i].className = 'detail-tab-button';
+        for (var buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
+          buttons[buttonIndex].className = 'detail-tab-button';
         }
         document.getElementById(tabId).className = 'detail-tab is-active';
         button.className = 'detail-tab-button is-active';
