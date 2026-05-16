@@ -13,11 +13,11 @@
        ============================= */
     * { box-sizing: border-box; }
     :root {
-      --ab-flag-size: 68px;
+      --ab-badge-size: 68px;
       /* Inset controls how far badge text sits from the triangle edge after rotation */
-      --ab-flag-inset: 10px;
-      /* Text top offset = -(flag size - inset) */
-      --ab-flag-text-top: calc(-1 * (var(--ab-flag-size) - var(--ab-flag-inset)));
+      --ab-badge-inset: 10px;
+      /* Text top offset = -(badge size - inset) */
+      --ab-badge-text-top: calc(-1 * (var(--ab-badge-size) - var(--ab-badge-inset)));
       --ab-shop-now-gap: 6px;
       --ab-shop-now-wrap-offset: 8px;
       --ab-thumb-width-desktop: 96px;
@@ -118,22 +118,22 @@
     }
     /* Requirement 11.0-3:
        Larger corner badge text positioned top-left and more eye-catching */
-    .ab-flag {
+    .ab-badge {
       position: absolute;
       top: 0;
       left: 0;
       width: 0;
       height: 0;
-      border-top: var(--ab-flag-size) solid #ff7a00;
-      border-right: var(--ab-flag-size) solid transparent;
+      border-top: var(--ab-badge-size) solid #ff7a00;
+      border-right: var(--ab-badge-size) solid transparent;
       z-index: 1;
     }
-    .ab-flag.hot { border-top-color: #ff3b30; }
-    .ab-flag.off { border-top-color: #ff8c1a; }
-    .ab-flag span {
+    .ab-badge.hot { border-top-color: #ff3b30; }
+    .ab-badge.off { border-top-color: #ff8c1a; }
+    .ab-badge span {
       position: absolute;
-      /* Keep text inside the triangle near top-left corner with current flag size */
-      top: var(--ab-flag-text-top);
+      /* Keep text inside the triangle near top-left corner with current badge size */
+      top: var(--ab-badge-text-top);
       left: 8px;
       color: #fff;
       font-size: 15px;
@@ -293,7 +293,7 @@
         </div>
 
         <div class="ab-promo-card">
-          <span class="ab-flag"><span>NEW</span></span>
+          <span class="ab-badge"><span>NEW</span></span>
           <img id="autobunny-img-promo-01" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+NEW+PARTS" alt="AUTOBUNNY new product banner image">
           <div class="ab-shop-now-wrap">
             <a id="autobunny-link-shopnow-01" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
@@ -301,7 +301,7 @@
         </div>
 
         <div class="ab-promo-card">
-          <span class="ab-flag hot"><span>HOT</span></span>
+          <span class="ab-badge hot"><span>HOT</span></span>
           <img id="autobunny-img-promo-02" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+HOT+SALE" alt="AUTOBUNNY hot sale product image">
           <div class="ab-shop-now-wrap">
             <a id="autobunny-link-shopnow-02" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
@@ -309,7 +309,7 @@
         </div>
 
         <div class="ab-promo-card">
-          <span class="ab-flag off"><span>OFF</span></span>
+          <span class="ab-badge off"><span>OFF</span></span>
           <img id="autobunny-img-promo-03" src="https://via.placeholder.com/600x450?text=AUTOBUNNY+LIMITED+OFF" alt="AUTOBUNNY discount product image">
           <div class="ab-shop-now-wrap">
             <a id="autobunny-link-shopnow-03" class="ab-shop-now" href="https://www.ebay.com/">SHOP NOW</a>
