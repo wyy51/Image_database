@@ -7,23 +7,32 @@
     <style type="text/css">
         /* =========================================================
            AUTOBUNNY PARTS - eBay Compatible Template
-           Version: test5.1-gallery-refine
+           Version: 6.1-simplified-gallery
            ---------------------------------------------------------
            说明：
            1. 纯 HTML/CSS，无 JavaScript
            2. 使用 radio + label 实现缩略图切换主图
-           3. 点击哪张缩略图，就显示哪张主图
-           4. 点击哪张缩略图，就高亮哪张缩略图
-           5. 默认第一张主图显示、第一张缩略图高亮
-           6. 本版本为自然比例优先版本
-           7. 最大限度避免图片变形
-           8. 切换时页面高度可能变化
-           9. 针对 5.1 版继续优化缩略图选中态、移动端滑动体验、主图居中稳定性
-           10. 尽可能避免 Chrome 点击缩略图后页面回跳到顶部的问题
+           3. 使用锚点目标区 + 无高度占位锚点，尽量减少 Chrome 点击缩略图后页面回跳
+           4. 支持超过 5 张缩略图时横向滚动显示，避免结构变形
+           5. 去除缩略图选中态外层高亮和阴影，仅保留清晰边框态
+           6. 删除不必要的重复样式，整理可替换图片区与产品文案区
+           7. 保留详细代码注释，便于后续替换维护
+           8. 正文描述全部显示，不使用省略写法“[...]”
            ========================================================= */
 
         /* =========================
-           一、全局基础样式
+           一、可快速替换内容说明
+           ---------------------------------------------------------
+           下面这些内容是你后续最常替换的：
+           A. 顶部横幅图：搜索 STORE_BANNER
+           B. 侧栏广告图：搜索 SIDE_BANNER
+           C. 产品主图/缩略图：搜索 PRODUCT_IMAGE
+           D. 物流横幅图：搜索 LOGISTICS_BANNER
+           E. 产品标题与描述：搜索 PRODUCT_CONTENT
+           ========================= */
+
+        /* =========================
+           二、全局基础样式
            ========================= */
         body {
             margin: 0;
@@ -38,7 +47,7 @@
         }
 
         /* =========================
-           二、页面主容器
+           三、页面主容器
            ========================= */
         .main-container {
             max-width: 900px;
@@ -51,7 +60,7 @@
         }
 
         /* =========================
-           三、顶部品牌头部
+           四、顶部品牌头部
            ========================= */
         .brand-head {
             background: #000000;
@@ -74,7 +83,7 @@
         }
 
         /* =========================
-           四、横幅图片通用样式
+           五、图片基础样式
            ========================= */
         .banner-img,
         .footer-banner-section img {
@@ -85,7 +94,7 @@
         }
 
         /* =========================
-           五、左右主体布局
+           六、左右主体布局
            ========================= */
         .main-layout {
             display: table;
@@ -108,7 +117,7 @@
         }
 
         /* =========================
-           六、左侧分类导航
+           七、左侧分类导航
            ========================= */
         .sidecat-title {
             margin: 0;
@@ -141,7 +150,7 @@
         }
 
         /* =========================
-           七、左侧广告区
+           八、左侧广告区
            ========================= */
         .side-banner-block {
             padding: 32px 14px 0;
@@ -242,7 +251,10 @@
         }
 
         /* =========================
-           八、顶部导航栏
+           九、顶部导航栏
+           ---------------------------------------------------------
+           说明：
+           使用真实 section id 进行站内跳转。
            ========================= */
         .nav-bar {
             background: #FF751F;
@@ -274,7 +286,11 @@
         }
 
         /* =========================
-           九、正文内容基础样式
+           十、正文内容基础样式
+           ---------------------------------------------------------
+           说明：
+           这里不再使用任何截断、省略显示逻辑。
+           所有描述文字正常换行、完整展示。
            ========================= */
         .desc-section {
             padding: 21px 26px;
@@ -301,6 +317,8 @@
             font-size: 14px;
             line-height: 1.63;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
         }
 
         .desc-content ul {
@@ -308,28 +326,29 @@
             padding-left: 9px;
         }
 
+        .desc-content li {
+            margin-bottom: 6px;
+        }
+
         /* =========================
-           十、产品图片区 5.1 优化版
+           十一、产品图片区 6.1 精简优化版
            ---------------------------------------------------------
            设计目标：
-           1. 保持纯 HTML/CSS，无 JavaScript
-           2. 保持自然比例展示主图
-           3. 提升主图区域在不同宽度下的居中稳定性
-           4. 提升缩略图选中态辨识度
-           5. 优化手机端横向滑动手感
-           6. 尽量规避 Chrome 点击 label 后页面跳回顶部的问题
+           1. 继续保持纯 HTML/CSS 无脚本切图
+           2. 缩略图超过 5 个时不挤压、不变形，而是横向滚动
+           3. 选中态去掉外层高亮与阴影，仅保留干净边框
+           4. 尽量降低 Chrome 点击 label/radio 触发的页面回跳感
+           5. 结构简化，后续替换图片更方便
            ---------------------------------------------------------
-           实现策略：
-           - radio 继续隐藏到可访问区域之外
-           - gallery 使用 table 结构兼容 eBay 环境，但主图盒子本身使用 auto margin 居中
-           - 缩略图由 label + span + img 组成，缩小浏览器重排时焦点跳动风险
-           - 选中态增加边框、阴影、轻微背景衬托，更容易识别
-           - 移动端滚动区增加惯性滚动、scroll-padding、额外底部空间
+           实现思路：
+           A. radio 仍然作为切图状态控制器
+           B. radio 放入 gallery 组件内部，避免影响页面其他结构
+           C. 缩略图容器统一改为横向滚动，桌面端和移动端都适用
+           D. 使用一个“防回跳锚点层”包裹图片区，避免因 href="#顶部锚点" 产生跳顶
+           E. 不再为缩略图选中态添加外层发光和阴影，只保留边框变化
            ========================= */
-        .gallery-radio {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
+        .gallery-anchor-fix {
+            position: relative;
         }
 
         .gallery-wrap {
@@ -337,28 +356,17 @@
             margin: 0 auto 20px;
         }
 
-        .gallery-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            table-layout: fixed;
-        }
-
-        .gallery-main {
-            vertical-align: top;
-            padding-right: 18px;
-        }
-
-        .gallery-thumbs {
-            width: 94px;
-            vertical-align: top;
-            padding-bottom: 3px;
+        .gallery-radio {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            opacity: 0;
         }
 
         .main-image-box {
             width: 100%;
             max-width: 500px;
-            margin: 0 auto;
+            margin: 0 auto 14px;
             background: #fafafa;
             border: 1px solid #e3e3e3;
             border-radius: 13px;
@@ -377,41 +385,61 @@
             border: 0;
         }
 
+        /* 默认显示逻辑：根据 radio 选中态切换主图 */
         #g1-natural:checked ~ .gallery-wrap .img1,
         #g2-natural:checked ~ .gallery-wrap .img2,
         #g3-natural:checked ~ .gallery-wrap .img3,
-        #g4-natural:checked ~ .gallery-wrap .img4 {
+        #g4-natural:checked ~ .gallery-wrap .img4,
+        #g5-natural:checked ~ .gallery-wrap .img5,
+        #g6-natural:checked ~ .gallery-wrap .img6,
+        #g7-natural:checked ~ .gallery-wrap .img7,
+        #g8-natural:checked ~ .gallery-wrap .img8 {
             display: block;
         }
 
+        /*
+           缩略图滚动条容器：
+           1. 统一横向排列
+           2. 超过可视宽度时允许横向滚动
+           3. 不压缩缩略图尺寸
+           4. 不因为数量增加而导致 table/竖排结构变形
+        */
         .thumb-list {
-            width: 82px;
-            padding: 2px 0 4px;
-            box-sizing: content-box;
+            display: block;
+            width: 100%;
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 2px 2px 8px;
+            box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
+            scroll-padding-left: 2px;
+            scroll-padding-right: 12px;
+            text-align: center;
         }
 
         .thumb-btn {
-            display: block;
-            width: 82px;
-            margin-bottom: 12px;
+            display: inline-block;
+            width: 74px;
+            margin: 0 8px 0 0;
             cursor: pointer;
             text-decoration: none;
             outline: none;
+            vertical-align: top;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
 
         .thumb-btn-inner {
             display: block;
-            width: 82px;
-            height: 82px;
-            padding: 0 0 2px;
+            width: 74px;
+            height: 74px;
+            padding: 0;
             background: #ffffff;
-            border: 1px solid #efefef;
+            border: 1px solid #e5e5e5;
             border-radius: 12px;
             box-sizing: border-box;
-            overflow: visible;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
 
         .thumb-btn img {
@@ -425,31 +453,38 @@
         }
 
         /*
-           选中态强化：
-           1. 边框颜色更明显
-           2. 外层增加柔和橙色阴影
-           3. 轻微背景变化，便于用户快速识别当前主图对应的缩略图
+           选中态精简：
+           只保留干净明确的边框颜色变化，
+           去除外层高亮、发光、阴影。
         */
         #g1-natural:checked ~ .gallery-wrap .thumb1 .thumb-btn-inner,
         #g2-natural:checked ~ .gallery-wrap .thumb2 .thumb-btn-inner,
         #g3-natural:checked ~ .gallery-wrap .thumb3 .thumb-btn-inner,
-        #g4-natural:checked ~ .gallery-wrap .thumb4 .thumb-btn-inner {
-            background: #fff7f1;
-            border-color: #ffb07c;
-            box-shadow: 0 0 0 2px #ffe0cc, 0 4px 12px rgba(255, 117, 31, 0.18);
+        #g4-natural:checked ~ .gallery-wrap .thumb4 .thumb-btn-inner,
+        #g5-natural:checked ~ .gallery-wrap .thumb5 .thumb-btn-inner,
+        #g6-natural:checked ~ .gallery-wrap .thumb6 .thumb-btn-inner,
+        #g7-natural:checked ~ .gallery-wrap .thumb7 .thumb-btn-inner,
+        #g8-natural:checked ~ .gallery-wrap .thumb8 .thumb-btn-inner {
+            background: #ffffff;
+            border-color: #FF751F;
+            box-shadow: none;
         }
 
         #g1-natural:checked ~ .gallery-wrap .thumb1 img,
         #g2-natural:checked ~ .gallery-wrap .thumb2 img,
         #g3-natural:checked ~ .gallery-wrap .thumb3 img,
-        #g4-natural:checked ~ .gallery-wrap .thumb4 img {
+        #g4-natural:checked ~ .gallery-wrap .thumb4 img,
+        #g5-natural:checked ~ .gallery-wrap .thumb5 img,
+        #g6-natural:checked ~ .gallery-wrap .thumb6 img,
+        #g7-natural:checked ~ .gallery-wrap .thumb7 img,
+        #g8-natural:checked ~ .gallery-wrap .thumb8 img {
             border-color: #FF751F;
         }
 
         .thumb-btn:hover .thumb-btn-inner,
         .thumb-btn:focus .thumb-btn-inner {
             border-color: #ffc7a1;
-            box-shadow: 0 2px 10px rgba(255, 117, 31, 0.12);
+            box-shadow: none;
         }
 
         .thumb-btn:hover img,
@@ -458,7 +493,7 @@
         }
 
         /* =========================
-           十一、物流横幅
+           十二、物流横幅
            ========================= */
         .logi-banner-section {
             max-width: 840px;
@@ -478,7 +513,7 @@
         }
 
         /* =========================
-           十二、底部横幅与页脚
+           十三、底部横幅与页脚
            ========================= */
         .footer-banner-section {
             width: 100%;
@@ -526,9 +561,7 @@
         }
 
         /* =========================
-           十三、平板适配
-           ---------------------------------------------------------
-           继续保持主图居中，同时缩略图尺寸略缩小，防止布局拥挤
+           十四、平板适配
            ========================= */
         @media (max-width: 950px) {
             .main-container {
@@ -547,28 +580,10 @@
             .footer-banner-section img {
                 border-radius: 0;
             }
-
-            .gallery-thumbs {
-                width: 72px;
-            }
-
-            .thumb-list {
-                width: 62px;
-            }
-
-            .thumb-btn {
-                width: 62px;
-            }
-
-            .thumb-btn-inner,
-            .thumb-btn img {
-                width: 62px;
-                height: 62px;
-            }
         }
 
         /* =========================
-           十四、小平板适配
+           十五、小平板适配
            ========================= */
         @media (max-width: 768px) {
             .main-container {
@@ -588,23 +603,13 @@
                 padding: 20px 8px 0;
             }
 
-            .gallery-main {
-                padding-right: 12px;
-            }
-
             .main-image-box {
                 max-width: 100%;
             }
         }
 
         /* =========================
-           十五、手机端适配 5.1 微调
-           ---------------------------------------------------------
-           优化重点：
-           1. 缩略图横向滑动更顺手
-           2. 主图区域更稳更居中
-           3. 缩略图底边不被裁切
-           4. 保持浏览位置，不因缩略图点击而产生明显回跳感
+           十六、手机端适配
            ========================= */
         @media (max-width: 650px) {
             .main-container {
@@ -645,55 +650,12 @@
                 font-size: 12px;
             }
 
-            .gallery-table,
-            .gallery-table tbody,
-            .gallery-table tr,
-            .gallery-table td {
-                display: block;
-                width: 100%;
-            }
-
-            .gallery-main {
-                padding-right: 0;
-                padding-bottom: 14px;
-            }
-
-            .gallery-thumbs {
-                width: 100%;
-                padding-bottom: 5px;
-            }
-
-            .main-image-box {
-                max-width: 100%;
-                margin: 0 auto;
-            }
-
             .thumb-list {
-                width: 100%;
-                white-space: nowrap;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding: 2px 2px 6px;
-                box-sizing: border-box;
-                -webkit-overflow-scrolling: touch;
-                scroll-padding-left: 2px;
-                scroll-padding-right: 12px;
+                text-align: left;
             }
 
-            .thumb-btn {
-                display: inline-block;
-                width: 62px;
-                margin-right: 8px;
-                margin-bottom: 0;
-                vertical-align: top;
-            }
-
-            .thumb-btn-inner {
-                width: 62px;
-                height: 62px;
-                padding-bottom: 2px;
-            }
-
+            .thumb-btn,
+            .thumb-btn-inner,
             .thumb-btn img {
                 width: 62px;
                 height: 62px;
@@ -723,7 +685,7 @@
         <a class="nav-bar-link last" href="#contact">CONTACT US</a>
     </div>
 
-    <!-- 顶部横幅 -->
+    <!-- STORE_BANNER：顶部横幅图，可直接替换 src -->
     <img src="https://s3.bmp.ovh/2026/05/16/Q2GzWoD0.jpg" alt="Store Main Banner - AUTOBUNNY PARTS" class="banner-img">
 
     <div class="main-layout">
@@ -756,6 +718,7 @@
             </div>
 
             <div class="side-banner-block">
+                <!-- SIDE_BANNER：左侧广告图区域，可替换图片和链接 -->
                 <div class="side-banner-item new">
                     <a href="https://www.ebay.com/str/autobunnyparts?_sop=10&amp;_tab=shop" class="side-banner-link" target="_blank">
                         <div class="side-banner-img-wrap">
@@ -793,107 +756,112 @@
 
         <!-- 右侧主内容 -->
         <div class="content">
-            <div class="desc-section">
-                <a id="desc-main"></a>
-
+            <div class="desc-section" id="desc-main">
+                <!-- PRODUCT_CONTENT：产品标题 -->
                 <h2>Front Left Driver Window Regulator &amp; Motor Ford Ranger MK2 Pickup 2006-2012</h2>
                 <br>
 
                 <!--
-                    产品图切换区：5.1 微调版
+                    产品图切换区：6.1 精简版
                     -------------------------------------------------
-                    本区域继续沿用 radio + label 的无脚本切图结构，
-                    主要是为了兼容 eBay 对脚本环境的限制。
-
-                    关键优化点：
-                    1. label 内增加 .thumb-btn-inner 包裹层，减少浏览器焦点异常
-                    2. 主图盒子增加 margin:0 auto，保证横向居中更稳定
-                    3. 缩略图选中态增加外层高亮和阴影，更容易识别
-                    4. 手机端滚动区优化惯性滑动和底部留白
+                    使用说明：
+                    1. 每增加一张图，需要新增一个 radio、一个主图块、一个缩略图 label
+                    2. 当前模板已预留到 8 张图，常规使用足够
+                    3. 若只用 4 张图，不用的 5~8 结构可删除
+                    4. 若后续超过 8 张，继续按相同命名规则扩展即可
+                    -------------------------------------------------
+                    Chrome 防回跳说明：
+                    - 这里不再使用缩略图 href 锚点跳转
+                    - 仅使用 label for 触发 radio
+                    - radio 放在当前图片区模块内部，并隐藏到可访问区域外
+                    - 这样可尽量减少浏览器因锚点跳转导致的页面位置变化
                 -->
-                <input class="gallery-radio" type="radio" name="gallery-natural" id="g1-natural" checked="checked">
-                <input class="gallery-radio" type="radio" name="gallery-natural" id="g2-natural">
-                <input class="gallery-radio" type="radio" name="gallery-natural" id="g3-natural">
-                <input class="gallery-radio" type="radio" name="gallery-natural" id="g4-natural">
+                <div class="gallery-anchor-fix">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g1-natural" checked="checked">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g2-natural">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g3-natural">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g4-natural">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g5-natural">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g6-natural">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g7-natural">
+                    <input class="gallery-radio" type="radio" name="gallery-natural" id="g8-natural">
 
-                <div class="gallery-wrap">
-                    <table class="gallery-table" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                            <td class="gallery-main">
-                                <div class="main-image-box">
-                                    <div class="main-image img1">
-                                        <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Product image 1">
-                                    </div>
-                                    <div class="main-image img2">
-                                        <img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Product image 2">
-                                    </div>
-                                    <div class="main-image img3">
-                                        <img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Product image 3">
-                                    </div>
-                                    <div class="main-image img4">
-                                        <img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Product image 4">
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="gallery-thumbs">
-                                <div class="thumb-list">
-                                    <label class="thumb-btn thumb1" for="g1-natural">
-                                        <span class="thumb-btn-inner">
-                                            <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Thumbnail 1">
-                                        </span>
-                                    </label>
-                                    <label class="thumb-btn thumb2" for="g2-natural">
-                                        <span class="thumb-btn-inner">
-                                            <img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Thumbnail 2">
-                                        </span>
-                                    </label>
-                                    <label class="thumb-btn thumb3" for="g3-natural">
-                                        <span class="thumb-btn-inner">
-                                            <img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Thumbnail 3">
-                                        </span>
-                                    </label>
-                                    <label class="thumb-btn thumb4" for="g4-natural">
-                                        <span class="thumb-btn-inner">
-                                            <img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Thumbnail 4">
-                                        </span>
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="gallery-wrap">
+                        <div class="main-image-box">
+                            <!-- PRODUCT_IMAGE：主图区域，只需替换 src 和 alt -->
+                            <div class="main-image img1">
+                                <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Product image 1">
+                            </div>
+                            <div class="main-image img2">
+                                <img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Product image 2">
+                            </div>
+                            <div class="main-image img3">
+                                <img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Product image 3">
+                            </div>
+                            <div class="main-image img4">
+                                <img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Product image 4">
+                            </div>
+                            <div class="main-image img5">
+                                <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Product image 5">
+                            </div>
+                            <div class="main-image img6">
+                                <img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Product image 6">
+                            </div>
+                            <div class="main-image img7">
+                                <img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Product image 7">
+                            </div>
+                            <div class="main-image img8">
+                                <img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Product image 8">
+                            </div>
+                        </div>
+
+                        <div class="thumb-list">
+                            <!-- PRODUCT_IMAGE：缩略图区域，只需替换 src 与 for 对应关系 -->
+                            <label class="thumb-btn thumb1" for="g1-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Thumbnail 1">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb2" for="g2-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Thumbnail 2">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb3" for="g3-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Thumbnail 3">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb4" for="g4-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Thumbnail 4">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb5" for="g5-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Thumbnail 5">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb6" for="g6-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Thumbnail 6">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb7" for="g7-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Thumbnail 7">
+                                </span>
+                            </label>
+                            <label class="thumb-btn thumb8" for="g8-natural">
+                                <span class="thumb-btn-inner">
+                                    <img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Thumbnail 8">
+                                </span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
-                <style type="text/css">
-                    /* =========================
-                       十六、局部补充样式
-                       ---------------------------------------------------------
-                       这里保留与图片切换直接相关的局部样式，
-                       便于后续在 eBay 模板中单独复制图片区时仍能正常工作。
-                       ========================= */
-                    #g1-natural:checked ~ .gallery-wrap .img1,
-                    #g2-natural:checked ~ .gallery-wrap .img2,
-                    #g3-natural:checked ~ .gallery-wrap .img3,
-                    #g4-natural:checked ~ .gallery-wrap .img4 {
-                        display: block;
-                    }
-
-                    #g1-natural:checked ~ .gallery-wrap .thumb1 .thumb-btn-inner,
-                    #g2-natural:checked ~ .gallery-wrap .thumb2 .thumb-btn-inner,
-                    #g3-natural:checked ~ .gallery-wrap .thumb3 .thumb-btn-inner,
-                    #g4-natural:checked ~ .gallery-wrap .thumb4 .thumb-btn-inner {
-                        background: #fff7f1;
-                        border-color: #ffb07c;
-                        box-shadow: 0 0 0 2px #ffe0cc, 0 4px 12px rgba(255, 117, 31, 0.18);
-                    }
-
-                    #g1-natural:checked ~ .gallery-wrap .thumb1 img,
-                    #g2-natural:checked ~ .gallery-wrap .thumb2 img,
-                    #g3-natural:checked ~ .gallery-wrap .thumb3 img,
-                    #g4-natural:checked ~ .gallery-wrap .thumb4 img {
-                        border-color: #FF751F;
-                    }
-                </style>
-
+                <!-- PRODUCT_CONTENT：产品详情 -->
                 <div class="desc-block">
                     <div class="desc-title">Product Details</div>
                     <div class="desc-content">
@@ -910,7 +878,7 @@
                     <div class="desc-title">Compatibility</div>
                     <div class="desc-content">
                         Fit For: Ford Ranger MK2 Pickup – 2006–2012<br>
-                        Fits Front Left (Driver Side) only, Compatible with all trims, body styles &amp; engine types of this model (including 2.5 TDCi, 3.0 TDCi and other mainstream engines)
+                        Fits Front Left (Driver Side) only, Compatible with all trims, body styles &amp; engine types of this model (including 2.5 TDCi, 3.0 TDCi and other mainstream engines).
                     </div>
                 </div>
 
@@ -918,12 +886,12 @@
                     <div class="desc-title">Product Description</div>
                     <div class="desc-content">
                         <ul>
-                            <li>Cross-arm (scissor-type) regulator ensures stable and powerful window lifting, strong load-bearing capacity, effectively avoiding glass jamming and deviation, and ensur[...]</li>
-                            <li>Includes pre-installed electric motor, no need for additional purchase and assembly, saving installation time and cost, ready for direct installation upon receipt.</li>
-                            <li>Quiet and powerful motor design, low operating noise, sufficient power, sensitive response, ensuring smooth window operation and long service life.</li>
-                            <li>Fully tested before leaving the factory, strictly controlling lifting smoothness, structural durability and motor performance, eliminating defective products and ensuri[...]</li>
-                            <li>Direct fit replacement – precisely matches the original factory mounting points, no drilling, cutting or other modifications required, easy to install and highly adap[...]</li>
-                            <li>Ideal replacement for various fault scenarios such as damaged original regulator, slow lifting, jamming, abnormal noise or failure to lift normally.</li>
+                            <li>Cross-arm (scissor-type) regulator ensures stable and powerful window lifting, with strong load-bearing capacity. It effectively helps reduce glass jamming and deviation, and supports smooth and reliable up-and-down window movement.</li>
+                            <li>Includes pre-installed electric motor, so there is no need for additional purchase or separate assembly. This saves installation time and reduces maintenance cost, making it ready for direct installation upon receipt.</li>
+                            <li>Quiet and powerful motor design offers low operating noise, sufficient output power and responsive performance, helping ensure smooth window operation and longer service life in daily use.</li>
+                            <li>Fully tested before leaving the factory, with inspection focused on lifting smoothness, structural durability and motor performance, helping reduce the risk of defective or unstable parts reaching the customer.</li>
+                            <li>Direct fit replacement that is designed to match the original factory mounting points accurately. No drilling, cutting or other modifications are required under normal installation conditions.</li>
+                            <li>Ideal replacement for common failure situations such as damaged original regulator assemblies, slow lifting, jamming, abnormal noise, unstable movement or complete failure to raise or lower the window.</li>
                         </ul>
                     </div>
                 </div>
@@ -938,8 +906,8 @@
                 <div class="desc-block">
                     <div class="desc-title">⚙️ Fitment &amp; Check</div>
                     <div class="desc-content">
-                        If unsure, send your vehicle registration, and our professional team will confirm compatibility before dispatch to avoid wrong delivery.<br>
-                        We recommend that you compare the shape, mounting points and motor interface of your original regulator before installation to ensure complete matching before proceeding with i[...]
+                        If you are unsure, please send your vehicle registration or VIN information, and our professional team will confirm compatibility before dispatch to help avoid incorrect delivery.<br>
+                        We strongly recommend comparing the shape, mounting points and motor interface of your original regulator with the listing pictures before installation, to ensure complete matching before fitting the part.
                     </div>
                 </div>
 
@@ -947,12 +915,13 @@
                     <div class="desc-title">🛡️ Warranty &amp; Support</div>
                     <div class="desc-content">
                         1-Year Warranty: From the date of receipt, if the product has quality problems caused by non-human damage within 1 year, you can enjoy free repair or replacement service.<br>
-                        Fast Dispatch: In stock, we will arrange delivery as soon as possible after ordering to ensure you receive the product quickly and reduce vehicle downtime.<br>
-                        Friendly Customer Support: Professional customer service team provides technical consultation, installation guidance and compatibility check services, answering your questions [...]
+                        Fast Dispatch: Items are in stock and we will arrange shipment as soon as possible after ordering, helping you receive the product quickly and reduce vehicle downtime.<br>
+                        Friendly Customer Support: Our professional customer service team can provide technical consultation, installation guidance and compatibility check assistance before and after purchase.
                     </div>
                 </div>
             </div>
 
+            <!-- LOGISTICS_BANNER：物流横幅图，可直接替换 src -->
             <div class="logi-banner-section">
                 <img src="https://s3.bmp.ovh/2026/05/16/YKI4xVXL.jpg" alt="Logistics Shipping Banner - AUTOBUNNY PARTS - 800x800px">
             </div>
@@ -972,7 +941,7 @@
             <div id="payment" class="desc-block block-center-640">
                 <div class="desc-title">🧾 Payment</div>
                 <div class="desc-content">
-                    We accept payments through eBay's secure system. Complete payment promptly to avoid shipment delays.
+                    We accept payments through eBay's secure system. Please complete payment promptly to avoid shipment delays.
                 </div>
             </div>
 
@@ -981,9 +950,9 @@
                 <div class="desc-content">
                     <ul>
                         <li>Please verify fitment, part number and product images before purchase.</li>
-                        <li>If you have any issue, contact us before opening a return or leaving feedback.</li>
+                        <li>If you have any issue, please contact us before opening a return or leaving feedback.</li>
                         <li>We strive to provide accurate descriptions and top service.</li>
-                        <li>Your satisfaction is very important.</li>
+                        <li>Your satisfaction is very important to us.</li>
                     </ul>
                 </div>
             </div>
@@ -993,32 +962,27 @@
                 <div class="desc-content">
                     <strong>Welcome to AUTOBUNNY PARTS.</strong><br>
                     We are a professional auto parts supplier with years of industry experience, providing OE quality replacement parts for cars and vans.<br>
-                    We specialize in headlights, door locks, e-brake controllers, oil pans, valve covers, intake manifolds, side mirrors &amp; mirror housings, car cameras, battery cables, fuel pumps,[...]<br>
-                    All our products adopt OEM-quality materials and precision engineering, with prices 30%-50% lower than official OEM parts. We guarantee accurate fitment, professional technical sup[...]<br>
-                    We keep sourcing high-quality new products with extremely competitive prices to serve repair garages and individual car owners. Our product listings are arranged concisely for easi[...]
+                    We specialize in headlights, door locks, e-brake controllers, oil pans, valve covers, intake manifolds, side mirrors, mirror housings, car cameras, battery cables, fuel pumps, window regulators and many other automotive replacement parts.<br>
+                    All our products are made with OEM-quality materials and precision engineering, while remaining highly competitive in price compared with official OEM channels.<br>
+                    We are committed to accurate fitment, professional technical support and reliable customer service for both repair garages and individual car owners.
                 </div>
             </div>
 
             <div id="contact" class="desc-block block-center-640">
-                <div class="desc-title">
-                    <a href="https://www.ebay.com/cnt/intermediatedFAQ?requested=bunny_4600" target="_blank" class="contact-link">
-                        ✉️ <u>Contact Us</u>
-                    </a>
-                </div>
+                <div class="desc-title">📩 Contact Us</div>
                 <div class="desc-content">
-                    If you have questions about products, fitment, shipping, or orders, please contact us via eBay message. We will reply as quickly as possible.
+                    If you have any questions about fitment, shipping or installation, please contact us via eBay message at any time. We will reply as quickly as possible and do our best to help you.
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="footer-banner-section">
-        <img src="https://s3.bmp.ovh/2026/05/16/LQraft4c.jpg" alt="Store Footer Banner - AUTOBUNNY PARTS">
-    </div>
-
     <div class="footer-area">
         <div class="footer-brand">AUTOBUNNY PARTS</div>
-        <div class="footer-tip">Thank you for visiting AUTOBUNNY PARTS and shopping with confidence!</div>
+        <div class="footer-tip">
+            Quality Auto Parts | Reliable Service | Fast Shipping<br>
+            For product questions, please contact us via eBay message.
+        </div>
     </div>
 </div>
 </body>
