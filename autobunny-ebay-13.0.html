@@ -333,9 +333,9 @@
             <span class="slider-arrow right" onclick="sliderNext()">&#10095;</span>
           </div>
           <div class="slider-thumbs-vert" id="slider-thumbs-outer">
-            <span class="slider-arrow thumb-arrow up" onclick="thumbsPrev()">&#10094;</span>
+            <span class="slider-arrow thumb-arrow up" role="button" aria-label="Previous thumbnails" aria-disabled="false" onclick="thumbsPrev()">&#10094;</span>
             <div id="slider-thumbs"></div>
-            <span class="slider-arrow thumb-arrow down" onclick="thumbsNext()">&#10095;</span>
+            <span class="slider-arrow thumb-arrow down" role="button" aria-label="Next thumbnails" aria-disabled="false" onclick="thumbsNext()">&#10095;</span>
           </div>
         </div>
         <!-- 主内容明细区块：desc-block。维护时直接修改对应块内容。可增减 -->
@@ -491,8 +491,12 @@ function renderThumbs() {
   }
   thumbs.innerHTML = html;
   if (upArrow && downArrow) {
-    upArrow.classList.toggle('disabled', thumb_start === 0);
-    downArrow.classList.toggle('disabled', thumb_start + thumb_visible_count >= slider_imgs.length);
+    var upDisabled = thumb_start === 0;
+    var downDisabled = thumb_start + thumb_visible_count >= slider_imgs.length;
+    upArrow.classList.toggle('disabled', upDisabled);
+    downArrow.classList.toggle('disabled', downDisabled);
+    upArrow.setAttribute('aria-disabled', upDisabled ? 'true' : 'false');
+    downArrow.setAttribute('aria-disabled', downDisabled ? 'true' : 'false');
   }
 }
 
