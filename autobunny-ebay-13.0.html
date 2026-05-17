@@ -163,6 +163,7 @@
     .slider-arrow.right{right:-13px;}
     .slider-arrow:hover{background:#FF751F;color:#fff;}
     .slider-thumbs-vert{
+      --thumb-arrow-offset:4px;
       position:relative;
       display:flex;flex-direction:column;justify-content:center;align-items:center;
       width:70px;min-width:70px;max-width:70px;
@@ -192,8 +193,8 @@
       transition:opacity .24s ease,visibility .24s ease,background .13s,color .13s;
       z-index:2;
     }
-    .thumb-arrow.up{top:4px;}
-    .thumb-arrow.down{bottom:4px;}
+    .thumb-arrow.up{top:var(--thumb-arrow-offset);}
+    .thumb-arrow.down{bottom:var(--thumb-arrow-offset);}
     .slider-thumbs-vert:hover .thumb-arrow,
     .slider-thumbs-vert.show-thumb-arrows .thumb-arrow{
       opacity:1;visibility:visible;pointer-events:auto;
@@ -478,6 +479,7 @@ var slider_imgs = [
 var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
+var ARROW_HIDE_DELAY = 520;
 
 function renderThumbs() {
   var thumbs = document.getElementById('slider-thumbs');
@@ -540,7 +542,7 @@ window.addEventListener('DOMContentLoaded', function() {
     clearArrowHideTimer();
     arrowHideTimer = setTimeout(function() {
       thumbsOuter.classList.remove('show-thumb-arrows');
-    }, 520);
+    }, ARROW_HIDE_DELAY);
   }
   if (thumbsOuter) {
     thumbsOuter.addEventListener('touchstart', showTouchArrows, {passive:true});
