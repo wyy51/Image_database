@@ -255,6 +255,7 @@
         left:8px;
       }
       .thumb-arrow.down{
+        left:auto;
         right:8px;
       }
     }
@@ -543,6 +544,7 @@ function sliderGoto(idx){ sliderShow(idx); }
 
 function setThumbTouchActive(active) {
   if (!thumb_outer) return;
+  if (active && thumb_outer.classList.contains('touch-active')) return;
   if (thumb_touch_hide_timer) {
     clearTimeout(thumb_touch_hide_timer);
     thumb_touch_hide_timer = null;
