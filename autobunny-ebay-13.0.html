@@ -497,6 +497,7 @@ var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
 var thumb_outer = null, thumb_arrow_up = null, thumb_arrow_down = null, thumb_touch_hide_timer = null;
+// 与 .thumb-arrow 的 0.25s 渐变保持一致，触摸结束后短暂保留箭头再隐藏。
 var thumb_touch_hide_delay = 250;
 
 function renderThumbs() {
@@ -554,15 +555,24 @@ function setThumbTouchActive(active) {
   }
 }
 
+function handleThumbTouchStart() {
+  setThumbTouchActive(true);
+}
+
+function handleThumbTouchEnd() {
+  setThumbTouchActive(false);
+}
+
 window.addEventListener('DOMContentLoaded', function() {
   main_img = document.getElementById('main-slider-img');
   thumb_outer = document.getElementById('slider-thumbs-outer');
   thumb_arrow_up = document.querySelector('.thumb-arrow.up');
   thumb_arrow_down = document.querySelector('.thumb-arrow.down');
   if (thumb_outer) {
-    thumb_outer.addEventListener('touchstart', function() { setThumbTouchActive(true); }, {passive:true});
-    thumb_outer.addEventListener('touchend', function() { setThumbTouchActive(false); }, {passive:true});
-    thumb_outer.addEventListener('touchcancel', function() { setThumbTouchActive(false); }, {passive:true});
+    thumb_outer.addEventListener('touchstart', handleThumbTouchStart, {passive:true});
+    thumb_outer.addEventListener('touchmove', handleThumbTouchStart, {passive:true});
+    thumb_outer.addEventListener('touchend', handleThumbTouchEnd, {passive:true});
+    thumb_outer.addEventListener('touchcancel', handleThumbTouchEnd, {passive:true});
   }
   renderThumbs(); // 初始渲染缩略图
   sliderShow(0);
