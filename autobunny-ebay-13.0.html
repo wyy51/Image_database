@@ -333,7 +333,7 @@
             <span class="slider-arrow right" onclick="sliderNext()">&#10095;</span>
           </div>
           <div class="slider-thumbs-vert" id="slider-thumbs-outer">
-            <span class="slider-arrow thumb-arrow up" role="button" tabindex="0" aria-label="Previous thumbnails" aria-disabled="false" onclick="thumbsPrev()" onkeydown="thumbArrowKey(event, -1)">&#9650;</span>
+            <span class="slider-arrow thumb-arrow up" role="button" tabindex="0" aria-label="Previous thumbnails" aria-disabled="true" onclick="thumbsPrev()" onkeydown="thumbArrowKey(event, -1)">&#9650;</span>
             <div id="slider-thumbs"></div>
             <span class="slider-arrow thumb-arrow down" role="button" tabindex="0" aria-label="Next thumbnails" aria-disabled="false" onclick="thumbsNext()" onkeydown="thumbArrowKey(event, 1)">&#9660;</span>
           </div>
@@ -513,7 +513,7 @@ function thumbsNext() {
   }
 }
 function thumbArrowKey(event, direction) {
-  if (!event || (event.key !== 'Enter' && event.key !== ' ')) return;
+  if (!event || (event.key !== 'Enter' && event.key !== ' ' && event.code !== 'Space')) return;
   event.preventDefault();
   if (direction < 0) thumbsPrev();
   else thumbsNext();
