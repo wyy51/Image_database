@@ -7,7 +7,7 @@
     <style type="text/css">
         /* =========================================================
            AUTOBUNNY PARTS - eBay Compatible Template
-           Version: test5.0-gallery-fix
+           Version: test5.1-gallery-refine
            ---------------------------------------------------------
            说明：
            1. 纯 HTML/CSS，无 JavaScript
@@ -18,8 +18,8 @@
            6. 本版本为自然比例优先版本
            7. 最大限度避免图片变形
            8. 切换时页面高度可能变化
-           9. 修复 Chrome 点击缩略图后视图跳回顶部的问题
-           10. 修复缩略图位于主图下方时底边显示不完整的问题
+           9. 针对 5.1 版继续优化缩略图选中态、移动端滑动体验、主图居中稳定性
+           10. 尽可能避免 Chrome 点击缩略图后页面回跳到顶部的问题
            ========================================================= */
 
         /* =========================
@@ -309,22 +309,22 @@
         }
 
         /* =========================
-           十、产品图片区
+           十、产品图片区 5.1 优化版
            ---------------------------------------------------------
-           natural 版本：
-           1. 图片自然比例优先
-           2. 主图 img 使用 width:100%; height:auto;
-           3. 最大限度避免拉伸变形
-           4. 不固定主图内容高度
-           5. 切换图片时页面高度可能变化
+           设计目标：
+           1. 保持纯 HTML/CSS，无 JavaScript
+           2. 保持自然比例展示主图
+           3. 提升主图区域在不同宽度下的居中稳定性
+           4. 提升缩略图选中态辨识度
+           5. 优化手机端横向滑动手感
+           6. 尽量规避 Chrome 点击 label 后页面跳回顶部的问题
            ---------------------------------------------------------
-           结构策略：
-           - 主图容器不绝对定位图片
-           - 通过 display:block / display:none 控制各图显示
-           - 当前图片自然撑开容器高度
-           - 缩略图使用 label 包裹 span，再由 span 包裹 img
-             这样可以避免部分浏览器点击 label 时把页面焦点拉回顶部
-           - 缩略图区额外预留底部空间，避免在换行/滚动场景下边框被裁切
+           实现策略：
+           - radio 继续隐藏到可访问区域之外
+           - gallery 使用 table 结构兼容 eBay 环境，但主图盒子本身使用 auto margin 居中
+           - 缩略图由 label + span + img 组成，缩小浏览器重排时焦点跳动风险
+           - 选中态增加边框、阴影、轻微背景衬托，更容易识别
+           - 移动端滚动区增加惯性滚动、scroll-padding、额外底部空间
            ========================= */
         .gallery-radio {
             position: absolute;
@@ -350,14 +350,15 @@
         }
 
         .gallery-thumbs {
-            width: 82px;
+            width: 94px;
             vertical-align: top;
-            padding-bottom: 2px;
+            padding-bottom: 3px;
         }
 
         .main-image-box {
             width: 100%;
             max-width: 500px;
+            margin: 0 auto;
             background: #fafafa;
             border: 1px solid #e3e3e3;
             border-radius: 13px;
@@ -384,36 +385,58 @@
         }
 
         .thumb-list {
-            width: 72px;
-            padding-bottom: 2px;
+            width: 82px;
+            padding: 2px 0 4px;
             box-sizing: content-box;
         }
 
         .thumb-btn {
             display: block;
-            width: 72px;
-            margin-bottom: 11px;
+            width: 82px;
+            margin-bottom: 12px;
             cursor: pointer;
+            text-decoration: none;
             outline: none;
             -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
 
         .thumb-btn-inner {
             display: block;
-            width: 72px;
-            height: 72px;
-            padding-bottom: 2px;
+            width: 82px;
+            height: 82px;
+            padding: 0 0 2px;
+            background: #ffffff;
+            border: 1px solid #efefef;
+            border-radius: 12px;
             box-sizing: border-box;
+            overflow: visible;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
         }
 
         .thumb-btn img {
             display: block;
-            width: 72px;
-            height: 72px;
+            width: 100%;
+            height: 100%;
             background: #ffffff;
-            border: 2px solid #e9e9e9;
+            border: 2px solid #dddddd;
             border-radius: 10px;
             box-sizing: border-box;
+        }
+
+        /*
+           选中态强化：
+           1. 边框颜色更明显
+           2. 外层增加柔和橙色阴影
+           3. 轻微背景变化，便于用户快速识别当前主图对应的缩略图
+        */
+        #g1-natural:checked ~ .gallery-wrap .thumb1 .thumb-btn-inner,
+        #g2-natural:checked ~ .gallery-wrap .thumb2 .thumb-btn-inner,
+        #g3-natural:checked ~ .gallery-wrap .thumb3 .thumb-btn-inner,
+        #g4-natural:checked ~ .gallery-wrap .thumb4 .thumb-btn-inner {
+            background: #fff7f1;
+            border-color: #ffb07c;
+            box-shadow: 0 0 0 2px #ffe0cc, 0 4px 12px rgba(255, 117, 31, 0.18);
         }
 
         #g1-natural:checked ~ .gallery-wrap .thumb1 img,
@@ -421,6 +444,12 @@
         #g3-natural:checked ~ .gallery-wrap .thumb3 img,
         #g4-natural:checked ~ .gallery-wrap .thumb4 img {
             border-color: #FF751F;
+        }
+
+        .thumb-btn:hover .thumb-btn-inner,
+        .thumb-btn:focus .thumb-btn-inner {
+            border-color: #ffc7a1;
+            box-shadow: 0 2px 10px rgba(255, 117, 31, 0.12);
         }
 
         .thumb-btn:hover img,
@@ -498,6 +527,8 @@
 
         /* =========================
            十三、平板适配
+           ---------------------------------------------------------
+           继续保持主图居中，同时缩略图尺寸略缩小，防止布局拥挤
            ========================= */
         @media (max-width: 950px) {
             .main-container {
@@ -518,21 +549,21 @@
             }
 
             .gallery-thumbs {
-                width: 76px;
+                width: 72px;
             }
 
             .thumb-list {
-                width: 56px;
+                width: 62px;
             }
 
             .thumb-btn {
-                width: 56px;
+                width: 62px;
             }
 
             .thumb-btn-inner,
             .thumb-btn img {
-                width: 56px;
-                height: 56px;
+                width: 62px;
+                height: 62px;
             }
         }
 
@@ -560,15 +591,20 @@
             .gallery-main {
                 padding-right: 12px;
             }
+
+            .main-image-box {
+                max-width: 100%;
+            }
         }
 
         /* =========================
-           十五、手机端适配
+           十五、手机端适配 5.1 微调
            ---------------------------------------------------------
-           手机端保持自然比例
-           缩略图横向滚动
-           同时给缩略图滚动区域补足底部可视空间，
-           防止最后一条边线在某些浏览器缩放下被遮住
+           优化重点：
+           1. 缩略图横向滑动更顺手
+           2. 主图区域更稳更居中
+           3. 缩略图底边不被裁切
+           4. 保持浏览位置，不因缩略图点击而产生明显回跳感
            ========================= */
         @media (max-width: 650px) {
             .main-container {
@@ -619,12 +655,17 @@
 
             .gallery-main {
                 padding-right: 0;
-                padding-bottom: 12px;
+                padding-bottom: 14px;
             }
 
             .gallery-thumbs {
                 width: 100%;
-                padding-bottom: 4px;
+                padding-bottom: 5px;
+            }
+
+            .main-image-box {
+                max-width: 100%;
+                margin: 0 auto;
             }
 
             .thumb-list {
@@ -632,26 +673,30 @@
                 white-space: nowrap;
                 overflow-x: auto;
                 overflow-y: hidden;
-                padding-bottom: 4px;
+                padding: 2px 2px 6px;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
+                scroll-padding-left: 2px;
+                scroll-padding-right: 12px;
             }
 
             .thumb-btn {
                 display: inline-block;
-                width: 56px;
+                width: 62px;
                 margin-right: 8px;
                 margin-bottom: 0;
                 vertical-align: top;
             }
 
             .thumb-btn-inner {
-                width: 56px;
-                height: 56px;
+                width: 62px;
+                height: 62px;
                 padding-bottom: 2px;
             }
 
             .thumb-btn img {
-                width: 56px;
-                height: 56px;
+                width: 62px;
+                height: 62px;
             }
 
             .logi-banner-section {
@@ -754,7 +799,18 @@
                 <h2>Front Left Driver Window Regulator &amp; Motor Ford Ranger MK2 Pickup 2006-2012</h2>
                 <br>
 
-                <!-- 产品图切换区：natural 版 -->
+                <!--
+                    产品图切换区：5.1 微调版
+                    -------------------------------------------------
+                    本区域继续沿用 radio + label 的无脚本切图结构，
+                    主要是为了兼容 eBay 对脚本环境的限制。
+
+                    关键优化点：
+                    1. label 内增加 .thumb-btn-inner 包裹层，减少浏览器焦点异常
+                    2. 主图盒子增加 margin:0 auto，保证横向居中更稳定
+                    3. 缩略图选中态增加外层高亮和阴影，更容易识别
+                    4. 手机端滚动区优化惯性滑动和底部留白
+                -->
                 <input class="gallery-radio" type="radio" name="gallery-natural" id="g1-natural" checked="checked">
                 <input class="gallery-radio" type="radio" name="gallery-natural" id="g2-natural">
                 <input class="gallery-radio" type="radio" name="gallery-natural" id="g3-natural">
@@ -781,14 +837,6 @@
                             </td>
                             <td class="gallery-thumbs">
                                 <div class="thumb-list">
-                                    <!--
-                                        关键修复说明：
-                                        1. 保留 label + for 的无 JS 切换方案
-                                        2. 在 label 内增加 .thumb-btn-inner 包裹层
-                                        3. 让可点击区域和边框渲染区域分离，减少 Chrome 在缩放/重排时
-                                           将点击焦点拉到顶部的异常表现
-                                        4. 额外 padding-bottom 用于保证底边框完整显示
-                                    -->
                                     <label class="thumb-btn thumb1" for="g1-natural">
                                         <span class="thumb-btn-inner">
                                             <img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Thumbnail 1">
@@ -819,13 +867,23 @@
                     /* =========================
                        十六、局部补充样式
                        ---------------------------------------------------------
-                       保留原有就地样式结构，方便 eBay 环境下独立复制片段时仍可工作
+                       这里保留与图片切换直接相关的局部样式，
+                       便于后续在 eBay 模板中单独复制图片区时仍能正常工作。
                        ========================= */
                     #g1-natural:checked ~ .gallery-wrap .img1,
                     #g2-natural:checked ~ .gallery-wrap .img2,
                     #g3-natural:checked ~ .gallery-wrap .img3,
                     #g4-natural:checked ~ .gallery-wrap .img4 {
                         display: block;
+                    }
+
+                    #g1-natural:checked ~ .gallery-wrap .thumb1 .thumb-btn-inner,
+                    #g2-natural:checked ~ .gallery-wrap .thumb2 .thumb-btn-inner,
+                    #g3-natural:checked ~ .gallery-wrap .thumb3 .thumb-btn-inner,
+                    #g4-natural:checked ~ .gallery-wrap .thumb4 .thumb-btn-inner {
+                        background: #fff7f1;
+                        border-color: #ffb07c;
+                        box-shadow: 0 0 0 2px #ffe0cc, 0 4px 12px rgba(255, 117, 31, 0.18);
                     }
 
                     #g1-natural:checked ~ .gallery-wrap .thumb1 img,
