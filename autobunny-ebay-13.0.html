@@ -191,7 +191,7 @@
       opacity:0;
       visibility:hidden;
       pointer-events:none;
-      transition:opacity calc(var(--thumb-arrow-fade-ms) * 1ms) ease,visibility calc(var(--thumb-arrow-fade-ms) * 1ms) ease,background .13s,color .13s;
+      transition:opacity calc(var(--thumb-arrow-fade-ms) * 1ms) ease, visibility calc(var(--thumb-arrow-fade-ms) * 1ms) ease, background .13s, color .13s;
     }
     .thumb-arrow.up{top:-6px;}
     .thumb-arrow.down{bottom:-6px;}
@@ -544,8 +544,8 @@ function sliderGoto(idx){ sliderShow(idx); }
 
 function setThumbTouchActive(active) {
   if (!thumb_outer) return;
-  if (active && thumb_outer.classList.contains('touch-active')) return;
-  if (!active && !thumb_outer.classList.contains('touch-active')) return;
+  var has_active = thumb_outer.classList.contains('touch-active');
+  if ((active && has_active) || (!active && !has_active)) return;
   if (thumb_touch_hide_timer) {
     clearTimeout(thumb_touch_hide_timer);
     thumb_touch_hide_timer = null;
@@ -573,11 +573,13 @@ window.addEventListener('DOMContentLoaded', function() {
   thumb_arrow_up = document.querySelector('.thumb-arrow.up');
   thumb_arrow_down = document.querySelector('.thumb-arrow.down');
   if (thumb_outer) {
-    var fade_ms = parseInt(getComputedStyle(thumb_outer).getPropertyValue('--thumb-arrow-fade-ms'), 10);
+    var fade_ms_raw = getComputedStyle(thumb_outer).getPropertyValue('--thumb-arrow-fade-ms');
+    var fade_ms = parseInt((fade_ms_raw || '').trim(), 10);
+    var touch_listener_options = {passive:true};
     if (!isNaN(fade_ms) && fade_ms > 0) thumb_touch_hide_delay = fade_ms;
-    thumb_outer.addEventListener('touchstart', handleThumbTouchActive, {passive:true});
-    thumb_outer.addEventListener('touchend', handleThumbTouchEnd, {passive:true});
-    thumb_outer.addEventListener('touchcancel', handleThumbTouchEnd, {passive:true});
+    thumb_outer.addEventListener('touchstart', handleThumbTouchActive, touch_listener_options);
+    thumb_outer.addEventListener('touchend', handleThumbTouchEnd, touch_listener_options);
+    thumb_outer.addEventListener('touchcancel', handleThumbTouchEnd, touch_listener_options);
   }
   renderThumbs(); // 初始渲染缩略图
   sliderShow(0);
