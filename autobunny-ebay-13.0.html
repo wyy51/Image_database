@@ -129,21 +129,23 @@
     .desc-content ul{margin:0 0 5px 18px;padding-left:9px;}
     /* 图片轮播主图+缩略图列样式（11.0~12.0同） */
     .desc-slider-wrap{
-      display:flex;align-items:flex-start;gap:20px;justify-content:center;
-      max-width:460px;margin:0 auto 20px auto;
+      display:flex;align-items:stretch;gap:16px;justify-content:center;
+      width:100%;max-width:560px;margin:0 auto 20px auto;
     }
     .img-slider-main{
-      max-width:330px;width:330px;height:330px;
-      min-width:140px;min-height:140px;
+      width:clamp(220px,42vw,330px);height:clamp(220px,42vw,330px);
+      max-width:330px;
+      min-width:160px;min-height:160px;
       background:#FAFAFA;
       border-radius:13px;
       border:1.5px solid #e3e3e3;
       box-shadow:0 4px 14px #1112;
       display:flex;align-items:center;justify-content:center;
       position:relative;
+      flex:1 1 auto;
     }
     .slider-img{
-      width:330px;height:330px;max-width:94vw;max-height:94vw;
+      width:100%;height:100%;
       object-fit:cover;
       border-radius:13px;
       background:#fafbfc;
@@ -161,15 +163,50 @@
     .slider-arrow.right{right:-13px;}
     .slider-arrow:hover{background:#FF751F;color:#fff;}
     .slider-thumbs-vert{
-      display:flex;flex-direction:column;gap:11px;justify-content:flex-start;align-items:center;padding-top:0;
-      max-width:70px;
+      --thumb-arrow-offset:4px;
+      position:relative;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      width:70px;min-width:70px;max-width:70px;
+      height:clamp(220px,42vw,330px);
+      padding:38px 0;
+      overflow:hidden;
+      box-sizing:border-box;
+      touch-action:manipulation;
+    }
+    #slider-thumbs{
+      display:flex;flex-direction:column;gap:8px;
+      align-items:center;justify-content:flex-start;
+      height:100%;width:100%;
+      overflow:hidden;
     }
     .slider-thumb{
-      width:55px;height:55px;object-fit:cover;background:#fff;border:2px solid #e9e9e9;border-radius:8px;cursor:pointer;
+      width:48px;height:48px;object-fit:cover;background:#fff;border:2px solid #e9e9e9;border-radius:8px;cursor:pointer;
       transition:border .17s;
       opacity:0.76;
     }
     .slider-thumb.active{border:2.5px solid #FF751F;opacity:1;}
+    .thumb-arrow{
+      position:absolute;left:50%;top:auto;right:auto;
+      transform:translateX(-50%);
+      width:30px;height:30px;line-height:30px;font-size:18px;
+      opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .24s ease,visibility .24s ease,background .13s,color .13s;
+      z-index:2;
+    }
+    .thumb-arrow.up{top:var(--thumb-arrow-offset);}
+    .thumb-arrow.down{bottom:var(--thumb-arrow-offset);}
+    .slider-thumbs-vert:hover .thumb-arrow,
+    .slider-thumbs-vert.show-thumb-arrows .thumb-arrow{
+      opacity:1;visibility:visible;pointer-events:auto;
+    }
+    .slider-thumbs-vert:hover .thumb-arrow.disabled,
+    .slider-thumbs-vert.show-thumb-arrows .thumb-arrow.disabled{
+      opacity:.34;pointer-events:none;
+    }
+    .thumb-arrow:focus{
+      outline:2px solid #FF751F;
+      outline-offset:2px;
+    }
     .logi-banner-section{
       max-width:840px;
       margin:14px auto 36px auto;
@@ -192,9 +229,8 @@
       .desc-block{max-width:90vw;}
       .banner-img,.footer-banner-section img{border-radius:0;}
       .logi-banner-section,.desc-slider-wrap{max-width:98vw;}
-      .img-slider-main{max-width:53vw;width:53vw;height:53vw;}
-      .slider-img{width:53vw;height:53vw;}
-      .slider-thumbs-vert{max-width:15vw;}
+      .img-slider-main{width:clamp(210px,50vw,330px);height:clamp(210px,50vw,330px);}
+      .slider-thumbs-vert{height:clamp(210px,50vw,330px);}
     }
     @media (max-width:650px){
       .main-container{border-radius:0;}
@@ -203,10 +239,10 @@
       .footer-banner-section img{max-height:72px;}
       .brand-head .brand-name{font-size:19px;}
       .desc-title{font-size:13px;padding-top:2px;}
-      .desc-slider-wrap{flex-direction:column;gap:12px;}
-      .slider-thumbs-vert{flex-direction:row;justify-content:center;align-items:center;gap:7px;max-width:97vw;}
-      .img-slider-main{width:94vw;height:94vw;max-width:94vw;}
-      .slider-img{width:94vw;height:94vw;}
+      .desc-slider-wrap{gap:10px;align-items:stretch;max-width:100%;}
+      .img-slider-main{width:clamp(210px,74vw,330px);height:clamp(210px,74vw,330px);}
+      .slider-thumbs-vert{width:62px;min-width:62px;max-width:62px;height:clamp(210px,74vw,330px);}
+      .slider-thumb{width:42px;height:42px;}
     }
   </style>
 </head>
@@ -300,10 +336,10 @@
                 alt="Product Slider Main Image" />
             <span class="slider-arrow right" onclick="sliderNext()">&#10095;</span>
           </div>
-          <div class="slider-thumbs-vert" id="slider-thumbs-outer" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-            <span class="slider-arrow thumb-arrow up" style="position:static;margin-bottom:5px;cursor:pointer;" onclick="thumbsPrev()">&#10094;</span>
-            <div id="slider-thumbs" style="display:flex;flex-direction:column;gap:11px;"></div>
-            <span class="slider-arrow thumb-arrow down" style="position:static;margin-top:5px;cursor:pointer;" onclick="thumbsNext()">&#10095;</span>
+          <div class="slider-thumbs-vert" id="slider-thumbs-outer">
+            <span class="slider-arrow thumb-arrow up" role="button" tabindex="0" aria-label="Previous thumbnails" onclick="thumbsPrev()" onkeydown="thumbArrowKey(event, -1)">&#9650;</span>
+            <div id="slider-thumbs"></div>
+            <span class="slider-arrow thumb-arrow down" role="button" tabindex="0" aria-label="Next thumbnails" onclick="thumbsNext()" onkeydown="thumbArrowKey(event, 1)">&#9660;</span>
           </div>
         </div>
         <!-- 主内容明细区块：desc-block。维护时直接修改对应块内容。可增减 -->
@@ -447,19 +483,25 @@ var slider_imgs = [
 var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
+var ARROW_HIDE_DELAY_MS = 500;
 
 function renderThumbs() {
   var thumbs = document.getElementById('slider-thumbs');
+  var upArrow = document.querySelector('.thumb-arrow.up');
+  var downArrow = document.querySelector('.thumb-arrow.down');
   var html = '';
   for (var i = thumb_start; i < Math.min(thumb_start + thumb_visible_count, slider_imgs.length); i++) {
     html += '<img class="slider-thumb'+(i==slider_curr?' active':'')+'" src="'+slider_imgs[i]+'" alt="Slider '+(i+1)+'" onclick="sliderGoto('+i+')">';
   }
   thumbs.innerHTML = html;
-  // 箭头禁用状态
-  document.querySelector('.thumb-arrow.up').style.opacity = (thumb_start === 0) ? 0.3 : 1;
-  document.querySelector('.thumb-arrow.down').style.opacity = (thumb_start + thumb_visible_count >= slider_imgs.length) ? 0.3 : 1;
-  document.querySelector('.thumb-arrow.up').style.pointerEvents = (thumb_start === 0) ? 'none' : '';
-  document.querySelector('.thumb-arrow.down').style.pointerEvents = (thumb_start + thumb_visible_count >= slider_imgs.length) ? 'none' : '';
+  if (upArrow && downArrow) {
+    var upDisabled = thumb_start === 0;
+    var downDisabled = thumb_start + thumb_visible_count >= slider_imgs.length;
+    upArrow.classList.toggle('disabled', upDisabled);
+    downArrow.classList.toggle('disabled', downDisabled);
+    upArrow.setAttribute('aria-disabled', upDisabled ? 'true' : 'false');
+    downArrow.setAttribute('aria-disabled', downDisabled ? 'true' : 'false');
+  }
 }
 
 function thumbsPrev() {
@@ -473,6 +515,17 @@ function thumbsNext() {
     thumb_start++;
     renderThumbs();
   }
+}
+function thumbArrowKey(event, direction) {
+  if (!event) return;
+  var isActionKey = event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowUp' || event.key === 'ArrowDown';
+  if (!isActionKey) return;
+  if (event.currentTarget && event.currentTarget.getAttribute('aria-disabled') === 'true') return;
+  event.preventDefault();
+  if (event.key === 'ArrowUp') thumbsPrev();
+  else if (event.key === 'ArrowDown') thumbsNext();
+  else if (direction < 0) thumbsPrev();
+  else thumbsNext();
 }
 
 function sliderShow(idx) {
@@ -490,6 +543,31 @@ function sliderGoto(idx){ sliderShow(idx); }
 
 window.addEventListener('DOMContentLoaded', function() {
   main_img = document.getElementById('main-slider-img');
+  var thumbsOuter = document.getElementById('slider-thumbs-outer');
+  var arrowHideTimer = null;
+  function clearArrowHideTimer() {
+    if (arrowHideTimer) {
+      clearTimeout(arrowHideTimer);
+      arrowHideTimer = null;
+    }
+  }
+  function showTouchArrows() {
+    if (!thumbsOuter) return;
+    thumbsOuter.classList.add('show-thumb-arrows');
+    clearArrowHideTimer();
+  }
+  function hideTouchArrows() {
+    if (!thumbsOuter) return;
+    clearArrowHideTimer();
+    arrowHideTimer = setTimeout(function() {
+      thumbsOuter.classList.remove('show-thumb-arrows');
+    }, ARROW_HIDE_DELAY_MS);
+  }
+  if (thumbsOuter) {
+    thumbsOuter.addEventListener('touchstart', showTouchArrows, {passive:true});
+    thumbsOuter.addEventListener('touchend', hideTouchArrows, {passive:true});
+    thumbsOuter.addEventListener('touchcancel', hideTouchArrows, {passive:true});
+  }
   renderThumbs(); // 初始渲染缩略图
   sliderShow(0);
 });
