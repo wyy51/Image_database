@@ -165,6 +165,7 @@
     .slider-arrow.right{right:-13px;}
     .slider-arrow:hover{background:#FF751F;color:#fff;}
     .slider-thumbs-vert{
+      --thumb-arrow-fade-ms:250;
       position:relative;
       display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
       flex:0 0 70px;width:70px;
@@ -190,7 +191,7 @@
       opacity:0;
       visibility:hidden;
       pointer-events:none;
-      transition:opacity .25s ease,visibility .25s ease,background .13s,color .13s;
+      transition:opacity calc(var(--thumb-arrow-fade-ms) * 1ms) ease,visibility calc(var(--thumb-arrow-fade-ms) * 1ms) ease,background .13s,color .13s;
     }
     .thumb-arrow.up{top:-6px;}
     .thumb-arrow.down{bottom:-6px;}
@@ -497,7 +498,7 @@ var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
 var thumb_outer = null, thumb_arrow_up = null, thumb_arrow_down = null, thumb_touch_hide_timer = null;
-// 与 .thumb-arrow 的 0.25s 渐变保持一致，触摸结束后短暂保留箭头再隐藏。
+// 从 CSS 变量 `--thumb-arrow-fade-ms` 同步，确保触摸隐藏延时与箭头渐变时长一致。
 var thumb_touch_hide_delay = 250;
 
 function renderThumbs() {
@@ -555,7 +556,7 @@ function setThumbTouchActive(active) {
   }
 }
 
-function handleThumbTouchStart() {
+function handleThumbTouchActive() {
   setThumbTouchActive(true);
 }
 
@@ -569,8 +570,10 @@ window.addEventListener('DOMContentLoaded', function() {
   thumb_arrow_up = document.querySelector('.thumb-arrow.up');
   thumb_arrow_down = document.querySelector('.thumb-arrow.down');
   if (thumb_outer) {
-    thumb_outer.addEventListener('touchstart', handleThumbTouchStart, {passive:true});
-    thumb_outer.addEventListener('touchmove', handleThumbTouchStart, {passive:true});
+    var fade_ms = parseInt(getComputedStyle(thumb_outer).getPropertyValue('--thumb-arrow-fade-ms'), 10);
+    if (!isNaN(fade_ms) && fade_ms > 0) thumb_touch_hide_delay = fade_ms;
+    thumb_outer.addEventListener('touchstart', handleThumbTouchActive, {passive:true});
+    thumb_outer.addEventListener('touchmove', handleThumbTouchActive, {passive:true});
     thumb_outer.addEventListener('touchend', handleThumbTouchEnd, {passive:true});
     thumb_outer.addEventListener('touchcancel', handleThumbTouchEnd, {passive:true});
   }
