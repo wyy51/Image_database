@@ -144,7 +144,7 @@
       border:1.5px solid #e3e3e3;
       box-shadow:0 4px 14px #1112;
       display:flex;align-items:center;justify-content:center;
-      position:relative;overflow:hidden;
+      position:relative;
     }
     .slider-img{
       width:100%;height:100%;
@@ -203,8 +203,14 @@
       pointer-events:auto;
     }
     .thumb-arrow.is-disabled{
-      opacity:0.3 !important;
-      pointer-events:none !important;
+      opacity:0.3;
+      pointer-events:none;
+    }
+    .slider-thumbs-vert:hover .thumb-arrow.is-disabled,
+    .slider-thumbs-vert:focus-within .thumb-arrow.is-disabled,
+    .slider-thumbs-vert.touch-active .thumb-arrow.is-disabled{
+      opacity:0.3;
+      pointer-events:none;
     }
     .logi-banner-section{
       max-width:840px;
@@ -495,6 +501,7 @@ var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
 var thumb_outer = null, thumb_arrow_up = null, thumb_arrow_down = null, thumb_touch_hide_timer = null;
+var thumb_touch_hide_delay = 250;
 
 function renderThumbs() {
   var thumbs = document.getElementById('slider-thumbs');
@@ -547,7 +554,7 @@ function setThumbTouchActive(active) {
   } else {
     thumb_touch_hide_timer = setTimeout(function() {
       thumb_outer.classList.remove('touch-active');
-    }, 180);
+    }, thumb_touch_hide_delay);
   }
 }
 
