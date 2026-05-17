@@ -333,9 +333,9 @@
             <span class="slider-arrow right" onclick="sliderNext()">&#10095;</span>
           </div>
           <div class="slider-thumbs-vert" id="slider-thumbs-outer">
-            <span class="slider-arrow thumb-arrow up" role="button" aria-label="Previous thumbnails" aria-disabled="false" onclick="thumbsPrev()">&#10094;</span>
+            <span class="slider-arrow thumb-arrow up" role="button" tabindex="0" aria-label="Previous thumbnails" aria-disabled="false" onclick="thumbsPrev()" onkeydown="thumbArrowKey(event, -1)">&#10094;</span>
             <div id="slider-thumbs"></div>
-            <span class="slider-arrow thumb-arrow down" role="button" aria-label="Next thumbnails" aria-disabled="false" onclick="thumbsNext()">&#10095;</span>
+            <span class="slider-arrow thumb-arrow down" role="button" tabindex="0" aria-label="Next thumbnails" aria-disabled="false" onclick="thumbsNext()" onkeydown="thumbArrowKey(event, 1)">&#10095;</span>
           </div>
         </div>
         <!-- 主内容明细区块：desc-block。维护时直接修改对应块内容。可增减 -->
@@ -479,7 +479,7 @@ var slider_imgs = [
 var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
-var ARROW_HIDE_DELAY = 520;
+var ARROW_HIDE_DELAY_MS = 520;
 
 function renderThumbs() {
   var thumbs = document.getElementById('slider-thumbs');
@@ -511,6 +511,12 @@ function thumbsNext() {
     thumb_start++;
     renderThumbs();
   }
+}
+function thumbArrowKey(event, direction) {
+  if (!event || (event.key !== 'Enter' && event.key !== ' ')) return;
+  event.preventDefault();
+  if (direction < 0) thumbsPrev();
+  else thumbsNext();
 }
 
 function sliderShow(idx) {
@@ -546,7 +552,7 @@ window.addEventListener('DOMContentLoaded', function() {
     clearArrowHideTimer();
     arrowHideTimer = setTimeout(function() {
       thumbsOuter.classList.remove('show-thumb-arrows');
-    }, ARROW_HIDE_DELAY);
+    }, ARROW_HIDE_DELAY_MS);
   }
   if (thumbsOuter) {
     thumbsOuter.addEventListener('touchstart', showTouchArrows, {passive:true});
