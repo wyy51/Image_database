@@ -6,13 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* =========================
-       17.4 样式总说明（便于维护）
+       17.5 样式总说明（便于维护）
        1. 品牌主色：橙色 #FF751F，辅助色：黑色 #000
        2. 页面结构：顶部品牌头部 + 主导航 + 顶部横幅 + 左侧分类栏 + 右侧详情内容 + 底部横幅 + 页脚
        3. 轮播区域：桌面端为主图 + 右侧纵向缩略图；移动端为主图 + 下方横向缩略图
        4. 17.4 优化：
           - 底部 footer banner 与顶部主 banner 一样，使用等比例缩放，不拉伸不变形
           - 为页面各主要功能模块补充详细注释，方便后续维护与二次编辑
+       5. 17.5 优化：
+          - 左侧菜单分类链接在鼠标悬浮时高亮为品牌橙色，提升交互反馈
        ========================= */
 
     /* =========================
@@ -82,7 +84,12 @@
     /* 侧栏分类链接列表 */
     .sidecat-list a{
       display:block;color:#222;background:#eee;border-bottom:1px solid #fff;padding:10px 18px;
-      text-decoration:none;font-size:13px;font-weight:bold;transition:background .2s;
+      text-decoration:none;font-size:13px;font-weight:bold;transition:background .2s,color .2s;
+    }
+    .sidecat-list a:hover,
+    .sidecat-list a:focus{
+      background:#FF751F;
+      color:#fff;
     }
 
     /* 侧栏广告区外层容器 */
