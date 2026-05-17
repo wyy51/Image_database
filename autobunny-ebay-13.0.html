@@ -479,7 +479,7 @@ var slider_imgs = [
 var slider_curr = 0, main_img = null;
 var thumb_start = 0;
 var thumb_visible_count = 5;
-var ARROW_HIDE_DELAY_MS = 520;
+var ARROW_HIDE_DELAY_MS = 500;
 
 function renderThumbs() {
   var thumbs = document.getElementById('slider-thumbs');
@@ -513,7 +513,10 @@ function thumbsNext() {
   }
 }
 function thumbArrowKey(event, direction) {
-  if (!event || (event.key !== 'Enter' && event.key !== ' ')) return;
+  if (!event) return;
+  var isActionKey = event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowUp' || event.key === 'ArrowDown';
+  if (!isActionKey) return;
+  if (event.currentTarget && event.currentTarget.getAttribute('aria-disabled') === 'true') return;
   event.preventDefault();
   if (direction < 0) thumbsPrev();
   else thumbsNext();
