@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AUTOBUNNY PARTS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        /* =========================================================
+           AUTOBUNNY PARTS - eBay Compatible Template
+           Version: simple4.3
+           ---------------------------------------------------------
+           版本定位：
+           1. 基于 simple4.2 继续优化
+           2. 左侧 SHOP NOW 按钮增加鼠标悬浮 / 聚焦颜色变化
+           3. 纯 HTML/CSS，无 JavaScript，适合 eBay 描述环境
+           4. 默认展示 5 张图，第 6~8 张保留为傻瓜式扩展模板
+           5. 物流 banner 位于 “🚚 Shipping” 模块上方
+           6. 保留详细中文注释，方便后续维护
+           ========================================================= */
+
+        /* =========================
+           一、快速替换说明
+           ---------------------------------------------------------
+           后续最常替换的内容如下：
+           A. 顶部店铺 banner 图：搜索 TOP_BANNER_REPLACE_START
+           B. 左侧广告图：搜索 SIDE_BANNER
+           C. 产品图片：搜索 PRODUCT_IMAGE
+           D. 物流 banner 图：搜索 LOGISTICS_BANNER
+           E. 底部店铺 banner 图：搜索 FOOTER_BANNER_REPLACE_START
+           F. 联系方式链接：搜索 CONTACT_LINK
+           ========================= */
+
+        /* =========================
+           二、全局基础样式
+           ========================= */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f7;
+            color: #222222;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        img {
+            display: block;
+            border: 0;
+            vertical-align: top;
+        }
+
+        a {
+            outline: none;
+        }
+
+        .red-text {
+            color: #cc0000;
+        }
+
+        /* =========================
+           三、页面主容器
+           ========================= */
+        .main-container {
+            max-width: 900px;
+            min-width: 290px;
+            margin: 20px auto;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+        }
+
+        /* =========================
+           四、品牌头部
+           ========================= */
+        .brand-head {
+            background: #000000;
+            padding: 20px 10px 14px;
+            text-align: center;
+        }
+
+        .brand-name {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .brand-tips {
+            margin-top: 6px;
+            color: #f2f2f2;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           五、顶部 / 底部 banner 通用样式
+           ========================= */
+        .banner-img,
+        .footer-banner-section img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* =========================
+           六、左右布局
+           ========================= */
+        .main-layout {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .sidebar {
+            display: table-cell;
+            width: 180px;
+            vertical-align: top;
+            background: #000000;
+            border-right: 1px solid #ededed;
+        }
+
+        .content {
+            display: table-cell;
+            vertical-align: top;
+            background: #ffffff;
+        }
+
+        /* =========================
+           七、左侧导航
+           ========================= */
+        .sidecat-title {
+            margin: 0;
+            padding: 12px 8px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .sidecat-list a {
+            display: block;
+            padding: 9px 12px;
+            background: #eeeeee;
+            color: #222222;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .sidecat-list a:hover,
+        .sidecat-list a:focus {
+            background: #FF751F;
+            color: #ffffff;
+        }
+
+        /* =========================
+           八、左侧广告区
+           ---------------------------------------------------------
+           说明：
+           1. 保留 NEW / HOT / OFF 三个广告位
+           2. SHOP NOW 按钮宽度与图片区域一致
+           3. simple4.3 增加 hover / focus 状态颜色变化
+           ========================================================= */
+        .side-banner-block {
+            padding: 16px 8px 0;
+        }
+
+        .side-banner-item {
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .side-banner-link {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .side-banner-img-wrap {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+            background: #fafbfc;
+            border: 1px solid #dddddd;
+            box-sizing: border-box;
+        }
+
+        .side-banner-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .triangle-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            width: 0;
+            height: 0;
+            border-top: 52px solid #FF751F;
+            border-right: 52px solid transparent;
+        }
+
+        .side-banner-item.hot .triangle-badge {
+            border-top-color: #C81414;
+        }
+
+        .triangle-badge-text {
+            position: absolute;
+            top: 8px;
+            left: 2px;
+            z-index: 5;
+            width: 36px;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1;
+            text-align: left;
+            transform: rotate(-35deg);
+        }
+
+        .shop-btn {
+            display: block;
+            width: 100%;
+            margin-top: 8px;
+            padding: 8px 0;
+            background: #FF751F;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid #FF751F;
+            box-sizing: border-box;
+        }
+
+        .side-banner-item.hot .shop-btn {
+            background: #C81414;
+            border-color: #C81414;
+        }
+
+        /* simple4.3 新增：SHOP NOW 悬浮 / 聚焦颜色变化 */
+        .shop-btn:hover,
+        .shop-btn:focus {
+            background: #ffffff;
+            color: #FF751F;
+        }
+
+        .side-banner-item.hot .shop-btn:hover,
+        .side-banner-item.hot .shop-btn:focus {
+            background: #ffffff;
+            color: #C81414;
+        }
+
+        /* =========================
+           九、顶部导航
+           ========================= */
+        .nav-bar {
+            background: #FF751F;
+            border-bottom: 3px solid #000000;
+            text-align: center;
+            font-size: 0;
+        }
+
+        .nav-bar-link {
+            display: inline-block;
+            padding: 12px 14px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-right: 1px solid #f3a05d;
+        }
+
+        .nav-bar-link.last {
+            border-right: 0;
+        }
+
+        .nav-bar-link:hover,
+        .nav-bar-link:focus,
+        .nav-bar-link.active {
+            background: #000000;
+            color: #FF751F;
+        }
+
+        /* =========================
+           十、正文内容
+           ========================= */
+        .desc-section {
+            padding: 18px 20px;
+        }
+
+        .page-title {
+            margin: 0 0 14px;
+            color: #222222;
+            font-size: 24px;
+            line-height: 1.35;
+        }
+
+        .desc-block {
+            max-width: 640px;
+            margin: 0 auto 14px;
+        }
+
+        .desc-title {
+            margin: 0 0 6px;
+            color: #FF751F;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .desc-content {
+            margin: 0;
+            color: #28303b;
+            font-size: 14px;
+            line-height: 1.7;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .desc-content ul {
+            margin: 0 0 0 18px;
+            padding-left: 8px;
+        }
+
+        .desc-content li {
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           十一、gallery：simple4.3 傻瓜式扩展模板版
+           ---------------------------------------------------------
+           当前默认启用：
+           - 第 1 张
+           - 第 2 张
+           - 第 3 张
+           - 第 4 张
+           - 第 5 张
+           ---------------------------------------------------------
+           已预留支持：
+           - 第 6 张
+           - 第 7 张
+           - 第 8 张
+           ---------------------------------------------------------
+           扩展步骤（非常重要）：
+           如果你要新增第 6 张图，必须同时做 3 件事：
+           1. 取消第 6 张 radio 注释
+           2. 取消第 6 张主图注释
+           3. 取消第 6 张缩略图注释
+
+           第 7 张图同理：
+           1. 取消第 7 张 radio 注释
+           2. 取消第 7 张主图注释
+           3. 取消第 7 张缩略图注释
+
+           第 8 张图同理：
+           1. 取消第 8 张 radio 注释
+           2. 取消第 8 张主图注释
+           3. 取消第 8 张缩略图注释
+
+           注意：
+           - 三部分编号必须一致
+           - g6 对应 img6 对应 thumb6
+           - g7 对应 img7 对应 thumb7
+           - g8 对应 img8 对应 thumb8
+           ========================================================= */
+        .gallery {
+            position: relative;
+            max-width: 640px;
+            margin: 0 auto 18px;
+        }
+
+        .gallery-radio {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        .gallery-main {
+            max-width: 500px;
+            margin: 0 auto 10px;
+            border: 1px solid #dddddd;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .gallery-main-item {
+            display: none;
+        }
+
+        .gallery-main-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        #g1-simple43:checked ~ .gallery-main .img1,
+        #g2-simple43:checked ~ .gallery-main .img2,
+        #g3-simple43:checked ~ .gallery-main .img3,
+        #g4-simple43:checked ~ .gallery-main .img4,
+        #g5-simple43:checked ~ .gallery-main .img5,
+        #g6-simple43:checked ~ .gallery-main .img6,
+        #g7-simple43:checked ~ .gallery-main .img7,
+        #g8-simple43:checked ~ .gallery-main .img8 {
+            display: block;
+        }
+
+        .gallery-thumbs {
+            text-align: center;
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 2px 0 6px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-thumb {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            margin: 0 6px 0 0;
+            border: 1px solid #d9d9d9;
+            overflow: hidden;
+            box-sizing: border-box;
+            background: #ffffff;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #dddddd;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        #g1-simple43:checked ~ .gallery-thumbs .thumb1,
+        #g2-simple43:checked ~ .gallery-thumbs .thumb2,
+        #g3-simple43:checked ~ .gallery-thumbs .thumb3,
+        #g4-simple43:checked ~ .gallery-thumbs .thumb4,
+        #g5-simple43:checked ~ .gallery-thumbs .thumb5,
+        #g6-simple43:checked ~ .gallery-thumbs .thumb6,
+        #g7-simple43:checked ~ .gallery-thumbs .thumb7,
+        #g8-simple43:checked ~ .gallery-thumbs .thumb8 {
+            border-color: #FF751F;
+        }
+
+        #g1-simple43:checked ~ .gallery-thumbs .thumb1 img,
+        #g2-simple43:checked ~ .gallery-thumbs .thumb2 img,
+        #g3-simple43:checked ~ .gallery-thumbs .thumb3 img,
+        #g4-simple43:checked ~ .gallery-thumbs .thumb4 img,
+        #g5-simple43:checked ~ .gallery-thumbs .thumb5 img,
+        #g6-simple43:checked ~ .gallery-thumbs .thumb6 img,
+        #g7-simple43:checked ~ .gallery-thumbs .thumb7 img,
+        #g8-simple43:checked ~ .gallery-thumbs .thumb8 img {
+            border-color: #FF751F;
+        }
+
+        /* =========================
+           十二、物流 banner
+           ---------------------------------------------------------
+           位置说明：
+           物流 banner 放在 “🚚 Shipping” 模块上方
+           ========================================================= */
+        .logi-banner-section {
+            max-width: 840px;
+            margin: 8px auto 18px;
+            padding: 0 12px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .logi-banner-section img {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+
+        /* =========================
+           十三、底部 banner 与页脚
+           ========================= */
+        .footer-banner-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .footer-area {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 10px 16px;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            border-top: 4px solid #FF751F;
+            box-sizing: border-box;
+        }
+
+        .footer-brand {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .footer-tip {
+            margin-top: 6px;
+            color: #ebebeb;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .contact-link {
+            color: #000000;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .contact-link:hover,
+        .contact-link:focus {
+            color: #000000;
+        }
+
+        /* =========================
+           十四、响应式适配
+           ========================= */
+        @media (max-width: 950px) {
+            .main-container { max-width: 98%; }
+            .sidebar { width: 145px; }
+            .desc-section { padding: 16px 16px; }
+        }
+
+        @media (max-width: 768px) {
+            .main-container { margin: 12px auto; }
+            .sidebar { width: 116px; }
+
+            .sidecat-list a {
+                padding: 8px 8px;
+                font-size: 11px;
+            }
+
+            .page-title { font-size: 21px; }
+            .gallery-main { max-width: 100%; }
+        }
+
+        @media (max-width: 650px) {
+            .main-container {
+                max-width: 100%;
+                margin: 0 auto;
+                border-left: 0;
+                border-right: 0;
+            }
+
+            .sidebar { display: none; }
+
+            .main-layout,
+            .content {
+                display: block;
+                width: 100%;
+            }
+
+            .brand-head { padding: 16px 10px 12px; }
+
+            .brand-name {
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+
+            .brand-tips { font-size: 12px; }
+
+            .nav-bar-link {
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+
+            .desc-section { padding: 12px 12px 8px; }
+
+            .page-title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .desc-block { margin-bottom: 12px; }
+            .desc-title { font-size: 14px; }
+
+            .gallery-thumbs { text-align: left; }
+
+            .gallery-thumb {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logi-banner-section {
+                padding: 0 8px;
+                margin: 6px auto 16px;
+            }
+
+            .logi-banner-section img {
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- 顶部品牌区 -->
+    <div class="brand-head">
+        <div class="brand-name">AUTOBUNNY PARTS</div>
+        <div class="brand-tips">Premium Auto Parts Store | Professional Service | Fast Shipping</div>
+    </div>
+
+    <!-- 顶部导航 -->
+    <div class="nav-bar">
+        <a class="nav-bar-link active" href="#desc-main">DESCRIPTION</a>
+        <a class="nav-bar-link" href="#shipping">SHIPPING</a>
+        <a class="nav-bar-link" href="#payment">PAYMENT</a>
+        <a class="nav-bar-link" href="#terms">TERMS OF SALE</a>
+        <a class="nav-bar-link last" href="#contact">CONTACT US</a>
+    </div>
+
+    <!-- =========================================================
+         TOP_BANNER_REPLACE_START
+         顶部店铺 banner 图替换区
+         ---------------------------------------------------------
+         使用方法：
+         1. 只替换下面 img 的 src
+         2. 如需修改说明文字，可替换 alt
+         3. 不要删除 class="banner-img"
+         TOP_BANNER_REPLACE_END
+         ========================================================= -->
+    <img src="https://s3.bmp.ovh/2026/05/16/Q2GzWoD0.jpg" alt="Store Main Banner - AUTOBUNNY PARTS" class="banner-img">
+
+    <div class="main-layout">
+        <!-- 左侧边栏 -->
+        <div class="sidebar">
+            <div class="sidecat-title">Shop Categories</div>
+
+            <div class="sidecat-list">
+                <a href="https://www.ebay.com/str/autobunnyparts/Accessory-Belts/_i.html?store_cat=46086293014" target="_blank">Accessory Belts</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Air-Fuel-Delivery/_i.html?store_cat=46070082014" target="_blank">Air &amp; Fuel Delivery</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Air-Conditioning-Heating/_i.html?store_cat=46086294014" target="_blank">Air Conditioning &amp; Heating</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Brakes-Brake-Parts/_i.html?store_cat=46079786014" target="_blank">Brakes &amp; Brake Parts</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Electric-Hybrid-PHEV-Parts/_i.html?store_cat=46086295014" target="_blank">Electric, Hybrid &amp; PHEV Parts</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Engine-Cooling-Components/_i.html?store_cat=46086296014" target="_blank">Engine Cooling Components</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Engines-Engine-Parts/_i.html?store_cat=46086297014" target="_blank">Engines &amp; Engine Parts</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Exhaust-Emission-Systems/_i.html?store_cat=46075729014" target="_blank">Exhaust &amp; Emission Systems</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Exterior-Parts-Accessories/_i.html?store_cat=46047308014" target="_blank">Exterior Parts &amp; Accessories</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Ignition-Systems-Components/_i.html?store_cat=46086298014" target="_blank">Ignition Systems &amp; Components</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Interior-Parts-Accessories/_i.html?store_cat=46040091014" target="_blank">Interior Parts &amp; Accessories</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Lighting-Bulbs/_i.html?store_cat=46086299014" target="_blank">Lighting &amp; Bulbs</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Racks-Roof-Boxes/_i.html?store_cat=46086300014" target="_blank">Racks &amp; Roof Boxes</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Sensor/_i.html?store_cat=46070079014" target="_blank">Sensor</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Starters-Alternators-ECUs/_i.html?store_cat=46086303014" target="_blank">Starters, Alternators &amp; ECUs</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Steering-Suspension/_i.html?store_cat=46050759014" target="_blank">Steering &amp; Suspension</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Towing-Parts-Accessories/_i.html?store_cat=46086304014" target="_blank">Towing Parts &amp; Accessories</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Transmission-Drivetrain/_i.html?store_cat=46086305014" target="_blank">Transmission &amp; Drivetrain</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Wheels-Tyres-Parts/_i.html?store_cat=46086306014" target="_blank">Wheels, Tyres &amp; Parts</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Wiring-Harness/_i.html?store_cat=46047171014" target="_blank">Wiring Harness</a>
+                <a href="https://www.ebay.com/str/autobunnyparts/Other/_i.html?store_cat=1" target="_blank">Other</a>
+            </div>
+
+            <div class="side-banner-block">
+                <!-- SIDE_BANNER：左侧广告图区域 -->
+                <div class="side-banner-item new">
+                    <a href="https://www.ebay.com/str/autobunnyparts?_sop=10&amp;_tab=shop" class="side-banner-link" target="_blank">
+                        <div class="side-banner-img-wrap">
+                            <div class="triangle-badge"></div>
+                            <span class="triangle-badge-text">NEW</span>
+                            <img src="https://s3.bmp.ovh/2026/05/17/c0JVvISE.jpg" alt="New Product">
+                        </div>
+                    </a>
+                    <a href="https://www.ebay.com/str/autobunnyparts?_sop=10&amp;_tab=shop" class="shop-btn" target="_blank">SHOP NOW</a>
+                </div>
+
+                <div class="side-banner-item hot">
+                    <a href="https://www.ebay.com/str/autobunnyparts" class="side-banner-link" target="_blank">
+                        <div class="side-banner-img-wrap">
+                            <div class="triangle-badge"></div>
+                            <span class="triangle-badge-text">HOT</span>
+                            <img src="https://s3.bmp.ovh/2026/05/17/1wEe3Orm.jpg" alt="Hot Product">
+                        </div>
+                    </a>
+                    <a href="https://www.ebay.com/str/autobunnyparts" class="shop-btn" target="_blank">SHOP NOW</a>
+                </div>
+
+                <div class="side-banner-item off">
+                    <a href="https://www.ebay.com/str/autobunnyparts" class="side-banner-link" target="_blank">
+                        <div class="side-banner-img-wrap">
+                            <div class="triangle-badge"></div>
+                            <span class="triangle-badge-text">OFF</span>
+                            <img src="https://s3.bmp.ovh/2026/05/17/grzCSk9u.jpg" alt="Discount Product">
+                        </div>
+                    </a>
+                    <a href="https://www.ebay.com/str/autobunnyparts" class="shop-btn" target="_blank">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧主内容 -->
+        <div class="content">
+            <div class="desc-section" id="desc-main">
+                <h2 class="page-title">Front Left Driver Window Regulator &amp; Motor Ford Ranger MK2 Pickup 2006-2012</h2>
+
+                <div class="gallery">
+                    <!-- 默认启用：第 1~5 张 radio -->
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g1-simple43" checked="checked">
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g2-simple43">
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g3-simple43">
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g4-simple43">
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g5-simple43">
+
+                    <!-- 扩展模板：第 6 张 radio
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g6-simple43">
+                    -->
+
+                    <!-- 扩展模板：第 7 张 radio
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g7-simple43">
+                    -->
+
+                    <!-- 扩展模板：第 8 张 radio
+                    <input class="gallery-radio" type="radio" name="gallery-simple43" id="g8-simple43">
+                    -->
+
+                    <div class="gallery-main">
+                        <!-- 默认启用：第 1~5 张主图 -->
+                        <div class="gallery-main-item img1"><img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Product image 1"></div>
+                        <div class="gallery-main-item img2"><img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Product image 2"></div>
+                        <div class="gallery-main-item img3"><img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Product image 3"></div>
+                        <div class="gallery-main-item img4"><img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Product image 4"></div>
+                        <div class="gallery-main-item img5"><img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Product image 5"></div>
+
+                        <!-- 扩展模板：第 6 张主图
+                        <div class="gallery-main-item img6"><img src="https://your-image-link-6.jpg" alt="Product image 6"></div>
+                        -->
+
+                        <!-- 扩展模板：第 7 张主图
+                        <div class="gallery-main-item img7"><img src="https://your-image-link-7.jpg" alt="Product image 7"></div>
+                        -->
+
+                        <!-- 扩展模板：第 8 张主图
+                        <div class="gallery-main-item img8"><img src="https://your-image-link-8.jpg" alt="Product image 8"></div>
+                        -->
+                    </div>
+
+                    <div class="gallery-thumbs">
+                        <!-- 默认启用：第 1~5 张缩略图 -->
+                        <label class="gallery-thumb thumb1" for="g1-simple43"><img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Thumbnail 1"></label>
+                        <label class="gallery-thumb thumb2" for="g2-simple43"><img src="https://s3.bmp.ovh/2026/05/16/4cFO569S.png" alt="Thumbnail 2"></label>
+                        <label class="gallery-thumb thumb3" for="g3-simple43"><img src="https://s3.bmp.ovh/2026/05/16/rObk1KKH.png" alt="Thumbnail 3"></label>
+                        <label class="gallery-thumb thumb4" for="g4-simple43"><img src="https://s3.bmp.ovh/2026/05/16/kKjKa8R1.png" alt="Thumbnail 4"></label>
+                        <label class="gallery-thumb thumb5" for="g5-simple43"><img src="https://s3.bmp.ovh/2026/05/16/iUyeMtrk.png" alt="Thumbnail 5"></label>
+
+                        <!-- 扩展模板：第 6 张缩略图
+                        <label class="gallery-thumb thumb6" for="g6-simple43"><img src="https://your-image-link-6.jpg" alt="Thumbnail 6"></label>
+                        -->
+
+                        <!-- 扩展模板：第 7 张缩略图
+                        <label class="gallery-thumb thumb7" for="g7-simple43"><img src="https://your-image-link-7.jpg" alt="Thumbnail 7"></label>
+                        -->
+
+                        <!-- 扩展模板：第 8 张缩略图
+                        <label class="gallery-thumb thumb8" for="g8-simple43"><img src="https://your-image-link-8.jpg" alt="Thumbnail 8"></label>
+                        -->
+                    </div>
+                </div>
+
+                <div class="desc-block">
+                    <div class="desc-title">Product Details</div>
+                    <div class="desc-content">
+                        Brand New – OE Quality Replacement Part (High Adaptation Standard)<br>
+                        Front Left (Driver Side) Electric Window Regulator With Motor<br>
+                        Suitable for Right Hand Drive (RHD) vehicles<br>
+                        Position on Vehicle: Front Left – Driver Door<br>
+                        Built to OEM specification for a perfect fit and correct alignment<br>
+                        <strong>OEM Part Number</strong>: <span class="red-text">1452782, UR57-59-590A, UR5759590A</span>
+                    </div>
+                </div>
+
+                <div class="desc-block">
+                    <div class="desc-title">Compatibility</div>
+                    <div class="desc-content">
+                        Fit For: Ford Ranger MK2 Pickup – 2006–2012<br>
+                        Fits Front Left (Driver Side) only, compatible with all trims, body styles and engine types of this model, including 2.5 TDCi, 3.0 TDCi and other mainstream engines.
+                    </div>
+                </div>
+
+                <div class="desc-block">
+                    <div class="desc-title">Product Description</div>
+                    <div class="desc-content">
+                        <ul>
+                            <li>Cross-arm (scissor-type) regulator ensures stable and powerful window lifting, with strong load-bearing capacity. It effectively helps reduce glass jamming and deviation during operation, improving lifting stability and overall reliability.</li>
+                            <li>Includes a pre-installed electric motor, so there is no need for additional purchase or separate assembly. This saves installation time and reduces maintenance cost, making replacement more convenient and efficient.</li>
+                            <li>Quiet and powerful motor design offers low operating noise, sufficient output power and responsive performance, helping ensure smooth window operation and longer service life under daily use.</li>
+                            <li>Fully tested before leaving the factory, with inspection focused on lifting smoothness, structural durability and motor performance, helping reduce the risk of defective parts and installation issues.</li>
+                            <li>Direct fit replacement designed to match the original factory mounting points accurately. No drilling, cutting or other modifications are required under normal installation conditions.</li>
+                            <li>Ideal replacement for common failure situations such as damaged original regulator assemblies, slow lifting, jamming, abnormal noise, unstable movement or complete failure of the power window system.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="desc-block">
+                    <div class="desc-title">📦 What You Get</div>
+                    <div class="desc-content">
+                        1x Front Left (Driver Side) Cross-arm (Scissor-Type) Window Regulator With Motor – Brand New &amp; Boxed
+                    </div>
+                </div>
+
+                <div class="desc-block">
+                    <div class="desc-title">⚙️ Fitment &amp; Check</div>
+                    <div class="desc-content">
+                        If you are unsure, please send your vehicle registration or VIN information, and our professional team will confirm compatibility before dispatch to help avoid incorrect delivery and unnecessary returns.<br>
+                        We strongly recommend comparing the shape, mounting points and motor interface of your original regulator with the listing pictures before installation, to ensure complete matching.
+                    </div>
+                </div>
+
+                <!-- LOGISTICS_BANNER：按要求放在 Shipping 模块上方 -->
+                <div class="logi-banner-section">
+                    <img src="https://s3.bmp.ovh/2026/05/16/YKI4xVXL.jpg" alt="Logistics Shipping Banner - AUTOBUNNY PARTS">
+                </div>
+
+                <div class="desc-block" id="shipping">
+                    <div class="desc-title">🚚 Shipping</div>
+                    <div class="desc-content">
+                        <ul>
+                            <li>Orders are shipped out quickly after payment confirmation.</li>
+                            <li>Please ensure the shipping address is correct before submitting your order.</li>
+                            <li>Delivery time may vary by destination, weather and carrier.</li>
+                            <li>Remote or rural areas may require additional delivery time.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="desc-block" id="payment">
+                    <div class="desc-title">🧾 Payment</div>
+                    <div class="desc-content">
+                        We accept payments through eBay's secure system. Please complete payment promptly to avoid shipment delays.
+                    </div>
+                </div>
+
+                <div class="desc-block" id="terms">
+                    <div class="desc-title">⭐ Terms of Sale</div>
+                    <div class="desc-content">
+                        <ul>
+                            <li>Please verify fitment, part number and product images before purchase.</li>
+                            <li>If you have any issue, please contact us before opening a return or leaving feedback.</li>
+                            <li>We strive to provide accurate descriptions and top service.</li>
+                            <li>Your satisfaction is very important to us.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="desc-block" id="contact">
+                    <div class="desc-title">📩 Contact Us</div>
+                    <div class="desc-content">
+                        If you have any questions about fitment, shipping or installation, please contact us via
+                        <a href="https://www.ebay.com/cnt/intermediatedFAQ?requested=autobunnyparts" target="_blank" class="contact-link">eBay message</a>
+                        at any time. We will reply as quickly as possible and do our best to help you.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         FOOTER_BANNER_REPLACE_START
+         底部店铺 banner 图替换区
+         ---------------------------------------------------------
+         使用方法：
+         1. 只替换下面 img 的 src
+         2. 如需修改说明文字，可替换 alt
+         3. 不要删除外层 footer-banner-section
+         FOOTER_BANNER_REPLACE_END
+         ========================================================= -->
+    <div class="footer-banner-section">
+        <img src="https://s3.bmp.ovh/2026/05/16/LQraft4c.jpg" alt="Store Footer Banner - AUTOBUNNY PARTS">
+    </div>
+
+    <div class="footer-area">
+        <div class="footer-brand">AUTOBUNNY PARTS</div>
+        <div class="footer-tip">
+            Quality Auto Parts | Reliable Service | Fast Shipping<br>
+            For product questions, please contact us via eBay message.
+        </div>
+    </div>
+</div>
+</body>
+</html>
