@@ -166,7 +166,7 @@
     .slider-arrow:hover{background:#FF751F;color:#fff;}
     .slider-thumbs-vert{
       position:relative;
-      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
       flex:0 0 70px;width:70px;
       min-height:0;
     }
@@ -185,7 +185,6 @@
     .slider-thumb.active{border:2.5px solid #FF751F;opacity:1;}
     .thumb-arrow{
       position:absolute;
-      top:auto;
       left:50%;
       transform:translateX(-50%);
       opacity:0;
@@ -249,15 +248,12 @@
       #slider-thumbs{flex-direction:row;width:calc((var(--thumb-size) * 5) + (var(--thumb-gap) * 4));height:var(--thumb-size);}
       .thumb-arrow{
         top:50%;
-        bottom:auto;
         transform:translateY(-50%);
       }
       .thumb-arrow.up{
         left:8px;
-        right:auto;
       }
       .thumb-arrow.down{
-        left:auto;
         right:8px;
       }
     }
