@@ -545,6 +545,7 @@ function sliderGoto(idx){ sliderShow(idx); }
 function setThumbTouchActive(active) {
   if (!thumb_outer) return;
   if (active && thumb_outer.classList.contains('touch-active')) return;
+  if (!active && !thumb_outer.classList.contains('touch-active')) return;
   if (thumb_touch_hide_timer) {
     clearTimeout(thumb_touch_hide_timer);
     thumb_touch_hide_timer = null;
@@ -575,7 +576,6 @@ window.addEventListener('DOMContentLoaded', function() {
     var fade_ms = parseInt(getComputedStyle(thumb_outer).getPropertyValue('--thumb-arrow-fade-ms'), 10);
     if (!isNaN(fade_ms) && fade_ms > 0) thumb_touch_hide_delay = fade_ms;
     thumb_outer.addEventListener('touchstart', handleThumbTouchActive, {passive:true});
-    thumb_outer.addEventListener('touchmove', handleThumbTouchActive, {passive:true});
     thumb_outer.addEventListener('touchend', handleThumbTouchEnd, {passive:true});
     thumb_outer.addEventListener('touchcancel', handleThumbTouchEnd, {passive:true});
   }
