@@ -203,6 +203,10 @@
     .slider-thumbs-vert.show-thumb-arrows .thumb-arrow.disabled{
       opacity:.34;pointer-events:none;
     }
+    .thumb-arrow:focus{
+      outline:2px solid #FF751F;
+      outline-offset:2px;
+    }
     .logi-banner-section{
       max-width:840px;
       margin:14px auto 36px auto;
@@ -518,7 +522,9 @@ function thumbArrowKey(event, direction) {
   if (!isActionKey) return;
   if (event.currentTarget && event.currentTarget.getAttribute('aria-disabled') === 'true') return;
   event.preventDefault();
-  if (direction < 0) thumbsPrev();
+  if (event.key === 'ArrowUp') thumbsPrev();
+  else if (event.key === 'ArrowDown') thumbsNext();
+  else if (direction < 0) thumbsPrev();
   else thumbsNext();
 }
 
