@@ -1,1 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOBUNNY PARTS | eBay Listing Template</title>
+  <style>
+    /* 中文维护注释：全局主题色与字体，保持橙/黑/红主色，并提供 eBay 可用后备字体 */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #111111;
+      font-family: "League Spartan", "Arial Black", Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+    .ab-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #dedede;
+    }
+    /* 中文维护注释：顶部店铺头部区域 */
+    .ab-header {
+      background: #000000;
+      color: #ffffff;
+      text-align: center;
+      padding: 18px 12px;
+      border-top: 6px solid #ff751f;
+    }
+    .ab-header h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 1px;
+      color: #ff751f;
+    }
+    .ab-header p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: #ffffff;
+    }
+    /* 中文维护注释：顶部导航菜单（根据 4.0 要求放在主 Banner 之前） */
+    .ab-top-nav {
+      background: #111111;
+      border-top: 2px solid #ff751f;
+      border-bottom: 2px solid #ff751f;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      font-size: 0;
+    }
+    .ab-top-nav li {
+      display: inline-block;
+      margin: 0;
+      border-right: 1px solid #2f2f2f;
+    }
+    .ab-top-nav li:last-child {
+      border-right: none;
+    }
+    .ab-top-nav a {
+      display: block;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .ab-top-nav a:hover {
+      background: #ff751f;
+      color: #000000;
+    }
+    /* 中文维护注释：主 Banner 区域，导航上移后 Banner 位于其下方 */
+    .ab-main-banner {
+      width: 100%;
+      display: block;
+      border-bottom: 4px solid #000000;
+    }
+    .ab-main-banner img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+    .ab-layout {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .ab-layout td {
+      vertical-align: top;
+      padding: 0;
+    }
+    /* 中文维护注释：左侧类目导航，按既有结构保留，不做删改 */
+    .ab-sidebar {
+      width: 280px;
+      background: #0f0f0f;
+      border-right: 3px solid #ff751f;
+    }
+    .ab-sidebar-box {
+      padding: 16px 14px;
+    }
+    .ab-sidebar-title {
+      margin: 0 0 12px;
+      background: #ff751f;
+      color: #000000;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 10px 12px;
+      border-left: 4px solid #cc1f1f;
+    }
+    .ab-cats {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .ab-cats li {
+      margin: 0 0 6px;
+      border: 1px solid #2b2b2b;
+      background: #181818;
+    }
+    .ab-cats a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 9px 10px;
+      font-size: 13px;
+      border-left: 3px solid #ff751f;
+    }
+    .ab-cats a:hover {
+      background: #ff751f;
+      color: #000000;
+      border-left-color: #cc1f1f;
+    }
+    .ab-content {
+      padding: 18px;
+      background: #ffffff;
+    }
+    /* 中文维护注释：DESCRIPTION 主标题 */
+    .ab-section-title {
+      margin: 0 0 14px;
+      background: #000000;
+      color: #ff751f;
+      border-left: 6px solid #cc1f1f;
+      padding: 10px 12px;
+      text-transform: uppercase;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+    /* 中文维护注释：4.0 要求 - 描述区改为纵向堆叠布局（先轮播，后 6 模块） */
+    .ab-description-stack {
+      display: block;
+    }
+    /* 中文维护注释：产品图轮播区域（5 张图 + 点击/滑动） */
+    .ab-slider-wrap {
+      position: relative;
+      background: #ffffff;
+      border: 2px solid #ff751f;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .ab-slider-track {
+      width: 100%;
+      position: relative;
+      font-size: 0;
+      white-space: nowrap;
+      transition: transform 0.35s ease;
+      touch-action: pan-y;
+    }
+    .ab-slide {
+      width: 100%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .ab-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 3px solid #000000;
+    }
+    .ab-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      line-height: 44px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.75);
+      color: #ff751f;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      z-index: 5;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .ab-arrow:hover {
+      background: #ff751f;
+      color: #000000;
+      border-color: #000000;
+    }
+    .ab-arrow-left { left: 12px; }
+    .ab-arrow-right { right: 12px; }
+    .ab-dots {
+      text-align: center;
+      padding: 10px;
+      background: #111111;
+    }
+    .ab-dot {
+      width: 11px;
+      height: 11px;
+      margin: 0 4px;
+      border-radius: 50%;
+      display: inline-block;
+      background: #666666;
+      border: 1px solid #cccccc;
+      cursor: pointer;
+    }
+    .ab-dot.active {
+      background: #cc1f1f;
+      border-color: #ff751f;
+    }
+    /* 中文维护注释：六个信息模块，全部展开显示 */
+    .ab-info-card {
+      margin-bottom: 12px;
+      border: 1px solid #d9d9d9;
+      border-left: 4px solid #ff751f;
+      background: #fafafa;
+    }
+    .ab-info-card h3 {
+      margin: 0;
+      font-size: 17px;
+      text-transform: uppercase;
+      background: #111111;
+      color: #ff751f;
+      padding: 10px 12px;
+      border-bottom: 2px solid #cc1f1f;
+    }
+    .ab-info-inner {
+      padding: 12px;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+    .ab-info-inner ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .ab-info-inner li {
+      margin: 0 0 6px;
+    }
+    /* 中文维护注释：底部感谢区，恢复到 2.0 黑底白字风格 */
+    .ab-footer {
+      background: #000000;
+      color: #ffffff;
+      text-align: center;
+      padding: 26px 12px 28px;
+      border-top: 4px solid #ff751f;
+    }
+    .ab-footer strong {
+      color: #ff751f;
+      font-size: 20px;
+      display: block;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .ab-footer span {
+      font-size: 16px;
+      color: #ffffff;
+    }
+    @media screen and (max-width: 980px) {
+      .ab-layout,
+      .ab-layout tbody,
+      .ab-layout tr,
+      .ab-layout td {
+        display: block;
+        width: 100%;
+      }
+      .ab-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid #ff751f;
+      }
+      .ab-top-nav li {
+        display: block;
+        border-right: none;
+        border-bottom: 1px solid #2f2f2f;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ab-wrap">
+    <!-- 中文维护注释：店铺头部品牌信息 -->
+    <div class="ab-header">
+      <h1>AUTOBUNNY PARTS</h1>
+      <p>Premium Automotive Components | Fast Dispatch | Trusted Service</p>
+    </div>
 
+    <!-- 中文维护注释：顶部导航（已上移到主 Banner 前） -->
+    <ul class="ab-top-nav">
+      <li><a href="#description">Description</a></li>
+      <li><a href="#product-details">Product Details</a></li>
+      <li><a href="#compatibility">Compatibility</a></li>
+      <li><a href="#policies">Core Policies</a></li>
+      <li><a href="#warranty">Warranty &amp; Support</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+
+    <!-- 中文维护注释：主视觉 Banner 图片（使用仓库图片 001） -->
+    <div class="ab-main-banner">
+      <img src="001.png" alt="AUTOBUNNY PARTS promotional banner for quality auto parts and buyer confidence">
+    </div>
+
+    <table class="ab-layout" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="ab-sidebar">
+          <!-- 中文维护注释：左侧店铺类目导航，按既有版本完整保留 -->
+          <div class="ab-sidebar-box">
+            <h2 class="ab-sidebar-title">Shop Categories</h2>
+            <ul class="ab-cats">
+              <li><a href="#">Accessory Belts</a></li>
+              <li><a href="#">Advanced Driver Assistance Systems</a></li>
+              <li><a href="#">Air &amp; Fuel Delivery</a></li>
+              <li><a href="#">Air Conditioning &amp; Heating</a></li>
+              <li><a href="#">Brakes &amp; Brake Parts</a></li>
+              <li><a href="#">Electric, Hybrid &amp; PHEV Specific Parts</a></li>
+              <li><a href="#">Engine Cooling Components</a></li>
+              <li><a href="#">Engines &amp; Engine Parts</a></li>
+              <li><a href="#">Exhaust &amp; Emission Systems</a></li>
+              <li><a href="#">Exterior Parts &amp; Accessories</a></li>
+              <li><a href="#">Ignition Systems &amp; Components</a></li>
+              <li><a href="#">Interior Parts &amp; Accessories</a></li>
+              <li><a href="#">Lighting &amp; Bulbs</a></li>
+              <li><a href="#">Other Car Parts &amp; Accessories</a></li>
+              <li><a href="#">Racks &amp; Roof Boxes</a></li>
+              <li><a href="#">Starters, Alternators, ECUs &amp; Wiring</a></li>
+              <li><a href="#">Steering &amp; Suspension</a></li>
+              <li><a href="#">Towing Parts &amp; Accessories</a></li>
+              <li><a href="#">Transmission &amp; Drivetrain</a></li>
+              <li><a href="#">Wheels, Tyres &amp; Parts</a></li>
+            </ul>
+          </div>
+        </td>
+
+        <td class="ab-content">
+          <!-- 中文维护注释：DESCRIPTION 总区，按 4.0 采用纵向结构 -->
+          <div id="description" class="ab-description-stack">
+            <h2 class="ab-section-title">Description</h2>
+
+            <!-- 中文维护注释：产品图轮播（5 张示例图：002-006） -->
+            <div class="ab-slider-wrap" id="ab-slider">
+              <div class="ab-arrow ab-arrow-left" id="ab-prev" aria-label="Previous image">&#8249;</div>
+              <div class="ab-arrow ab-arrow-right" id="ab-next" aria-label="Next image">&#8250;</div>
+
+              <div class="ab-slider-track" id="ab-track">
+                <div class="ab-slide"><img src="002.png" alt="AUTOBUNNY PARTS product close-up view with key component details"></div>
+                <div class="ab-slide"><img src="003.png" alt="AUTOBUNNY PARTS product front angle image for fitment reference"></div>
+                <div class="ab-slide"><img src="004.png" alt="AUTOBUNNY PARTS product side angle image highlighting build quality"></div>
+                <div class="ab-slide"><img src="005.png" alt="AUTOBUNNY PARTS product comparison-style image showing mounting points"></div>
+                <div class="ab-slide"><img src="006.png" alt="AUTOBUNNY PARTS product packaging and final display image"></div>
+              </div>
+
+              <div class="ab-dots" id="ab-dots"></div>
+            </div>
+
+            <!-- 中文维护注释：信息模块 1/6 - Product Details，可按实际 SKU 参数替换 -->
+            <div id="product-details" class="ab-info-card">
+              <h3>Product Details</h3>
+              <div class="ab-info-inner">
+                <ul>
+                  <li>Brand: AUTOBUNNY PARTS</li>
+                  <li>Condition: Brand New</li>
+                  <li>Type: Direct Replacement Automotive Part</li>
+                  <li>Package Includes: 1 Set as Displayed in Listing Images</li>
+                  <li>Manufacturing Standard: Built to match OEM-level fit and function</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 中文维护注释：信息模块 2/6 - Compatibility，建议后续按车型年份补全 -->
+            <div id="compatibility" class="ab-info-card">
+              <h3>Compatibility</h3>
+              <div class="ab-info-inner">
+                <p>Please use the eBay compatibility tool as a reference and double-check your original part number before purchase.</p>
+                <ul>
+                  <li>Fitment may vary by engine type, trim level, and production date.</li>
+                  <li>If you are unsure, message us with VIN / make / model / year for verification.</li>
+                  <li>Professional confirmation before ordering is strongly recommended.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 中文维护注释：信息模块 3/6 - Product Description，面向买家文本保持英文 -->
+            <div class="ab-info-card">
+              <h3>Product Description</h3>
+              <div class="ab-info-inner">
+                <p>This AUTOBUNNY PARTS component is selected for dependable performance, consistent quality, and reliable daily operation. It is engineered for accurate fitment and long-term service under regular road conditions.</p>
+                <p>Each unit is inspected before dispatch to help ensure you receive a part that is ready for installation and use.</p>
+              </div>
+            </div>
+
+            <!-- 中文维护注释：信息模块 4/6 - Installation Instructions，保留安全提示 -->
+            <div class="ab-info-card">
+              <h3>Installation Instructions</h3>
+              <div class="ab-info-inner">
+                <ul>
+                  <li>Compare the item with your original part before installation.</li>
+                  <li>Installation by a qualified technician is highly recommended.</li>
+                  <li>Do not force-fit parts; verify fitment and mounting points first.</li>
+                  <li>Retain original packaging until function testing is complete.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 中文维护注释：信息模块 5/6 - Core Policies（Shipping/Payment/Terms/About/Contact） -->
+            <div id="policies" class="ab-info-card">
+              <h3>Core Policies</h3>
+              <div class="ab-info-inner">
+                <ul>
+                  <li><strong>Shipping:</strong> Orders are processed quickly and dispatched with tracking where available.</li>
+                  <li><strong>Payment:</strong> We accept secure eBay-supported payment methods.</li>
+                  <li><strong>Terms of Sale:</strong> Please confirm fitment details before checkout to avoid unnecessary returns.</li>
+                  <li><strong>About Us:</strong> AUTOBUNNY PARTS focuses on practical quality and responsive support.</li>
+                  <li id="contact"><strong>Contact Us:</strong> Send us a message through eBay anytime, and we will respond promptly.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 中文维护注释：信息模块 6/6 - Warranty & Support -->
+            <div id="warranty" class="ab-info-card">
+              <h3>Warranty &amp; Support</h3>
+              <div class="ab-info-inner">
+                <p>If you experience any issue with your order, please contact AUTOBUNNY PARTS first through eBay messaging.</p>
+                <ul>
+                  <li>We provide clear after-sales assistance and practical solutions.</li>
+                  <li>Please include item number, order details, and photos when reporting a problem.</li>
+                  <li>Our team is committed to helping you shop with confidence.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- 中文维护注释：底部黑底感谢区（已移除底部图片 Banner，恢复 2.0 风格） -->
+    <div class="ab-footer">
+      <strong>AUTOBUNNY PARTS</strong>
+      <span>Thank you for visiting AUTOBUNNY PARTS and shopping with confidence!</span>
+    </div>
+  </div>
+
+  <script>
+    /* 中文维护注释：轮播脚本 - 支持左右按钮、圆点点击、移动端滑动切换 */
+    (function () {
+      var track = document.getElementById('ab-track');
+      var prev = document.getElementById('ab-prev');
+      var next = document.getElementById('ab-next');
+      var dotsWrap = document.getElementById('ab-dots');
+      var dots = [];
+      var slides = track ? track.getElementsByClassName('ab-slide') : [];
+      var total = slides.length || 0;
+      var index = 0;
+      var startX = 0;
+      var moveX = 0;
+      var SWIPE_THRESHOLD = 40;
+
+      function render() {
+        if (!track) { return; }
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        for (var i = 0; i < dots.length; i++) {
+          dots[i].className = 'ab-dot' + (i === index ? ' active' : '');
+        }
+      }
+
+      function go(step) {
+        if (!total) { return; }
+        index += step;
+        if (index < 0) { index = total - 1; }
+        if (index >= total) { index = 0; }
+        render();
+      }
+
+      if (dotsWrap && total) {
+        var dotsHtml = '';
+        for (var dotIndex = 0; dotIndex < total; dotIndex++) {
+          dotsHtml += '<span class="ab-dot' + (dotIndex === 0 ? ' active' : '') + '" data-index="' + dotIndex + '"></span>';
+        }
+        dotsWrap.innerHTML = dotsHtml;
+        dots = dotsWrap.getElementsByClassName('ab-dot');
+      }
+
+      if (prev) {
+        prev.onclick = function () { go(-1); };
+      }
+      if (next) {
+        next.onclick = function () { go(1); };
+      }
+
+      for (var d = 0; d < dots.length; d++) {
+        dots[d].onclick = function () {
+          index = parseInt(this.getAttribute('data-index'), 10) || 0;
+          render();
+        };
+      }
+
+      if (track) {
+        track.addEventListener('touchstart', function (e) {
+          startX = e.touches[0].clientX;
+          moveX = startX;
+        }, false);
+
+        track.addEventListener('touchmove', function (e) {
+          moveX = e.touches[0].clientX;
+        }, false);
+
+        track.addEventListener('touchend', function () {
+          var distance = moveX - startX;
+          if (distance > SWIPE_THRESHOLD) {
+            go(-1);
+          } else if (distance < -SWIPE_THRESHOLD) {
+            go(1);
+          }
+        }, false);
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>
