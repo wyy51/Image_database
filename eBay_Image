@@ -1,1 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOBUNNY PARTS eBay Listing Template</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #222222;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .abp-page {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #ffffff;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
+    }
+    .abp-brand-head {
+      background: #111111;
+      color: #ffffff;
+      text-align: center;
+      padding: 28px 16px;
+    }
+    .abp-brand-name {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .abp-brand-subtitle {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #f2f2f2;
+      letter-spacing: 0.5px;
+    }
+    .abp-top-nav {
+      background: #ff7a1a;
+      border-bottom: 4px solid #111111;
+      text-align: center;
+      font-size: 0;
+    }
+    .abp-top-nav a {
+      display: inline-block;
+      padding: 15px 18px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .abp-top-nav a:last-child {
+      border-right: none;
+    }
+    .abp-top-nav a:hover,
+    .abp-top-nav a:focus {
+      background: #111111;
+      color: #ff7a1a;
+    }
+    .abp-banner-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
+    .abp-layout {
+      display: flex;
+      align-items: flex-start;
+      background: #ffffff;
+    }
+    .abp-sidebar {
+      width: 255px;
+      min-width: 255px;
+      background: #111111;
+    }
+    .abp-sidebar-title {
+      padding: 20px 18px 14px;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .abp-category-list {
+      background: #ffffff;
+    }
+    .abp-category-list a {
+      display: block;
+      padding: 12px 18px;
+      color: #222222;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      border-bottom: 1px solid #ededed;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .abp-category-list a:hover,
+    .abp-category-list a:focus {
+      background: #fff4eb;
+      color: #ff7a1a;
+    }
+    .abp-sidebar-featured-wrap {
+      padding: 20px 18px 26px;
+    }
+    .abp-sidebar-featured-card {
+      margin-bottom: 22px;
+    }
+    .abp-sidebar-featured-link {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    }
+    .abp-sidebar-featured-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 0;
+    }
+    .abp-badge-triangle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 64px solid #ff7a1a;
+      border-right: 64px solid transparent;
+      z-index: 1;
+    }
+    .abp-sidebar-featured-card.hot .abp-badge-triangle {
+      border-top-color: #d7261f;
+    }
+    .abp-sidebar-featured-card.off .abp-badge-triangle {
+      border-top-color: #111111;
+    }
+    .abp-badge-text {
+      position: absolute;
+      top: 12px;
+      left: 4px;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      transform: rotate(-45deg);
+      transform-origin: left top;
+      pointer-events: none;
+    }
+    .abp-shop-now-btn {
+      display: block;
+      margin-top: 8px;
+      padding: 11px 14px;
+      background: #ff7a1a;
+      color: #ffffff;
+      border-radius: 24px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      border: 2px solid #ff7a1a;
+      box-sizing: border-box;
+    }
+    .abp-shop-now-btn:hover,
+    .abp-shop-now-btn:focus {
+      background: #ffffff;
+      color: #ff7a1a;
+      border-color: #ff7a1a;
+    }
+    .abp-sidebar-featured-card.hot .abp-shop-now-btn {
+      background: #d7261f;
+      border-color: #d7261f;
+    }
+    .abp-sidebar-featured-card.hot .abp-shop-now-btn:hover,
+    .abp-sidebar-featured-card.hot .abp-shop-now-btn:focus {
+      background: #ffffff;
+      color: #d7261f;
+      border-color: #d7261f;
+    }
+    .abp-sidebar-featured-card.off .abp-shop-now-btn {
+      background: #111111;
+      border-color: #111111;
+    }
+    .abp-sidebar-featured-card.off .abp-shop-now-btn:hover,
+    .abp-sidebar-featured-card.off .abp-shop-now-btn:focus {
+      background: #ffffff;
+      color: #111111;
+      border-color: #111111;
+    }
+    .abp-content {
+      flex: 1;
+      min-width: 0;
+      padding: 28px 36px 0;
+    }
+    .abp-module {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      background: #ffffff;
+    }
+    .abp-module-title {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ff7a1a;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+    .abp-module-content,
+    .abp-module-content p,
+    .abp-module-content li {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #2d3740;
+    }
+    .abp-module-content p {
+      margin: 0 0 8px;
+    }
+    .abp-module-content ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .abp-gallery {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      padding: 18px;
+      background: #fafafa;
+      border: 1px solid #ececec;
+      border-radius: 14px;
+    }
+    .abp-gallery input {
+      position: absolute;
+      left: -9999px;
+    }
+    .abp-gallery-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 520px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .abp-gallery-panel {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+    .abp-gallery-panel a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+    .abp-gallery-panel img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+    }
+    #abp-gallery-radio-01:checked ~ .abp-gallery-stage .abp-gallery-panel-01,
+    #abp-gallery-radio-02:checked ~ .abp-gallery-stage .abp-gallery-panel-02,
+    #abp-gallery-radio-03:checked ~ .abp-gallery-stage .abp-gallery-panel-03,
+    #abp-gallery-radio-04:checked ~ .abp-gallery-stage .abp-gallery-panel-04,
+    #abp-gallery-radio-05:checked ~ .abp-gallery-stage .abp-gallery-panel-05 {
+      display: block;
+    }
+    .abp-gallery-thumbs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .abp-gallery-thumb {
+      display: inline-block;
+      width: 88px;
+      height: 88px;
+      border: 2px solid #e2e2e2;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .abp-gallery-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+    }
+    .abp-gallery-thumb:hover {
+      border-color: #ff7a1a;
+      transform: translateY(-1px);
+    }
+    #abp-gallery-radio-01:checked ~ .abp-gallery-thumbs label[for="abp-gallery-radio-01"],
+    #abp-gallery-radio-02:checked ~ .abp-gallery-thumbs label[for="abp-gallery-radio-02"],
+    #abp-gallery-radio-03:checked ~ .abp-gallery-thumbs label[for="abp-gallery-radio-03"],
+    #abp-gallery-radio-04:checked ~ .abp-gallery-thumbs label[for="abp-gallery-radio-04"],
+    #abp-gallery-radio-05:checked ~ .abp-gallery-thumbs label[for="abp-gallery-radio-05"] {
+      border-color: #ff7a1a;
+      box-shadow: 0 0 0 1px #ff7a1a inset;
+    }
+    .abp-logistics-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .abp-related {
+      max-width: 860px;
+      margin: 28px auto 0;
+      padding: 16px 14px 18px;
+      background: #fffaf6;
+      border: 2px solid #ff7a1a;
+      border-radius: 18px;
+    }
+    .abp-related-title {
+      margin: 0 0 14px;
+      padding-left: 10px;
+      border-left: 6px solid #d7261f;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ff7a1a;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+    .abp-related-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: flex-start;
+    }
+    .abp-related-item {
+      display: block;
+      width: 168px;
+      padding: 10px 10px 14px;
+      background: #ffffff;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #222222;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .abp-related-item:hover,
+    .abp-related-item:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+    .abp-related-item img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 0;
+    }
+    .abp-related-name {
+      margin: 10px 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      min-height: 40px;
+    }
+    .abp-related-cta {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #ff7a1a;
+      color: #ffffff;
+      border-radius: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .abp-footer {
+      margin-top: 28px;
+      padding: 32px 14px 26px;
+      background: #111111;
+      color: #ffffff;
+      text-align: center;
+      border-top: 6px solid #ff7a1a;
+    }
+    .abp-footer-brand {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .abp-footer-note {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #f0f0f0;
+    }
+    .abp-contact-link {
+      color: #ff7a1a;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .abp-contact-link:hover,
+    .abp-contact-link:focus {
+      border-bottom-color: #ff7a1a;
+    }
+    @media (max-width: 980px) {
+      .abp-content {
+        padding: 24px 20px 0;
+      }
+    }
+    @media (max-width: 860px) {
+      .abp-layout {
+        display: block;
+      }
+      .abp-sidebar {
+        width: 100%;
+        min-width: 0;
+      }
+      .abp-sidebar-featured-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .abp-sidebar-featured-card {
+        width: calc(33.333% - 11px);
+        margin-bottom: 0;
+      }
+    }
+    @media (max-width: 640px) {
+      .abp-top-nav a {
+        width: 50%;
+        box-sizing: border-box;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .abp-brand-name {
+        font-size: 24px;
+      }
+      .abp-content {
+        padding: 20px 14px 0;
+      }
+      .abp-gallery {
+        padding: 14px;
+      }
+      .abp-gallery-thumb {
+        width: 66px;
+        height: 66px;
+      }
+      .abp-sidebar-featured-wrap {
+        display: block;
+      }
+      .abp-sidebar-featured-card {
+        width: auto;
+        margin-bottom: 20px;
+      }
+      .abp-related-list {
+        gap: 12px;
+        justify-content: center;
+      }
+      .abp-related-item {
+        width: calc(50% - 6px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="abp-page">
+    <!-- 中文维护说明【模块名称：ABP_BRAND_HEADER】此模块为店铺顶部品牌头部，只改英文文案，不要删除品牌类名，避免整体样式失效。 -->
+    <div class="abp-brand-head">
+      <div class="abp-brand-name">AUTOBUNNY PARTS</div>
+      <div class="abp-brand-subtitle">Premium Auto Parts Store | Professional Service | Fast Shipping</div>
+    </div>
 
+    <!-- 中文维护说明【模块名称：ABP_TOP_NAV】顶部导航统一跳转到当前页面锚点；如新增模块，请同步新增一个导航按钮和对应 id。 -->
+    <div class="abp-top-nav">
+      <a href="#abp-description">Description</a>
+      <a href="#abp-shipping">Shipping</a>
+      <a href="#abp-payment">Payment</a>
+      <a href="#abp-terms">Terms of Sale</a>
+      <a href="#abp-about">About Us</a>
+      <a href="#abp-contact">Contact Us</a>
+    </div>
+
+    <!-- 中文维护说明【图片名称：ABP_IMAGE_BANNER_MAIN】【链接名称：ABP_LINK_BANNER_MAIN】更换顶部横幅时，只需同时修改下面 a 的 href 和 img 的 src/alt；建议继续使用品牌横幅长图，避免比例错位。 -->
+    <a id="abp-banner-main-link" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+      <img
+        id="abp-banner-main-image"
+        class="abp-banner-image"
+        src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png"
+        alt="AUTOBUNNY PARTS Store Banner Main Image"
+      >
+    </a>
+
+    <div class="abp-layout">
+      <aside class="abp-sidebar">
+        <!-- 中文维护说明【模块名称：ABP_SIDEBAR_CATEGORY_MENU】左侧分类链接统一遵循以下规则：基础前缀固定为 https://www.ebay.com/str/autobunnyparts/ ，分类路径使用英文名称去掉符号后改为连字符格式，末尾统一加 /_i.html?store_cat=46086293014；如未来新增分类，请复制现有 a 标签并仅改文字与 slug。 -->
+        <div class="abp-sidebar-title">Shop Categories</div>
+        <div class="abp-category-list">
+          <a href="https://www.ebay.com/str/autobunnyparts/Accessory-Belts/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Accessory Belts</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Advanced-Driver-Assistance-Systems/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Advanced Driver Assistance Systems</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Air-Fuel-Delivery/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Air &amp; Fuel Delivery</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Air-Conditioning-Heating/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Air Conditioning &amp; Heating</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Brakes-Brake-Parts/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Brakes &amp; Brake Parts</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Electric-Hybrid-PHEV-Specific-Parts/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Electric, Hybrid &amp; PHEV Specific Parts</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Engine-Cooling-Components/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Engine Cooling Components</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Engines-Engine-Parts/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Engines &amp; Engine Parts</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Exhaust-Emission-Systems/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Exhaust &amp; Emission Systems</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Exterior-Parts-Accessories/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Exterior Parts &amp; Accessories</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Ignition-Systems-Components/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Ignition Systems &amp; Components</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Interior-Parts-Accessories/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Interior Parts &amp; Accessories</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Lighting-Bulbs/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Lighting &amp; Bulbs</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Other-Car-Parts-Accessories/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Other Car Parts &amp; Accessories</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Racks-Roof-Boxes/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Racks &amp; Roof Boxes</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Starters-Alternators-ECUs-Wiring/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Starters, Alternators, ECUs &amp; Wiring</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Steering-Suspension/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Steering &amp; Suspension</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Towing-Parts-Accessories/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Towing Parts &amp; Accessories</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Transmission-Drivetrain/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Transmission &amp; Drivetrain</a>
+          <a href="https://www.ebay.com/str/autobunnyparts/Wheels-Tyres-Parts/_i.html?store_cat=46086293014" target="_blank" rel="noopener noreferrer">Wheels, Tyres &amp; Parts</a>
+        </div>
+
+        <!-- 中文维护说明【模块名称：ABP_SIDEBAR_FEATURED_PRODUCTS】本区域包含 NEW / HOT / OFF 三张左侧引流图；每张卡片都拆分为“图片链接”和“SHOP NOW 按钮链接”，以后改图片或改跳转时，分别修改对应 a 的 href 和 img 的 src/alt 即可，类名和 id 请保持不变。 -->
+        <div class="abp-sidebar-featured-wrap">
+          <div class="abp-sidebar-featured-card new">
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_SIDEBAR_NEW】【链接名称：ABP_LINK_SIDEBAR_NEW_IMAGE】替换 NEW 图时，只改下方 href / src / alt；建议继续使用 1:1 正方形图。 -->
+            <a id="abp-sidebar-new-image-link" class="abp-sidebar-featured-link" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+              <span class="abp-badge-triangle"></span>
+              <span class="abp-badge-text">NEW</span>
+              <img
+                id="abp-sidebar-new-image"
+                class="abp-sidebar-featured-image"
+                src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png"
+                alt="AUTOBUNNY PARTS Sidebar Featured Product New"
+              >
+            </a>
+            <!-- 中文维护说明【链接名称：ABP_LINK_SIDEBAR_NEW_BUTTON】此按钮必须保留 a 标签与内联 style='text-decoration:none;'，这样在 eBay 和浏览器的默认状态下都不会出现下划线。 -->
+            <a id="abp-sidebar-new-button" class="abp-shop-now-btn" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">SHOP NOW</a>
+          </div>
+
+          <div class="abp-sidebar-featured-card hot">
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_SIDEBAR_HOT】【链接名称：ABP_LINK_SIDEBAR_HOT_IMAGE】替换 HOT 图时，只改下方 href / src / alt；建议继续使用 1:1 正方形图。 -->
+            <a id="abp-sidebar-hot-image-link" class="abp-sidebar-featured-link" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+              <span class="abp-badge-triangle"></span>
+              <span class="abp-badge-text">HOT</span>
+              <img
+                id="abp-sidebar-hot-image"
+                class="abp-sidebar-featured-image"
+                src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png"
+                alt="AUTOBUNNY PARTS Sidebar Featured Product Hot"
+              >
+            </a>
+            <!-- 中文维护说明【链接名称：ABP_LINK_SIDEBAR_HOT_BUTTON】此按钮必须保留 a 标签与内联 style='text-decoration:none;'，这样在 eBay 和浏览器的默认状态下都不会出现下划线。 -->
+            <a id="abp-sidebar-hot-button" class="abp-shop-now-btn" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">SHOP NOW</a>
+          </div>
+
+          <div class="abp-sidebar-featured-card off">
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_SIDEBAR_OFF】【链接名称：ABP_LINK_SIDEBAR_OFF_IMAGE】折扣角标文案已按要求改为 OFF；替换图片时，只改下方 href / src / alt；建议继续使用 1:1 正方形图。 -->
+            <a id="abp-sidebar-off-image-link" class="abp-sidebar-featured-link" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+              <span class="abp-badge-triangle"></span>
+              <span class="abp-badge-text">OFF</span>
+              <img
+                id="abp-sidebar-off-image"
+                class="abp-sidebar-featured-image"
+                src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png"
+                alt="AUTOBUNNY PARTS Sidebar Featured Product Off"
+              >
+            </a>
+            <!-- 中文维护说明【链接名称：ABP_LINK_SIDEBAR_OFF_BUTTON】此按钮必须保留 a 标签与内联 style='text-decoration:none;'，这样在 eBay 和浏览器的默认状态下都不会出现下划线。 -->
+            <a id="abp-sidebar-off-button" class="abp-shop-now-btn" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">SHOP NOW</a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="abp-content">
+        <!-- 中文维护说明【模块名称：ABP_DESCRIPTION_GALLERY】此处使用纯 HTML+CSS 的 eBay 兼容切换图，不依赖 JS；主图与缩略图都统一为 1:1 展示。未来如需替换，请同步修改主图 panel 与对应缩略图的 src/alt。建议上传真实 800x800 正方形图片，当前样例通过 CSS 强制一比一展示。 -->
+        <div id="abp-description" class="abp-gallery">
+          <input type="radio" name="abp-gallery" id="abp-gallery-radio-01" checked>
+          <input type="radio" name="abp-gallery" id="abp-gallery-radio-02">
+          <input type="radio" name="abp-gallery" id="abp-gallery-radio-03">
+          <input type="radio" name="abp-gallery" id="abp-gallery-radio-04">
+          <input type="radio" name="abp-gallery" id="abp-gallery-radio-05">
+
+          <div class="abp-gallery-stage">
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_PRODUCT_DETAIL_01】【链接名称：ABP_LINK_PRODUCT_DETAIL_01】如需替换第 1 张产品图，请同时修改 href、src、alt；图片建议使用 800x800 正方形。 -->
+            <div class="abp-gallery-panel abp-gallery-panel-01">
+              <a id="abp-detail-image-link-01" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+                <img id="abp-detail-image-01" src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="AUTOBUNNY PARTS Product Detail Image 01 Main View">
+              </a>
+            </div>
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_PRODUCT_DETAIL_02】【链接名称：ABP_LINK_PRODUCT_DETAIL_02】如需替换第 2 张产品图，请同时修改 href、src、alt；图片建议使用 800x800 正方形。 -->
+            <div class="abp-gallery-panel abp-gallery-panel-02">
+              <a id="abp-detail-image-link-02" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+                <img id="abp-detail-image-02" src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="AUTOBUNNY PARTS Product Detail Image 02 Angle View">
+              </a>
+            </div>
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_PRODUCT_DETAIL_03】【链接名称：ABP_LINK_PRODUCT_DETAIL_03】如需替换第 3 张产品图，请同时修改 href、src、alt；图片建议使用 800x800 正方形。 -->
+            <div class="abp-gallery-panel abp-gallery-panel-03">
+              <a id="abp-detail-image-link-03" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+                <img id="abp-detail-image-03" src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="AUTOBUNNY PARTS Product Detail Image 03 Close View">
+              </a>
+            </div>
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_PRODUCT_DETAIL_04】【链接名称：ABP_LINK_PRODUCT_DETAIL_04】如需替换第 4 张产品图，请同时修改 href、src、alt；图片建议使用 800x800 正方形。 -->
+            <div class="abp-gallery-panel abp-gallery-panel-04">
+              <a id="abp-detail-image-link-04" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+                <img id="abp-detail-image-04" src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="AUTOBUNNY PARTS Product Detail Image 04 Installed Look">
+              </a>
+            </div>
+            <!-- 中文维护说明【图片名称：ABP_IMAGE_PRODUCT_DETAIL_05】【链接名称：ABP_LINK_PRODUCT_DETAIL_05】如需替换第 5 张产品图，请同时修改 href、src、alt；图片建议使用 800x800 正方形。 -->
+            <div class="abp-gallery-panel abp-gallery-panel-05">
+              <a id="abp-detail-image-link-05" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+                <img id="abp-detail-image-05" src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="AUTOBUNNY PARTS Product Detail Image 05 Feature View">
+              </a>
+            </div>
+          </div>
+
+          <div class="abp-gallery-thumbs">
+            <!-- 中文维护说明【缩略图维护】每个 label 必须与上方 radio id 对应；如删除或新增产品图，请同时同步 radio、panel、thumb 三处。 -->
+            <label class="abp-gallery-thumb" for="abp-gallery-radio-01"><img src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="AUTOBUNNY PARTS Product Thumbnail 01"></label>
+            <label class="abp-gallery-thumb" for="abp-gallery-radio-02"><img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="AUTOBUNNY PARTS Product Thumbnail 02"></label>
+            <label class="abp-gallery-thumb" for="abp-gallery-radio-03"><img src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="AUTOBUNNY PARTS Product Thumbnail 03"></label>
+            <label class="abp-gallery-thumb" for="abp-gallery-radio-04"><img src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="AUTOBUNNY PARTS Product Thumbnail 04"></label>
+            <label class="abp-gallery-thumb" for="abp-gallery-radio-05"><img src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="AUTOBUNNY PARTS Product Thumbnail 05"></label>
+          </div>
+        </div>
+
+        <!-- 中文维护说明【模块名称：ABP_PRODUCT_DETAILS】以下为核心描述模块，买家可见文字必须保持英文；如需调整内容，仅改正文，不要删掉标题结构。 -->
+        <div class="abp-module">
+          <div class="abp-module-title">Product Details</div>
+          <div class="abp-module-content">
+            <p>Brand New - OE Quality Replacement Part.</p>
+            <p>Front Left (Driver Side) Electric Window Regulator with Motor.</p>
+            <p>Built for Right Hand Drive vehicles with reliable fit and alignment.</p>
+            <p>OEM Reference: 1452782, UR57-59-590A, UR5759590A.</p>
+          </div>
+        </div>
+
+        <div class="abp-module">
+          <div class="abp-module-title">Compatibility</div>
+          <div class="abp-module-content">
+            <p>Fits Ford Ranger MK2 Pickup 2006-2012.</p>
+            <p>Designed for the front left driver side position only.</p>
+            <p>Please compare your original part number, mounting points and connector before purchase.</p>
+          </div>
+        </div>
+
+        <div class="abp-module">
+          <div class="abp-module-title">Product Description</div>
+          <div class="abp-module-content">
+            <ul>
+              <li>Scissor-type regulator design helps provide smooth and stable window movement.</li>
+              <li>Motor is pre-installed for quick replacement and easier installation.</li>
+              <li>Direct-fit structure helps reduce extra modification work.</li>
+              <li>Tested before dispatch to support dependable daily use.</li>
+              <li>Ideal replacement for damaged, jammed, slow or noisy window regulator assemblies.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="abp-module">
+          <div class="abp-module-title">Installation Notes</div>
+          <div class="abp-module-content">
+            <ul>
+              <li>Check the mounting holes, cable structure and motor connector against your original unit.</li>
+              <li>If you are unsure about fitment, please contact us before ordering.</li>
+              <li>Professional installation is recommended for the best result.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="abp-module">
+          <div class="abp-module-title">Warranty &amp; Support</div>
+          <div class="abp-module-content">
+            <p>Fast dispatch, careful packaging and responsive after-sales support.</p>
+            <p>We are committed to helping you find the correct part before and after purchase.</p>
+          </div>
+        </div>
+
+        <!-- 中文维护说明【图片名称：ABP_IMAGE_LOGISTICS_BANNER】【链接名称：ABP_LINK_LOGISTICS_BANNER】物流横幅如需替换，只改下方 href 和 img 的 src/alt；建议继续使用横版 banner。 -->
+        <div class="abp-module abp-logistics-banner">
+          <a id="abp-logistics-banner-link" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+            <img id="abp-logistics-banner-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="AUTOBUNNY PARTS Shipping Banner Image">
+          </a>
+        </div>
+
+        <!-- 中文维护说明【模块名称：ABP_POLICY_MODULES】Shipping、Payment、Terms、About、Contact 为主要政策模块；修改文案时保持英文，并保留现有 id 供顶部导航使用。 -->
+        <div id="abp-shipping" class="abp-module">
+          <div class="abp-module-title">Shipping</div>
+          <div class="abp-module-content">
+            <ul>
+              <li>Orders are processed quickly after payment confirmation.</li>
+              <li>Please double-check your shipping address before placing the order.</li>
+              <li>Delivery time may vary depending on destination, carrier and weather conditions.</li>
+              <li>Remote areas may require additional transit time.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="abp-payment" class="abp-module">
+          <div class="abp-module-title">Payment</div>
+          <div class="abp-module-content">
+            <p>We accept payment through eBay's secure checkout system. Prompt payment helps us dispatch your order faster.</p>
+          </div>
+        </div>
+
+        <div id="abp-terms" class="abp-module">
+          <div class="abp-module-title">Terms of Sale</div>
+          <div class="abp-module-content">
+            <ul>
+              <li>Please review the fitment details, part number and product images before purchase.</li>
+              <li>If you have any issue with your order, please contact us before opening a return request.</li>
+              <li>We work hard to provide accurate listings and reliable customer support.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="abp-about" class="abp-module">
+          <div class="abp-module-title">About Us</div>
+          <div class="abp-module-content">
+            <p><strong>AUTOBUNNY PARTS</strong> offers quality auto parts, careful packing and dependable service for every order.</p>
+          </div>
+        </div>
+
+        <div id="abp-contact" class="abp-module">
+          <div class="abp-module-title">Contact Us</div>
+          <div class="abp-module-content">
+            <!-- 中文维护说明【链接名称：ABP_LINK_CONTACT_US_TEXT】“Contact Us”文字必须直接跳转到指定 eBay 联系页面；若以后店铺联系地址变化，仅修改下方 a 的 href，英文正文可按需调整。 -->
+            <p>If you need help with fitment, shipping or your order, please use <a id="abp-contact-us-link" class="abp-contact-link" href="https://www.ebay.com/cnt/intermediatedFAQ?requested=bunny_4600" target="_blank" rel="noopener noreferrer">Contact Us &#8599;</a> and our team will reply as soon as possible.</p>
+          </div>
+        </div>
+
+        <!-- 中文维护说明【模块名称：ABP_RELATED_PRODUCTS】推荐商品区域用于店铺引流；每个商品卡片只需替换 a 的 href、img 的 src/alt、标题文字即可，结构可直接复制增加。 -->
+        <div class="abp-related">
+          <div class="abp-related-title">You may also like</div>
+          <div class="abp-related-list">
+            <a id="abp-related-item-01" class="abp-related-item" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+              <img id="abp-related-image-01" src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="AUTOBUNNY PARTS Related Product 01">
+              <div class="abp-related-name">Front Wiper Motor for Ford Transit</div>
+              <span class="abp-related-cta">View Details</span>
+            </a>
+            <a id="abp-related-item-02" class="abp-related-item" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+              <img id="abp-related-image-02" src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="AUTOBUNNY PARTS Related Product 02">
+              <div class="abp-related-name">Window Switch Assembly Fit Ranger</div>
+              <span class="abp-related-cta">View Details</span>
+            </a>
+            <a id="abp-related-item-03" class="abp-related-item" href="https://www.ebay.com/str/autobunnyparts" target="_blank" rel="noopener noreferrer">
+              <img id="abp-related-image-03" src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="AUTOBUNNY PARTS Related Product 03">
+              <div class="abp-related-name">Headlight Trim Replacement 2012-2017</div>
+              <span class="abp-related-cta">View Details</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="abp-footer">
+          <div class="abp-footer-brand">AUTOBUNNY PARTS</div>
+          <div class="abp-footer-note">Thank you for visiting AUTOBUNNY PARTS and shopping with confidence.</div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
