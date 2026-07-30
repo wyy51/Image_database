@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUTOBUNNY PARTS - eBay Product Description</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f7fb;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1e2a35;
+    }
+    .ebay-template-wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid #d7e0ea;
+      background: #ffffff;
+    }
+    .store-top-banner,
+    .store-bottom-banner {
+      padding: 18px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #102a44, #1b4f7a);
+      color: #ffffff;
+    }
+    .store-top-banner h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0.8px;
+    }
+    .store-top-banner p,
+    .store-bottom-banner p {
+      margin: 7px 0 0;
+      font-size: 15px;
+    }
+    .store-main-layout {
+      display: flex;
+      gap: 18px;
+      padding: 18px;
+    }
+    .store-left-sidebar {
+      width: 260px;
+      flex-shrink: 0;
+    }
+    .shop-categories-block {
+      border: 1px solid #d7e0ea;
+      margin-bottom: 16px;
+      background: #fdfefe;
+      padding: 8px 0 10px;
+    }
+    .shop-categories-title {
+      margin: 0 0 12px;
+      padding: 2px 12px 8px;
+      text-align: center;
+      font-size: 21px;
+      font-weight: 700;
+      color: #102a44;
+      border-bottom: 1px solid #e5edf4;
+    }
+    .shop-categories-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .shop-categories-list li {
+      border-top: 1px solid #eef3f8;
+    }
+    .shop-categories-list li:first-child {
+      border-top: 0;
+    }
+    .shop-categories-link {
+      display: block;
+      padding: 10px 14px;
+      color: #234562;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .shop-categories-link:hover {
+      background: #ecf4fb;
+      color: #0b2b49;
+      text-decoration: none;
+    }
+    .sidebar-feature-card {
+      position: relative;
+      border: 1px solid #d7e0ea;
+      background: #ffffff;
+      margin-bottom: 16px;
+      overflow: hidden;
+      padding-bottom: 14px;
+    }
+    .sidebar-feature-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .sidebar-feature-action {
+      display: block;
+      margin: 14px 14px 0;
+      padding: 10px 12px;
+      text-align: center;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #1e5d8f;
+    }
+    .triangle-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 110px;
+      height: 110px;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      background: #d91f31;
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+    }
+    .triangle-badge-text {
+      position: absolute;
+      top: 17px;
+      left: 8px;
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 700;
+      color: #ffffff;
+      transform: rotate(-45deg);
+      transform-origin: left top;
+      letter-spacing: 0.5px;
+    }
+    .triangle-badge-hot {
+      background: #f07f13;
+    }
+    .triangle-badge-off {
+      background: #18a84f;
+    }
+    .store-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .content-section {
+      border: 1px solid #d7e0ea;
+      margin-bottom: 16px;
+      background: #ffffff;
+    }
+    .content-section-title {
+      margin: 0;
+      padding: 12px 14px;
+      background: #f1f6fb;
+      border-bottom: 1px solid #d7e0ea;
+      color: #0f2d49;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+    }
+    .description-gallery {
+      display: flex;
+      gap: 14px;
+      padding: 14px;
+      flex-wrap: nowrap;
+    }
+    .gallery-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .gallery-main-stage {
+      width: calc(100% - 116px);
+      min-width: 0;
+      position: relative;
+      border: 1px solid #d7e0ea;
+      background: #fbfdff;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+    .gallery-main-item {
+      display: none;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 1 / 1;
+    }
+    #gallery-image-1:checked ~ .gallery-main-stage .main-item-1,
+    #gallery-image-2:checked ~ .gallery-main-stage .main-item-2,
+    #gallery-image-3:checked ~ .gallery-main-stage .main-item-3,
+    #gallery-image-4:checked ~ .gallery-main-stage .main-item-4 {
+      display: flex;
+    }
+    .gallery-thumbnail-column {
+      width: 102px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .gallery-thumbnail-label {
+      width: 100%;
+      border: 2px solid #d7e0ea;
+      background: #ffffff;
+      cursor: pointer;
+      display: block;
+      line-height: 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .gallery-thumbnail-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    #gallery-image-1:checked ~ .gallery-thumbnail-column .thumb-label-1,
+    #gallery-image-2:checked ~ .gallery-thumbnail-column .thumb-label-2,
+    #gallery-image-3:checked ~ .gallery-thumbnail-column .thumb-label-3,
+    #gallery-image-4:checked ~ .gallery-thumbnail-column .thumb-label-4 {
+      border-color: #1f6297;
+    }
+    .section-body {
+      padding: 14px;
+      font-size: 15px;
+      color: #314557;
+      line-height: 1.65;
+    }
+    .shipping-banner-wrapper {
+      padding: 14px 14px 0;
+      /* Required visible gap between shipping banner and shipping text block */
+      margin-bottom: 34px;
+    }
+    .shipping-banner-image {
+      width: 100%;
+      display: block;
+      border: 1px solid #d7e0ea;
+    }
+    .contact-card {
+      border: 1px solid #d7e0ea;
+      background: #f8fbff;
+      text-align: center;
+      padding: 18px 14px;
+      margin: 0 14px 14px;
+    }
+    .contact-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #0f2d49;
+    }
+    .contact-card p {
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: #35506a;
+    }
+    @media (max-width: 860px) {
+      .store-main-layout {
+        flex-direction: column;
+      }
+      .store-left-sidebar {
+        width: 100%;
+      }
+      .description-gallery {
+        flex-direction: column;
+      }
+      .gallery-main-stage {
+        width: 100%;
+      }
+      .gallery-thumbnail-column {
+        width: 100%;
+        flex-direction: row;
+      }
+      .gallery-thumbnail-label {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ebay-template-wrapper">
+    <!-- Top store identity banner -->
+    <div class="store-top-banner" id="store-banner-top-autobunny">
+      <h1>AUTOBUNNY PARTS</h1>
+      <p>Premium Auto Parts Store | Professional Service | Fast Shipping</p>
+    </div>
 
+    <div class="store-main-layout">
+      <aside class="store-left-sidebar">
+        <!-- Left menu: replace menu names and URLs only in this section -->
+        <div class="shop-categories-block" id="shop-categories-autobunny">
+          <h2 class="shop-categories-title">Shop Categories</h2>
+          <ul class="shop-categories-list">
+            <!-- category-link-accessory-belts -->
+            <li><a class="shop-categories-link" href="https://www.ebay.com/str/autobunnyparts/Accessory-Belts/_i.html?store_cat=46086293014" target="_blank">Accessory Belts</a></li>
+            <!-- category-link-air-fuel-delivery -->
+            <li><a class="shop-categories-link" href="https://www.ebay.com/str/autobunnyparts/Air-Fuel-Delivery/_i.html?store_cat=46086293014" target="_blank">Air &amp; Fuel Delivery</a></li>
+            <!-- category-link-advanced-driver-assistance-systems -->
+            <li><a class="shop-categories-link" href="https://www.ebay.com/str/autobunnyparts/Advanced-Driver-Assistance-Systems/_i.html?store_cat=46086293014" target="_blank">Advanced Driver Assistance Systems</a></li>
+            <!-- category-link-brake-system -->
+            <li><a class="shop-categories-link" href="https://www.ebay.com/str/autobunnyparts/Brake-System/_i.html?store_cat=46086293014" target="_blank">Brake System</a></li>
+            <!-- category-link-car-lights -->
+            <li><a class="shop-categories-link" href="https://www.ebay.com/str/autobunnyparts/Car-Lights/_i.html?store_cat=46086293014" target="_blank">Car Lights</a></li>
+          </ul>
+        </div>
+
+        <!-- Feature card 1 image source key: sidebar-image-new-001 -->
+        <div class="sidebar-feature-card" id="sidebar-card-new-arrival">
+          <span class="triangle-badge"><span class="triangle-badge-text">NEW</span></span>
+          <img class="sidebar-feature-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Autobunny new arrival auto part image 001" />
+          <a href="https://www.ebay.com/str/autobunnyparts" class="sidebar-feature-action" style="text-decoration:none !important;" target="_blank">SHOP NOW</a>
+        </div>
+
+        <!-- Feature card 2 image source key: sidebar-image-hot-002 -->
+        <div class="sidebar-feature-card" id="sidebar-card-hot-sale">
+          <span class="triangle-badge triangle-badge-hot"><span class="triangle-badge-text">HOT</span></span>
+          <img class="sidebar-feature-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Autobunny hot sale auto part image 002" />
+          <a href="https://www.ebay.com/str/autobunnyparts" class="sidebar-feature-action" style="text-decoration:none !important;" target="_blank">SHOP NOW</a>
+        </div>
+
+        <!-- Feature card 3 image source key: sidebar-image-off-003 -->
+        <div class="sidebar-feature-card" id="sidebar-card-special-offer">
+          <span class="triangle-badge triangle-badge-off"><span class="triangle-badge-text">OFF</span></span>
+          <img class="sidebar-feature-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Autobunny special offer auto part image 003" />
+          <a href="https://www.ebay.com/str/autobunnyparts" class="sidebar-feature-action" style="text-decoration:none !important;" target="_blank">SHOP NOW</a>
+        </div>
+      </aside>
+
+      <main class="store-content">
+        <!-- Description area with 800x800 square gallery (main left + thumbnails right) -->
+        <section class="content-section" id="description-section-autobunny">
+          <h2 class="content-section-title">DESCRIPTION</h2>
+          <div class="description-gallery">
+            <input class="gallery-input" type="radio" name="gallery-select" id="gallery-image-1" checked="checked" />
+            <input class="gallery-input" type="radio" name="gallery-select" id="gallery-image-2" />
+            <input class="gallery-input" type="radio" name="gallery-select" id="gallery-image-3" />
+            <input class="gallery-input" type="radio" name="gallery-select" id="gallery-image-4" />
+
+            <div class="gallery-main-stage" id="gallery-main-stage-800x800">
+              <!-- main-image-001 -->
+              <div class="gallery-main-item main-item-1"><img class="gallery-main-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Main product image 001 suggested size 800 by 800" /></div>
+              <!-- main-image-002 -->
+              <div class="gallery-main-item main-item-2"><img class="gallery-main-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Main product image 002 suggested size 800 by 800" /></div>
+              <!-- main-image-003 -->
+              <div class="gallery-main-item main-item-3"><img class="gallery-main-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Main product image 003 suggested size 800 by 800" /></div>
+              <!-- main-image-004 -->
+              <div class="gallery-main-item main-item-4"><img class="gallery-main-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Main product image 004 suggested size 800 by 800" /></div>
+            </div>
+
+            <!-- thumbnail-images-right-column -->
+            <div class="gallery-thumbnail-column" id="gallery-thumbnail-column-right">
+              <label class="gallery-thumbnail-label thumb-label-1" for="gallery-image-1"><img class="gallery-thumbnail-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/001.png" alt="Thumbnail image 001 suggested size 800 by 800" /></label>
+              <label class="gallery-thumbnail-label thumb-label-2" for="gallery-image-2"><img class="gallery-thumbnail-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/002.png" alt="Thumbnail image 002 suggested size 800 by 800" /></label>
+              <label class="gallery-thumbnail-label thumb-label-3" for="gallery-image-3"><img class="gallery-thumbnail-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/003.png" alt="Thumbnail image 003 suggested size 800 by 800" /></label>
+              <label class="gallery-thumbnail-label thumb-label-4" for="gallery-image-4"><img class="gallery-thumbnail-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/004.png" alt="Thumbnail image 004 suggested size 800 by 800" /></label>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <strong>Product Highlights:</strong> High-quality replacement parts, stable fitment, and strict quality checks for reliable long-term performance.
+          </div>
+        </section>
+
+        <!-- Shipping banner and spacing before shipping copy -->
+        <section class="content-section" id="shipping-section-autobunny">
+          <h2 class="content-section-title">SHIPPING</h2>
+          <div class="shipping-banner-wrapper" id="shipping-banner-wrapper-main">
+            <!-- shipping-banner-image-005 -->
+            <img class="shipping-banner-image" src="https://raw.githubusercontent.com/wyy51/Image_database/main/005.png" alt="Autobunny shipping support banner image 005" />
+          </div>
+          <div class="section-body">
+            All orders are processed quickly with secure packaging and tracking updates. Please confirm your shipping address before placing the order.
+          </div>
+        </section>
+
+        <!-- Contact block with standardized contact link -->
+        <section class="content-section" id="contact-us-section-autobunny">
+          <div class="contact-card" id="contact-us-card-main">
+            <h3>Contact Us</h3>
+            <p>If you have any fitment or product questions, we are here to help.</p>
+            <a href="https://www.ebay.com/cnt/intermediatedFAQ?requested=bunny_4600" target="_blank" style="display:inline-block; padding:11px 24px; background:#1e5d8f; color:#ffffff; font-weight:700; border-radius:4px; text-decoration:none !important;">CONTACT US</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Bottom store banner: image key and replacement note -->
+    <div class="store-bottom-banner" id="store-banner-bottom-autobunny">
+      <!-- bottom-banner-image-006 -->
+      <img src="https://raw.githubusercontent.com/wyy51/Image_database/main/006.png" alt="Autobunny bottom store banner image 006" style="display:block; width:100%; margin:0 0 10px; border:1px solid rgba(255, 255, 255, 0.35);" />
+      <p>AUTOBUNNY PARTS Thank you for visiting AUTOBUNNY PARTS and shopping with confidence!</p>
+    </div>
+  </div>
+</body>
+</html>
